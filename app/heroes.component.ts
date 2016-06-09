@@ -7,8 +7,8 @@ import { Router } from '@angular/router-deprecated';
 
 @Component({
   selector: 'my-heroes',
-  templateUrl: 'app/heroes.component.html',
-  styleUrls:  ['app/heroes.component.css']
+  templateUrl: 'app/html/heroes.component.html',
+  styleUrls:  ['app/css/heroes.component.css']
 })
 
 export class HeroesComponent implements OnInit {

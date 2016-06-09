@@ -5,6 +5,8 @@ import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { DashboardComponent } from './dashboard.component';
 
+import { NounComponent } from './noun.component';
+
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 @Component({
@@ -12,10 +14,10 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
   template: `
     <h1>{{title}}</h1>
     <a [routerLink]="['Dashboard']">Dashboard</a>
-    <a [routerLink]="['Heroes']">Heroes</a>
+    <a [routerLink]="['Heroes']">Heroes</a>    
     <router-outlet></router-outlet>
   `,
-  styleUrls: ['app/app.component.css'],
+  styleUrls: ['app/css/app.component.css'],
   directives: [ROUTER_DIRECTIVES],
   providers: [
     ROUTER_PROVIDERS,
@@ -43,5 +45,5 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 ])
 
 export class AppComponent {
-  title = 'Tour of Heroes';
+  title = 'Phosphor';
 }

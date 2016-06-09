@@ -16,13 +16,13 @@ var dashboard_component_1 = require('./dashboard.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'Tour of Heroes';
+        this.title = 'Phosphor';
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>\n    <router-outlet></router-outlet>\n  ",
-            styleUrls: ['app/app.component.css'],
+            template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>    \n    <router-outlet></router-outlet>\n  ",
+            styleUrls: ['app/css/app.component.css'],
             directives: [router_deprecated_1.ROUTER_DIRECTIVES],
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS,
