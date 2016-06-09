@@ -24,8 +24,10 @@ export class NounComponent implements OnInit {
     this.getNouns();
   }
 
-  search(criteria) {
-    this.nounService.search(criteria).then(nouns => this.nouns = nouns);    
+  search() {
+    //This is a bit hacky
+    var criteria = document.getElementById("noun-search").value;
+    this.nounService.search(criteria).then(nouns => this.nouns = nouns);
   }
 
 /*

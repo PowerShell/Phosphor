@@ -25,6 +25,8 @@ var NounComponent = (function () {
     };
     NounComponent.prototype.search = function (criteria) {
         var _this = this;
+        //This is a bit hacky
+        var criteria = document.getElementById("noun-search").value;
         this.nounService.search(criteria).then(function (nouns) { return _this.nouns = nouns; });
     };
     NounComponent = __decorate([
