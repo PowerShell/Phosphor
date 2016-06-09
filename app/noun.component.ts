@@ -24,6 +24,10 @@ export class NounComponent implements OnInit {
     this.getNouns();
   }
 
+  search(criteria) {
+    this.nounService.search(criteria);
+  }
+
 /*
   handleNoun(noun: Noun) {
 

@@ -23,6 +23,9 @@ var NounComponent = (function () {
     NounComponent.prototype.ngOnInit = function () {
         this.getNouns();
     };
+    NounComponent.prototype.search = function (criteria) {
+        this.nounService.search(criteria);
+    };
     NounComponent = __decorate([
         core_1.Component({
             selector: 'noun-blade',

@@ -16,6 +16,16 @@ var NounService = (function () {
     NounService.prototype.getNouns = function () {
         return Promise.resolve(mock_nouns_1.MOCKNOUNS);
     };
+    NounService.prototype.search = function (criteria) {
+        var result = [];
+        for (var i = 0; i < mock_nouns_1.MOCKNOUNS.length; i++) {
+            if (mock_nouns_1.MOCKNOUNS[i].name.indexOf(criteria) != -1) {
+                result.push(mock_nouns_1.MOCKNOUNS[i]);
+                console.log(mock_nouns_1.MOCKNOUNS[i]);
+            }
+        }
+        return Promise.resolve(result);
+    };
     NounService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
