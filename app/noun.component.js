@@ -24,7 +24,8 @@ var NounComponent = (function () {
         this.getNouns();
     };
     NounComponent.prototype.search = function (criteria) {
-        this.nounService.search(criteria);
+        var _this = this;
+        this.nounService.search(criteria).then(function (nouns) { return _this.nouns = nouns; });
     };
     NounComponent = __decorate([
         core_1.Component({

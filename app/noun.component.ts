@@ -25,7 +25,7 @@ export class NounComponent implements OnInit {
   }
 
   search(criteria) {
-    this.nounService.search(criteria);
+    this.nounService.search(criteria).then(nouns => this.nouns = nouns);    
   }
 
 /*
