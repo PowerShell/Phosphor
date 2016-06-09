@@ -15,7 +15,13 @@ var OrganizationComponent = (function () {
     function OrganizationComponent(router, nounService) {
         this.router = router;
         this.nounService = nounService;
-        this.items = ['mockNoun1', 'mockNoun2', 'mockNoun3', 'mockNoun4', 'mockNoun5', 'mockNoun6', 'mockNoun7'];
+        this.items = ['mockNoun1 | mockAttr1 | mockAttr2 | mockAttr3',
+            'mockNoun2 | mockAttr1 | mockAttr2 | mockAttr3',
+            'mockNoun3 | mockAttr1 | mockAttr2 | mockAttr3',
+            'mockNoun4 | mockAttr1 | mockAttr2 | mockAttr3',
+            'mockNoun5 | mockAttr1 | mockAttr2 | mockAttr3',
+            'mockNoun6 | mockAttr1 | mockAttr2 | mockAttr3',
+            'mockNoun7 | mockAttr1 | mockAttr2 | mockAttr3'];
     }
     OrganizationComponent.prototype.getItems = function () {
     };

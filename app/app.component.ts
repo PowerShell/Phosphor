@@ -12,9 +12,10 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 @Component({
   selector: 'my-app',
   template: `
-    <h1>{{title}}</h1>
+    <!-- <h1>{{title}}</h1>
     <a [routerLink]="['Dashboard']">Dashboard</a>
-    <a [routerLink]="['Heroes']">Heroes</a>    
+    <a [routerLink]="['Heroes']">Heroes</a>
+    -->
     <router-outlet></router-outlet>
   `,
   styleUrls: ['app/css/app.component.css'],

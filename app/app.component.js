@@ -21,7 +21,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>    \n    <router-outlet></router-outlet>\n  ",
+            template: "\n    <!-- <h1>{{title}}</h1>\n    <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>\n    -->\n    <router-outlet></router-outlet>\n  ",
             styleUrls: ['app/css/app.component.css'],
             directives: [router_deprecated_1.ROUTER_DIRECTIVES],
             providers: [
