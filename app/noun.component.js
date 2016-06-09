@@ -23,9 +23,9 @@ var NounComponent = (function () {
     NounComponent.prototype.ngOnInit = function () {
         this.getNouns();
     };
-    NounComponent.prototype.search = function (criteria) {
+    NounComponent.prototype.search = function () {
         var _this = this;
-        //This is a bit hacky
+        //This is a bit hacky as we need casting.
         var criteria = document.getElementById("noun-search").value;
         this.nounService.search(criteria).then(function (nouns) { return _this.nouns = nouns; });
     };

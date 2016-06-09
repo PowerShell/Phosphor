@@ -25,8 +25,8 @@ export class NounComponent implements OnInit {
   }
 
   search() {
-    //This is a bit hacky
-    var criteria = document.getElementById("noun-search").value;
+    //This is a bit hacky as we need casting.
+    var criteria = (<HTMLInputElement>document.getElementById("noun-search")).value;
     this.nounService.search(criteria).then(nouns => this.nouns = nouns);
   }
 

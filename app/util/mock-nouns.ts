@@ -20,5 +20,25 @@ export var MOCKNOUNS: Noun[] = [
   {
     id: 5,
     name: 'model'
+  },
+  {
+    id: 6,
+    name: 'modules'
+  },
+  {
+    id: 7,
+    name: 'agents'
+  },
+  {
+    id: 8,
+    name: 'virtual-disks'
+  },
+  {
+    id: 9,
+    name: 'lockers'
+  },
+  {
+    id: 10,
+    name: 'models'
   }
 ];

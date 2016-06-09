@@ -5,7 +5,7 @@
   </h3>
 
   <div class="input-group search">
-    <input id="noun-search" type="text" class="form-control" placeholder="Search for...">
+    <input id="noun-search" type="text" class="form-control" placeholder="Search for..." (keyup)="search()">
     <span class="input-group-btn">
       <button class="btn btn-primary hvr-shrink" type="button" (click)="search()">Go!</button>
     </span>
