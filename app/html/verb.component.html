@@ -4,10 +4,14 @@
     Verbs
   </h3>
 
-  <div *ngFor="let verb of verbs">
-    <button class="hvr-grow verb">
-      {{verb}}
-    </button>
+  <div class="container-fluid">
+    <div *ngFor="let verb of verbs" class="col-md-3 hvr-grow verb">
+      <img src="http://placehold.it/50x50">
+      <div>
+          {{verb}}
+      </div>
+    </div>
   </div>
+
 
 </div>

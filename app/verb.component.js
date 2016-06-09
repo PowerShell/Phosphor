@@ -13,7 +13,7 @@ var router_deprecated_1 = require('@angular/router-deprecated');
 var VerbComponent = (function () {
     function VerbComponent(router) {
         this.router = router;
-        this.verbs = ['set', 'new', 'add', 'extend', 'modify', 'reduce'];
+        this.verbs = ['set', 'new', 'add', 'extend', 'modify', 'reduce', '...'];
     }
     VerbComponent.prototype.ngOnInit = function () {
     };
