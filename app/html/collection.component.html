@@ -4,7 +4,20 @@
     Collection
   </h3>
 
-  <h4>Select from the list:</h4>
+  <div class="col-md-2"></div>
+
+  <div class="container-fluid">
+    <div *ngFor="let action of actions" class="col-md-3 hvr-grow action">
+      <img src="http://placehold.it/50x50">
+      <div>
+          {{action}}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-1"></div>
+
+  <h4 style="margin-top: 10%;">Select from the list:</h4>
 
   <div class="scrollView">
     <div *ngFor="let item of items">
@@ -13,8 +26,6 @@
       </button>
     </div>
   </div>
-
-  <button class="btn btn-success" style="margin-top: 10%;">New</button>
 
 
 

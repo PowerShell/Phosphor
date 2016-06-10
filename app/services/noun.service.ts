@@ -12,7 +12,7 @@ export class NounService {
     var result = [];
 
     for (var i = 0; i < MOCKNOUNS.length; i++) {
-      if (MOCKNOUNS[i].name.indexOf(criteria) != -1) {
+      if (MOCKNOUNS[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
         result.push(MOCKNOUNS[i]);
         console.log(MOCKNOUNS[i]);
       }

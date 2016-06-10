@@ -3,42 +3,42 @@ import { Noun } from './noun';
 export var MOCKNOUNS: Noun[] = [
   {
     id: 1,
-    name: 'module'
+    name: 'AppxPackage'
   },
   {
     id: 2,
-    name: 'agent'
+    name: 'BitlockerVolume'
   },
   {
     id: 3,
-    name: 'virtual-disk'
+    name: 'NetFirewallRules'
   },
   {
     id: 4,
-    name: 'locker'
+    name: 'PackageProvider'
   },
   {
     id: 5,
-    name: 'model'
+    name: 'PhysicalDisk'
   },
   {
     id: 6,
-    name: 'modules'
+    name: 'Services'
   },
   {
     id: 7,
-    name: 'agents'
+    name: 'StorageFileServer'
   },
   {
     id: 8,
-    name: 'virtual-disks'
+    name: 'VMs'
   },
   {
     id: 9,
-    name: 'lockers'
+    name: 'Volume'
   },
   {
     id: 10,
-    name: 'models'
+    name: 'WmiEvent'
   }
 ];

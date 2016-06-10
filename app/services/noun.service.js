@@ -19,7 +19,7 @@ var NounService = (function () {
     NounService.prototype.search = function (criteria) {
         var result = [];
         for (var i = 0; i < mock_nouns_1.MOCKNOUNS.length; i++) {
-            if (mock_nouns_1.MOCKNOUNS[i].name.indexOf(criteria) != -1) {
+            if (mock_nouns_1.MOCKNOUNS[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
                 result.push(mock_nouns_1.MOCKNOUNS[i]);
                 console.log(mock_nouns_1.MOCKNOUNS[i]);
             }

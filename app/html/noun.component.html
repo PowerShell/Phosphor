@@ -13,17 +13,24 @@
 
   or
 
-  <div class="input-group search">
-    <span class="input-group-addon">
-      <input type="checkbox" aria-label="...">
-    </span>
-    <input type="text" class="form-control" aria-label="..." value="Constrain by Module">
-  </div><!-- /input-group -->
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Dropdown
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">Action</a></li>
+      <li><a href="#">Another action</a></li>
+      <li><a href="#">Something else here</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Separated link</a></li>
+    </ul>
+  </div>
 
 
   <div class="scrollView">
     <div *ngFor="let noun of nouns">
-      <button class="hvr-grow noun">
+      <button class="hvr-grow hvr-bubble-right noun">
         {{noun.name}}
       </button>
     </div>

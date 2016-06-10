@@ -22,6 +22,8 @@ export class CollectionComponent implements OnInit {
            'mockNoun6 | mockAttr1 | mockAttr2 | mockAttr3',
            'mockNoun7 | mockAttr1 | mockAttr2 | mockAttr3'];
 
+  actions = ['New', 'Tools', 'Batch'];
+
   getItems() {
 
   }

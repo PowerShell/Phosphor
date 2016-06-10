@@ -22,6 +22,7 @@ var CollectionComponent = (function () {
             'mockNoun5 | mockAttr1 | mockAttr2 | mockAttr3',
             'mockNoun6 | mockAttr1 | mockAttr2 | mockAttr3',
             'mockNoun7 | mockAttr1 | mockAttr2 | mockAttr3'];
+        this.actions = ['New', 'Tools', 'Batch'];
     }
     CollectionComponent.prototype.getItems = function () {
     };
