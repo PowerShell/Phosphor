@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var hero_service_1 = require('./hero.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_component_1 = require('./noun.component');
-var organization_component_1 = require('./organization.component');
+var collection_component_1 = require('./collection.component');
 var verb_component_1 = require('./verb.component');
 var DashboardComponent = (function () {
     function DashboardComponent(router, heroService) {
@@ -34,7 +34,7 @@ var DashboardComponent = (function () {
             selector: 'my-dashboard',
             templateUrl: 'app/html/dashboard.component.html',
             styleUrls: ['app/css/dashboard.component.css'],
-            directives: [noun_component_1.NounComponent, organization_component_1.OrganizationComponent, verb_component_1.VerbComponent]
+            directives: [noun_component_1.NounComponent, collection_component_1.CollectionComponent, verb_component_1.VerbComponent]
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router, hero_service_1.HeroService])
     ], DashboardComponent);

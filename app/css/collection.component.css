@@ -1,5 +1,5 @@
-.organization-blade {
-  height: 500px;
+.collection-blade {
+  height: 100%;
   padding: 0;
   border: 2px solid black;
   text-align: center;
@@ -19,7 +19,7 @@
 
 .scrollView {
   overflow: auto;
-  height: 250px;
+  height: 30%;
   width: 100%;
   margin-top: 12%;
 }

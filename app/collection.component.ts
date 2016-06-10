@@ -5,12 +5,12 @@ import { Noun } from './util/noun';
 import { NounService } from './services/noun.service';
 
 @Component({
-  selector: 'organization-blade',
-  templateUrl: 'app/html/organization.component.html',
-  styleUrls: ['app/css/organization.component.css'],
+  selector: 'collection-blade',
+  templateUrl: 'app/html/collection.component.html',
+  styleUrls: ['app/css/collection.component.css'],
   providers: [NounService]
 })
-export class OrganizationComponent implements OnInit {
+export class CollectionComponent implements OnInit {
 
   constructor(private router: Router, private nounService: NounService) { }
 

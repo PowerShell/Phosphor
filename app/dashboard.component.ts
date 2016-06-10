@@ -6,14 +6,14 @@ import { HeroService } from './hero.service';
 import { Router } from '@angular/router-deprecated';
 
 import { NounComponent } from './noun.component';
-import { OrganizationComponent } from './organization.component';
+import { CollectionComponent } from './collection.component';
 import { VerbComponent } from './verb.component';
 
 @Component({
   selector: 'my-dashboard',
   templateUrl: 'app/html/dashboard.component.html',
   styleUrls: ['app/css/dashboard.component.css'],
-  directives: [NounComponent, OrganizationComponent, VerbComponent]
+  directives: [NounComponent, CollectionComponent, VerbComponent]
 })
 export class DashboardComponent implements OnInit {
 

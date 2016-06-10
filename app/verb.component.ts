@@ -10,7 +10,7 @@ export class VerbComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  verbs = ['set', 'new', 'add', 'extend', 'modify', 'reduce', '...'];
+  verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
 
   ngOnInit() {
 

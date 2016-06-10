@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_service_1 = require('./services/noun.service');
-var OrganizationComponent = (function () {
-    function OrganizationComponent(router, nounService) {
+var CollectionComponent = (function () {
+    function CollectionComponent(router, nounService) {
         this.router = router;
         this.nounService = nounService;
         this.items = ['mockNoun1 | mockAttr1 | mockAttr2 | mockAttr3',
@@ -23,21 +23,21 @@ var OrganizationComponent = (function () {
             'mockNoun6 | mockAttr1 | mockAttr2 | mockAttr3',
             'mockNoun7 | mockAttr1 | mockAttr2 | mockAttr3'];
     }
-    OrganizationComponent.prototype.getItems = function () {
+    CollectionComponent.prototype.getItems = function () {
     };
-    OrganizationComponent.prototype.ngOnInit = function () {
+    CollectionComponent.prototype.ngOnInit = function () {
         this.getItems();
     };
-    OrganizationComponent = __decorate([
+    CollectionComponent = __decorate([
         core_1.Component({
-            selector: 'organization-blade',
-            templateUrl: 'app/html/organization.component.html',
-            styleUrls: ['app/css/organization.component.css'],
+            selector: 'collection-blade',
+            templateUrl: 'app/html/collection.component.html',
+            styleUrls: ['app/css/collection.component.css'],
             providers: [noun_service_1.NounService]
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService])
-    ], OrganizationComponent);
-    return OrganizationComponent;
+    ], CollectionComponent);
+    return CollectionComponent;
 }());
-exports.OrganizationComponent = OrganizationComponent;
-//# sourceMappingURL=organization.component.js.map
+exports.CollectionComponent = CollectionComponent;
+//# sourceMappingURL=collection.component.js.map
