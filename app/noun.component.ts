@@ -16,6 +16,8 @@ export class NounComponent implements OnInit {
 
   nouns: Noun[];
 
+  selectedNoun: Noun;
+
   getNouns() {
       this.nounService.getNouns().then(nouns => this.nouns = nouns);
   }
@@ -28,6 +30,11 @@ export class NounComponent implements OnInit {
     //This is a bit hacky as we need casting.
     var criteria = (<HTMLInputElement>document.getElementById("noun-search")).value;
     this.nounService.search(criteria).then(nouns => this.nouns = nouns);
+  }
+
+  goToNouns(otherNoun) {
+    this.selectedNoun = otherNoun;
+    this.router.navigate(['Collection', { id: this.selectedNoun.id }]);
   }
 
 /*

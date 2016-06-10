@@ -22,7 +22,7 @@
 
   <div class="scrollView">
     <div *ngFor="let noun of nouns">
-      <button class="hvr-grow hvr-bubble-right noun">
+      <button class="hvr-grow hvr-bubble-right noun" (click)="goToNouns(noun)">
         {{noun.name}}
       </button>
     </div>

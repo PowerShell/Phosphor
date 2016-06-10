@@ -6,6 +6,7 @@ import { HeroDetailComponent } from './hero-detail.component';
 import { DashboardComponent } from './dashboard.component';
 
 import { NounComponent } from './noun.component';
+import { CollectionComponent } from './collection.component';
 
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
@@ -42,6 +43,11 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
     name: 'Dashboard',
     component: DashboardComponent,
     useAsDefault: true
+  },
+  {
+    path: '/collection/:id',
+    name: 'Collection',
+    component: CollectionComponent
   }
 ])
 

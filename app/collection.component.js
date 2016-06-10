@@ -12,9 +12,10 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_service_1 = require('./services/noun.service');
 var CollectionComponent = (function () {
-    function CollectionComponent(router, nounService) {
+    function CollectionComponent(router, nounService, routeParams) {
         this.router = router;
         this.nounService = nounService;
+        this.routeParams = routeParams;
         this.items = ['mockNoun1 | mockAttr1 | mockAttr2 | mockAttr3',
             'mockNoun2 | mockAttr1 | mockAttr2 | mockAttr3',
             'mockNoun3 | mockAttr1 | mockAttr2 | mockAttr3',
@@ -27,6 +28,8 @@ var CollectionComponent = (function () {
     CollectionComponent.prototype.getItems = function () {
     };
     CollectionComponent.prototype.ngOnInit = function () {
+        var id = +this.routeParams.get('id');
+        console.log("Here is the id: " + id);
         this.getItems();
     };
     CollectionComponent = __decorate([
@@ -36,7 +39,7 @@ var CollectionComponent = (function () {
             styleUrls: ['app/css/collection.component.css'],
             providers: [noun_service_1.NounService]
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService, router_deprecated_1.RouteParams])
     ], CollectionComponent);
     return CollectionComponent;
 }());

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router, RouteParams } from '@angular/router-deprecated';
 
 import { Noun } from './util/noun';
 import { NounService } from './services/noun.service';
@@ -12,7 +12,8 @@ import { NounService } from './services/noun.service';
 })
 export class CollectionComponent implements OnInit {
 
-  constructor(private router: Router, private nounService: NounService) { }
+  constructor(private router: Router, private nounService: NounService,
+  private routeParams: RouteParams) { }
 
   items = ['mockNoun1 | mockAttr1 | mockAttr2 | mockAttr3',
            'mockNoun2 | mockAttr1 | mockAttr2 | mockAttr3',
@@ -29,6 +30,8 @@ export class CollectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    let id = +this.routeParams.get('id');
+    console.log("Here is the id: " + id);
     this.getItems();
   }
 
