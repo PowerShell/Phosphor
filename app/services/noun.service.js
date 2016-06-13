@@ -27,13 +27,12 @@ var NounService = (function () {
         }
         return Promise.resolve(result);
     };
-    NounService.prototype.getNounItems = function (selectedNoun) {
-        return selectedNoun.items;
+    NounService.prototype.getNounItems = function (position) {
+        return mock_nouns_1.MOCKNOUNS[position - 1].items;
     };
     NounService.prototype.setSelected = function (noun) {
         this.selected = noun;
         this.nounSelected$.emit(noun);
-        console.log("emitted");
     };
     NounService = __decorate([
         core_1.Injectable(), 

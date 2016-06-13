@@ -17,39 +17,18 @@ export class CollectionComponent implements OnInit {
   private routeParams: RouteParams) {
   }
 
-  items = this.nounService.getNounItems({
-    id: 1,
-    name: 'AppxPackage',
-    items: ['AppxPackage1 | mockAttr1 | mockAttr2 | mockAttr3',
-            'AppxPackage2 | mockAttr1 | mockAttr2 | mockAttr3',
-            'AppxPackage3 | mockAttr1 | mockAttr2 | mockAttr3',
-            'AppxPackage4 | mockAttr1 | mockAttr2 | mockAttr3',
-            'AppxPackage5 | mockAttr1 | mockAttr2 | mockAttr3',
-            'AppxPackage6 | mockAttr1 | mockAttr2 | mockAttr3',
-            'AppxPackage7 | mockAttr1 | mockAttr2 | mockAttr3']
-  });
+  items = this.nounService.getNounItems(1);
 
   actions = ['New', 'Tools', 'Batch'];
 
-  getItems() {
-
-  }
-
   onNounSelectionChange(noun: Noun) {
-    console.log(noun.name);
+    this.items = this.nounService.getNounItems(noun.id);
   }
 
   ngOnInit() {
     let id = +this.routeParams.get('id');
-    console.log("Here is the id: " + id);
-    this.getItems();
 
-    console.log(this.nounService.nounSelected$.observers);
-    Promise.resolve(this.subscription =
-      this.nounService.nounSelected$.subscribe(noun => this.onNounSelectionChange(noun))))
-
-    console.log(this.nounService.nounSelected$);
-    console.log(this.nounService.nounSelected$.observers);
+    this.subscription = this.nounService.nounSelected$.subscribe(noun => this.onNounSelectionChange(noun))
 
   }
 
@@ -57,9 +36,4 @@ export class CollectionComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-/*
-  handleItem(item: String) {
-
-  }
-  */
 }

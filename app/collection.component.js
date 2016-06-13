@@ -16,23 +16,13 @@ var CollectionComponent = (function () {
         this.router = router;
         this.nounService = nounService;
         this.routeParams = routeParams;
-        this.items = this.nounService.getNounItems({
-            id: 1,
-            name: 'AppxPackage',
-            items: ['AppxPackage1 | mockAttr1 | mockAttr2 | mockAttr3',
-                'AppxPackage2 | mockAttr1 | mockAttr2 | mockAttr3',
-                'AppxPackage3 | mockAttr1 | mockAttr2 | mockAttr3',
-                'AppxPackage4 | mockAttr1 | mockAttr2 | mockAttr3',
-                'AppxPackage5 | mockAttr1 | mockAttr2 | mockAttr3',
-                'AppxPackage6 | mockAttr1 | mockAttr2 | mockAttr3',
-                'AppxPackage7 | mockAttr1 | mockAttr2 | mockAttr3']
-        });
+        this.items = this.nounService.getNounItems(1);
         this.actions = ['New', 'Tools', 'Batch'];
     }
     CollectionComponent.prototype.getItems = function () {
     };
     CollectionComponent.prototype.onNounSelectionChange = function (noun) {
-        console.log(noun.name);
+        this.items = this.nounService.getNounItems(noun.id);
     };
     CollectionComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -40,10 +30,7 @@ var CollectionComponent = (function () {
         console.log("Here is the id: " + id);
         this.getItems();
         console.log(this.nounService.nounSelected$.observers);
-        Promise.resolve(this.subscription =
-            this.nounService.nounSelected$.subscribe(function (noun) { return _this.onNounSelectionChange(noun); }));
-        console.log(this.nounService.nounSelected$);
-        console.log(this.nounService.nounSelected$.observers);
+        this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.onNounSelectionChange(noun); });
     };
     CollectionComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();

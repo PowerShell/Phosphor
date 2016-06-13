@@ -39,12 +39,6 @@ export class NounComponent implements OnInit {
 
   setSelected(selectedNoun) {
     this.nounService.setSelected(selectedNoun);
-    console.log("called noun service");
   }
 
-/*
-  handleNoun(noun: Noun) {
-
-  }
-  */
 }

@@ -35,7 +35,6 @@ var NounComponent = (function () {
     };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
-        console.log("called noun service");
     };
     __decorate([
         core_1.Input(), 

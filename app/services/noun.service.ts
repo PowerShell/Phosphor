@@ -10,7 +10,7 @@ export class NounService {
   public nounSelected$: EventEmitter<Noun>;
 
   constructor() {
-    this.nounSelected$ = new EventEmitter();
+    this.nounSelected$ = new EventEmitter<Noun>();
   }
 
   getNouns() {
@@ -30,21 +30,14 @@ export class NounService {
     return Promise.resolve(result);
   }
 
-  getNounItems(selectedNoun) {
-    return selectedNoun.items;
+  getNounItems(position) {
+    return MOCKNOUNS[position - 1].items;
   }
 
   setSelected(noun: Noun) {
       this.selected = noun;
       this.nounSelected$.emit(noun);
-      console.log("emitted");
   }
 
-/*
-  getNoun(id: number) {
-    return this.getNouns()
-               .then(heroes => heroes.filter(hero => hero.id === id)[0]);
-  }
-  */
 
 }
