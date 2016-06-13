@@ -1,9 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
-import { MOCKNOUNS } from '../util/mock-nouns'
+import { MOCKNOUNS } from '../util/mock-nouns';
+import { Noun } from '../util/noun';
 
 @Injectable()
 export class NounService {
+
+  selected: Noun;
+  public nounSelected$: EventEmitter<Noun>;
+
+  constructor() {
+    this.nounSelected$ = new EventEmitter();
+  }
+
   getNouns() {
     return Promise.resolve(MOCKNOUNS);
   }
@@ -19,6 +28,16 @@ export class NounService {
     }
 
     return Promise.resolve(result);
+  }
+
+  getNounItems(selectedNoun) {
+    return selectedNoun.items;
+  }
+
+  setSelected(noun: Noun) {
+      this.selected = noun;
+      this.nounSelected$.emit(noun);
+      console.log("emitted");
   }
 
 /*

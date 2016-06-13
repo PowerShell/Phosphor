@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 
 import { Noun } from './util/noun';
 import { NounService } from './services/noun.service';
+import { VerbComponent } from './verb.component'
 
 @Component({
   selector: 'noun-blade',
   templateUrl: 'app/html/noun.component.html',
-  styleUrls: ['app/css/noun.component.css'],
-  providers: [NounService]
+  styleUrls: ['app/css/noun.component.css']
 })
 export class NounComponent implements OnInit {
 
@@ -16,7 +16,7 @@ export class NounComponent implements OnInit {
 
   nouns: Noun[];
 
-  selectedNoun: Noun;
+  @Input() selectedNoun;
 
   getNouns() {
       this.nounService.getNouns().then(nouns => this.nouns = nouns);
@@ -35,6 +35,11 @@ export class NounComponent implements OnInit {
   goToNouns(otherNoun) {
     this.selectedNoun = otherNoun;
     this.router.navigate(['Collection', { id: this.selectedNoun.id }]);
+  }
+
+  setSelected(selectedNoun) {
+    this.nounService.setSelected(selectedNoun);
+    console.log("called noun service");
   }
 
 /*

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var mock_nouns_1 = require('../util/mock-nouns');
 var NounService = (function () {
     function NounService() {
+        this.nounSelected$ = new core_1.EventEmitter();
     }
     NounService.prototype.getNouns = function () {
         return Promise.resolve(mock_nouns_1.MOCKNOUNS);
@@ -25,6 +26,14 @@ var NounService = (function () {
             }
         }
         return Promise.resolve(result);
+    };
+    NounService.prototype.getNounItems = function (selectedNoun) {
+        return selectedNoun.items;
+    };
+    NounService.prototype.setSelected = function (noun) {
+        this.selected = noun;
+        this.nounSelected$.emit(noun);
+        console.log("emitted");
     };
     NounService = __decorate([
         core_1.Injectable(), 

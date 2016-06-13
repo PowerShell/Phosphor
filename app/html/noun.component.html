@@ -7,7 +7,7 @@
 
   <div class="input-group">
       <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><a href="#">All</a></li>
           <li><a href="#">Module A</a></li>
@@ -22,7 +22,7 @@
 
   <div class="scrollView">
     <div *ngFor="let noun of nouns">
-      <button class="hvr-grow hvr-bubble-right noun" (click)="goToNouns(noun)">
+      <button class="hvr-grow hvr-bubble-right noun" (click)="setSelected(noun);">
         {{noun.name}}
       </button>
     </div>

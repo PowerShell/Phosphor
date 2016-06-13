@@ -33,12 +33,19 @@ var NounComponent = (function () {
         this.selectedNoun = otherNoun;
         this.router.navigate(['Collection', { id: this.selectedNoun.id }]);
     };
+    NounComponent.prototype.setSelected = function (selectedNoun) {
+        this.nounService.setSelected(selectedNoun);
+        console.log("called noun service");
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], NounComponent.prototype, "selectedNoun", void 0);
     NounComponent = __decorate([
         core_1.Component({
             selector: 'noun-blade',
             templateUrl: 'app/html/noun.component.html',
-            styleUrls: ['app/css/noun.component.css'],
-            providers: [noun_service_1.NounService]
+            styleUrls: ['app/css/noun.component.css']
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService])
     ], NounComponent);

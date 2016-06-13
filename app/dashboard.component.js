@@ -29,6 +29,10 @@ var DashboardComponent = (function () {
         var link = ['HeroDetail', { id: hero.id }];
         this.router.navigate(link);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DashboardComponent.prototype, "selectedNoun", void 0);
     DashboardComponent = __decorate([
         core_1.Component({
             selector: 'my-dashboard',
