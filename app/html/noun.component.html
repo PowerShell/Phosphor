@@ -4,7 +4,7 @@
     Nouns
   </h3>
 
-
+  <!-- BootStrap dropdown and action bar -->
   <div class="input-group">
       <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
@@ -20,13 +20,14 @@
     </div><!-- /input-group -->
 
 
+  <!-- Scroll View for list of nouns created -->
   <div class="scrollView">
     <div *ngFor="let noun of nouns">
       <button class="hvr-grow hvr-bubble-right noun" (click)="setSelected(noun);">
         {{noun.name}}
       </button>
     </div>
-  </div>
+  </div> <!-- END SCROLLVIEW -->
 
 
 

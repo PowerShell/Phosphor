@@ -17,13 +17,15 @@ var VerbComponent = (function () {
         this.router = router;
         this.collectionService = collectionService;
         this.verbService = verbService;
-        this.details = this.verbService.getDetails('none');
     }
     VerbComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.subscription = this.collectionService.itemSelected$.subscribe(function (item) { return _this.getActions(item); });
+        //Promises to initialize
         this.verbService.getVerbs().then(function (verbs) { return _this.verbs = verbs; });
+        this.verbService.getDetails('mock').then(function (details) { return _this.details = details; });
     };
+    //Called as a listener for item selected from Collection
     VerbComponent.prototype.getActions = function (item) {
         //IMPLEMENT LOGIC HERE
         console.log(item);

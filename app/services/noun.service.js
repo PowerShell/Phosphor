@@ -13,24 +13,25 @@ var mock_nouns_1 = require('../util/mock-nouns');
 var NounService = (function () {
     function NounService() {
         this.nounSelected$ = new core_1.EventEmitter();
-        this.itemSelected$ = new core_1.EventEmitter();
     }
     NounService.prototype.getNouns = function () {
         return Promise.resolve(mock_nouns_1.MOCKNOUNS);
     };
+    //This is called every keystroke to search using JavaScript's String indexOf method.
     NounService.prototype.search = function (criteria) {
         var result = [];
         for (var i = 0; i < mock_nouns_1.MOCKNOUNS.length; i++) {
             if (mock_nouns_1.MOCKNOUNS[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
                 result.push(mock_nouns_1.MOCKNOUNS[i]);
-                console.log(mock_nouns_1.MOCKNOUNS[i]);
             }
         }
         return Promise.resolve(result);
     };
+    //Gets the items for the selected noun.
     NounService.prototype.getNounItems = function (position) {
         return mock_nouns_1.MOCKNOUNS[position - 1].items;
     };
+    //Observer pattern to emit noun to subscribers
     NounService.prototype.setSelected = function (noun) {
         this.selected = noun;
         this.nounSelected$.emit(noun);

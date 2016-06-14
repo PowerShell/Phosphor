@@ -29,17 +29,9 @@ var NounComponent = (function () {
         var criteria = document.getElementById("noun-search").value;
         this.nounService.search(criteria).then(function (nouns) { return _this.nouns = nouns; });
     };
-    NounComponent.prototype.goToNouns = function (otherNoun) {
-        this.selectedNoun = otherNoun;
-        this.router.navigate(['Collection', { id: this.selectedNoun.id }]);
-    };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], NounComponent.prototype, "selectedNoun", void 0);
     NounComponent = __decorate([
         core_1.Component({
             selector: 'noun-blade',

@@ -13,27 +13,32 @@ var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_service_1 = require('./services/noun.service');
 var collection_service_1 = require('./services/collection.service');
 var CollectionComponent = (function () {
+    //Necessary imports
     function CollectionComponent(router, nounService, routeParams, collectionService) {
         this.router = router;
         this.nounService = nounService;
         this.routeParams = routeParams;
         this.collectionService = collectionService;
-        this.items = this.nounService.getNounItems(1);
-        this.actions = this.collectionService.getCollection();
     }
-    CollectionComponent.prototype.onNounSelectionChange = function (noun) {
-        this.items = this.nounService.getNounItems(noun.id);
-    };
+    //Initialization
     CollectionComponent.prototype.ngOnInit = function () {
         var _this = this;
         var id = +this.routeParams.get('id');
+        //May need to fix this. However, simply wrapping items in a promise causes errors.
+        this.items = this.nounService.getNounItems(1);
+        this.collectionService.getCollectionActions().then(function (actions) { return _this.actions = actions; });
         this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.onNounSelectionChange(noun); });
     };
-    CollectionComponent.prototype.ngOnDestroy = function () {
-        this.subscription.unsubscribe();
+    CollectionComponent.prototype.onNounSelectionChange = function (noun) {
+        this.items = this.nounService.getNounItems(noun.id);
     };
+    //Wrapper for observer pattern of service
     CollectionComponent.prototype.setSelected = function (item) {
         this.collectionService.setSelected(item);
+    };
+    //Cleanup
+    CollectionComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
     };
     CollectionComponent = __decorate([
         core_1.Component({

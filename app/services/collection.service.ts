@@ -3,20 +3,22 @@ import { Injectable, EventEmitter } from '@angular/core';
 @Injectable()
 export class CollectionService {
 
+  //Observer pattern below
   selectedItem: string;
-
   public itemSelected$: EventEmitter<string>;
 
+  //Currently placed here as mock data
   actions = ['New', 'Tools', 'Batch'];
 
   constructor() {
     this.itemSelected$ = new EventEmitter<string>();
   }
 
-  getCollection() {
-    return this.actions;
+  getCollectionActions() {
+    return Promise.resolve(this.actions);
   }
 
+  //Observer pattern
   setSelected(item) {
     this.itemSelected$.emit(item);
   }

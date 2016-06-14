@@ -3,17 +3,21 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class VerbService {
 
+  //Mock Data
   verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
   details = ['Name: ', 'DisplayName: ', 'Status: ', 'DependentServices: ',
              'ServicesDependedOn: ', 'CanPauseAndContinue: '];
 
+  //Data wrapped in a Promise
   getVerbs() {
     return Promise.resolve(this.verbs);
   }
 
   getDetails(verb) {
-    return this.details;
+    return Promise.resolve(this.details);
   }
+
+
 
   //General Algorithm for mapping verbs to images and similar verbs together
 

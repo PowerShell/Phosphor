@@ -17,8 +17,7 @@ export class DashboardComponent implements OnInit {
   @Input() selectedNoun;
 
   constructor(
-    private router: Router) {
-  }
+    private router: Router) { }
 
   ngOnInit() {
 

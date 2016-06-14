@@ -1,10 +1,13 @@
 <div class="verb-blade col-md-4">
 
 <div class="hvr-fade" style="height: 30%; width: 100%;">
+
+  <!-- VERB ROW -->
   <h3 class="title">
     Verbs
   </h3>
 
+  <!-- List of Verbs. Can make it scrollview later -->
   <div class="container-fluid">
     <div *ngFor="let verb of verbs" class="col-md-3 hvr-grow verb">
       <img src="http://placehold.it/50x50">
@@ -12,16 +15,17 @@
           {{verb}}
       </div>
     </div>
-  </div>
+  </div> <!-- END LIST OF VERBS -->
+</div> <!-- END VERB ROW -->
 
-</div>
-
+<!-- DETAIL ROW -->
 <div class="hvr-fade" style="height: 70%; width: 100%; text-align: left;">
   <h3 class="title" style="background-color: #e6e600; text-align: center">
     Details
   </h3>
 
 
+  <!-- List of details. Will need to make it a ScrollView later -->
   <div class="content" style="margin-left: 8%; margin-top: 5%; color: black;">
     <div *ngFor="let detail of details">
       <h4>
@@ -30,9 +34,8 @@
 
       <input />
     </div>
-  </div>
-
-</div>
+  </div> <!-- END LIST OF DETAILS -->
+</div> <!-- END DETAIL ROW -->
 
 
 </div>

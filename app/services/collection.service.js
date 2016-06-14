@@ -11,12 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var CollectionService = (function () {
     function CollectionService() {
+        //Currently placed here as mock data
         this.actions = ['New', 'Tools', 'Batch'];
         this.itemSelected$ = new core_1.EventEmitter();
     }
-    CollectionService.prototype.getCollection = function () {
-        return this.actions;
+    CollectionService.prototype.getCollectionActions = function () {
+        return Promise.resolve(this.actions);
     };
+    //Observer pattern
     CollectionService.prototype.setSelected = function (item) {
         this.itemSelected$.emit(item);
     };

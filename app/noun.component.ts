@@ -12,11 +12,11 @@ import { VerbComponent } from './verb.component'
 })
 export class NounComponent implements OnInit {
 
-  constructor(private router: Router, private nounService: NounService) { }
+  constructor(
+    private router: Router,
+    private nounService: NounService) { }
 
   nouns: Noun[];
-
-  @Input() selectedNoun;
 
   getNouns() {
       this.nounService.getNouns().then(nouns => this.nouns = nouns);
@@ -30,11 +30,6 @@ export class NounComponent implements OnInit {
     //This is a bit hacky as we need casting.
     var criteria = (<HTMLInputElement>document.getElementById("noun-search")).value;
     this.nounService.search(criteria).then(nouns => this.nouns = nouns);
-  }
-
-  goToNouns(otherNoun) {
-    this.selectedNoun = otherNoun;
-    this.router.navigate(['Collection', { id: this.selectedNoun.id }]);
   }
 
   setSelected(selectedNoun) {

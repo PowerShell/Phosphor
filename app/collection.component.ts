@@ -15,30 +15,42 @@ export class CollectionComponent implements OnInit {
 
   subscription: any;
 
-  constructor(private router: Router, private nounService: NounService,
-  private routeParams: RouteParams, private collectionService: CollectionService) {
+  //Necessary imports
+  constructor(
+    private router: Router,
+    private nounService: NounService,
+    private routeParams: RouteParams,
+    private collectionService: CollectionService) { }
+
+  //Data for Collection
+  items: string[];
+  actions: string[];
+
+  //Initialization
+  ngOnInit() {
+    let id = +this.routeParams.get('id');
+
+    //May need to fix this. However, simply wrapping items in a promise causes errors.
+    this.items = this.nounService.getNounItems(1);
+    this.collectionService.getCollectionActions().then(actions => this.actions = actions);
+
+    this.subscription = this.nounService.nounSelected$.subscribe(noun => this.onNounSelectionChange(noun));
   }
-
-  items = this.nounService.getNounItems(1);
-
-  actions =  this.collectionService.getCollection();
 
   onNounSelectionChange(noun: Noun) {
     this.items = this.nounService.getNounItems(noun.id);
   }
 
-  ngOnInit() {
-    let id = +this.routeParams.get('id');
-
-    this.subscription = this.nounService.nounSelected$.subscribe(noun => this.onNounSelectionChange(noun))
+  //Wrapper for observer pattern of service
+  setSelected(item: string) {
+    this.collectionService.setSelected(item);
   }
 
+  //Cleanup
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  setSelected(item: string) {
-    this.collectionService.setSelected(item);
-  }
+
 
 }

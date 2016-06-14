@@ -11,15 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var VerbService = (function () {
     function VerbService() {
+        //Mock Data
         this.verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
         this.details = ['Name: ', 'DisplayName: ', 'Status: ', 'DependentServices: ',
             'ServicesDependedOn: ', 'CanPauseAndContinue: '];
     }
+    //Data wrapped in a Promise
     VerbService.prototype.getVerbs = function () {
         return Promise.resolve(this.verbs);
     };
     VerbService.prototype.getDetails = function (verb) {
-        return this.details;
+        return Promise.resolve(this.details);
     };
     VerbService = __decorate([
         core_1.Injectable(), 
