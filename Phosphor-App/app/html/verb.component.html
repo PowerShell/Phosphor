@@ -27,15 +27,33 @@
 
   <!-- List of details. Will need to make it a ScrollView later -->
   <div class="content" style="margin-left: 8%; margin-top: 5%; color: black;">
-    <div *ngFor="let detail of details">
+    <div *ngFor="let detail of details" style="margin-bottom: 4%;">
       <h4>
         {{detail}}
       </h4>
 
-      <h6>
+      <h6 style="margin-left: 3%;">
         &lt; metadata &gt;
       </h6>
     </div>
+
+    <!-- JUST A DEMO -->
+    <div style="margin-top: 45%; text-align: center;">
+      <button class="btn btn-primary">
+        Run
+      </button>
+
+      <button class="btn btn-primary" style="margin-left: 5%; margin-right: 4%">
+        Whatif
+      </button>
+
+      <button class="btn btn-primary">
+        View Script
+      </button>
+
+    </div> <!-- END OF DEMO -->
+
+
   </div> <!-- END LIST OF DETAILS -->
 </div> <!-- END DETAIL ROW -->
 
