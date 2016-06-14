@@ -7,10 +7,14 @@ import { Noun } from '../util/noun';
 export class NounService {
 
   selected: Noun;
+  selectedItem: string;
+
   public nounSelected$: EventEmitter<Noun>;
+  public itemSelected$: EventEmitter<string>;
 
   constructor() {
     this.nounSelected$ = new EventEmitter<Noun>();
+    this.itemSelected$ = new EventEmitter<string>();
   }
 
   getNouns() {

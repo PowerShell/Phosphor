@@ -9,23 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var VerbService = (function () {
-    function VerbService() {
-        this.verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
-        this.details = ['Name: ', 'DisplayName: ', 'Status: ', 'DependentServices: ',
-            'ServicesDependedOn: ', 'CanPauseAndContinue: '];
+var CollectionService = (function () {
+    function CollectionService() {
+        this.actions = ['New', 'Tools', 'Batch'];
+        this.itemSelected$ = new core_1.EventEmitter();
     }
-    VerbService.prototype.getVerbs = function () {
-        return Promise.resolve(this.verbs);
+    CollectionService.prototype.getCollection = function () {
+        return this.actions;
     };
-    VerbService.prototype.getDetails = function (verb) {
-        return this.details;
+    CollectionService.prototype.setSelected = function (item) {
+        this.itemSelected$.emit(item);
     };
-    VerbService = __decorate([
+    CollectionService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], VerbService);
-    return VerbService;
+    ], CollectionService);
+    return CollectionService;
 }());
-exports.VerbService = VerbService;
-//# sourceMappingURL=verb.service.js.map
+exports.CollectionService = CollectionService;
+//# sourceMappingURL=collection.service.js.map

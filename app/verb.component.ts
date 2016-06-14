@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 
+import { CollectionService } from './services/collection.service';
+import { VerbService } from './services/verb.service';
+
 @Component({
   selector: 'verb-blade',
   templateUrl: 'app/html/verb.component.html',
@@ -8,17 +11,25 @@ import { Router } from '@angular/router-deprecated';
 })
 export class VerbComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  subscription: any;
 
-  verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
+  constructor(private router: Router, private collectionService: CollectionService,
+  private verbService: VerbService) { }
+
+  verbs: string[];
+  details: string[] = this.verbService.getDetails();
 
   ngOnInit() {
+    this.subscription = this.collectionService.itemSelected$.subscribe(
+      item => this.getActions(item)
+    );
 
+    this.verbService.getVerbs().then(verbs => this.verbs = verbs);    
   }
 
-/*
-  handleItem(item: String) {
-
+  getActions(item) {
+    //IMPLEMENT LOGIC HERE
+    console.log(item);
   }
-  */
+
 }

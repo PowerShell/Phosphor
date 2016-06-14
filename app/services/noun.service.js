@@ -13,6 +13,7 @@ var mock_nouns_1 = require('../util/mock-nouns');
 var NounService = (function () {
     function NounService() {
         this.nounSelected$ = new core_1.EventEmitter();
+        this.itemSelected$ = new core_1.EventEmitter();
     }
     NounService.prototype.getNouns = function () {
         return Promise.resolve(mock_nouns_1.MOCKNOUNS);

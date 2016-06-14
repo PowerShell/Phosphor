@@ -5,7 +5,8 @@ import { AppComponent }     from './app.component';
 
 import { NounService }  from './services/noun.service';
 import { VerbService }  from './services/verb.service';
+import { CollectionService} from './services/collection.service';
 
 bootstrap(AppComponent, [
-  ROUTER_PROVIDERS, NounService, VerbService
+  ROUTER_PROVIDERS, NounService, VerbService, CollectionService
 ]);

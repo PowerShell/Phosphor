@@ -21,7 +21,7 @@
 
   <div class="scrollView">
     <div *ngFor="let item of items">
-      <button class="hvr-grow item">
+      <button class="hvr-grow item" (click)="setSelected(item)">
         {{item}}
       </button>
     </div>

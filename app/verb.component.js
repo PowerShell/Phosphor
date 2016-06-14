@@ -10,12 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
+var collection_service_1 = require('./services/collection.service');
+var verb_service_1 = require('./services/verb.service');
 var VerbComponent = (function () {
-    function VerbComponent(router) {
+    function VerbComponent(router, collectionService, verbService) {
         this.router = router;
-        this.verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
+        this.collectionService = collectionService;
+        this.verbService = verbService;
+        this.details = this.verbService.getDetails();
     }
     VerbComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscription = this.collectionService.itemSelected$.subscribe(function (item) { return _this.getActions(item); });
+        this.verbService.getVerbs().then(function (verbs) { return _this.verbs = verbs; });
+    };
+    VerbComponent.prototype.getActions = function (item) {
+        //IMPLEMENT LOGIC HERE
+        console.log(item);
     };
     VerbComponent = __decorate([
         core_1.Component({
@@ -23,7 +34,7 @@ var VerbComponent = (function () {
             templateUrl: 'app/html/verb.component.html',
             styleUrls: ['app/css/verb.component.css'],
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, collection_service_1.CollectionService, verb_service_1.VerbService])
     ], VerbComponent);
     return VerbComponent;
 }());

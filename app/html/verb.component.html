@@ -23,42 +23,13 @@
 
 
   <div class="content" style="margin-left: 8%; margin-top: 5%; color: black;">
-    <h4>
-      Name:
-    </h4>
+    <div *ngFor="let detail of details">
+      <h4>
+        {{detail}}
+      </h4>
 
-    <input />
-
-    <h4>
-      DisplayName:
-    </h4>
-
-    <input />
-
-    <h4>
-      Status:
-    </h4>
-
-    <input />
-
-    <h4>
-      DependentServices:
-    </h4>
-
-    <input />
-
-    <h4>
-      ServicesDependedOn:
-    </h4>
-
-    <input />
-
-    <h4>
-      CanPauseAndContinue:
-    </h4>
-
-    <input />
-
+      <input />
+    </div>
   </div>
 
 </div>
