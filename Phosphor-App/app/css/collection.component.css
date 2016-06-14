@@ -25,7 +25,8 @@
 }
 
 .action {
-  border: solid;
+  /* border: solid; */
+  margin-top: 2%;
 }
 
 #collection-search {
