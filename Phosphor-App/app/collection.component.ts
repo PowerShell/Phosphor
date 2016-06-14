@@ -46,6 +46,12 @@ export class CollectionComponent implements OnInit {
     this.collectionService.setSelected(item);
   }
 
+  search() {
+    //This is a bit hacky as we need casting.
+    var criteria = (<HTMLInputElement>document.getElementById("collection-search")).value;
+    this.collectionService.search(criteria).then(items => this.items = items);
+  }
+
   //Cleanup
   ngOnDestroy() {
     this.subscription.unsubscribe();

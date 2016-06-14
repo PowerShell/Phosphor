@@ -1,4 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
+
+import { MOCKNOUNS } from '../util/mock-nouns';
 
 @Injectable()
 export class CollectionService {
@@ -9,9 +11,12 @@ export class CollectionService {
 
   //Currently placed here as mock data
   actions = ['New', 'Tools', 'Batch'];
+  items: string[];
 
   constructor() {
     this.itemSelected$ = new EventEmitter<string>();
+    //Grabbing to initialize first
+    this.items = MOCKNOUNS[0].items;
   }
 
   getCollectionActions() {
@@ -21,6 +26,25 @@ export class CollectionService {
   //Observer pattern
   setSelected(item) {
     this.itemSelected$.emit(item);
+  }
+
+  //Called from noun service to set the items
+  setCollection(items) {
+    this.items = items;
+  }
+
+  //This is called every keystroke to search using JavaScript's String indexOf method.
+  search(criteria) {
+    var result = [];
+
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+        result.push(this.items[i]);
+        //Debug: console.log(this.items[i]);
+      }
+    }
+
+    return Promise.resolve(result);
   }
 
   //General Algorithm for mapping verbs to images and similar verbs together

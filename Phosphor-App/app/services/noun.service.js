@@ -10,8 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var mock_nouns_1 = require('../util/mock-nouns');
+var collection_service_1 = require('./collection.service');
 var NounService = (function () {
-    function NounService() {
+    function NounService(collectionService) {
+        this.collectionService = collectionService;
         this.nounSelected$ = new core_1.EventEmitter();
     }
     NounService.prototype.getNouns = function () {
@@ -35,10 +37,11 @@ var NounService = (function () {
     NounService.prototype.setSelected = function (noun) {
         this.selected = noun;
         this.nounSelected$.emit(noun);
+        this.collectionService.setCollection(noun.items);
     };
     NounService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [collection_service_1.CollectionService])
     ], NounService);
     return NounService;
 }());

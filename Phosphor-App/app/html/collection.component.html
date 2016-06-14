@@ -20,8 +20,14 @@
   <!-- Separator for icons -->
   <div class="col-md-1"></div>
 
+
+  <div style="text-align: center;">
+    <!-- SEARCH by name -->
+    <input id="collection-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
+  </div>
+
   <!-- List of items after selecting a noun -->
-  <h4 style="margin-top: 10%;">Select from the list:</h4>
+  <h4 style="margin-top: 7%;">Select from the list:</h4>
 
   <div class="scrollView">
     <div *ngFor="let item of items">

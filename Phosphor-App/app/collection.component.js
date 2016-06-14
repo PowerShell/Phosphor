@@ -36,6 +36,12 @@ var CollectionComponent = (function () {
     CollectionComponent.prototype.setSelected = function (item) {
         this.collectionService.setSelected(item);
     };
+    CollectionComponent.prototype.search = function () {
+        var _this = this;
+        //This is a bit hacky as we need casting.
+        var criteria = document.getElementById("collection-search").value;
+        this.collectionService.search(criteria).then(function (items) { return _this.items = items; });
+    };
     //Cleanup
     CollectionComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();

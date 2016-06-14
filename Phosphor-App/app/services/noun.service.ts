@@ -3,6 +3,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { MOCKNOUNS } from '../util/mock-nouns';
 import { Noun } from '../util/noun';
 
+import { CollectionService } from './collection.service';
+
 @Injectable()
 export class NounService {
 
@@ -10,7 +12,10 @@ export class NounService {
 
   public nounSelected$: EventEmitter<Noun>;
 
-  constructor() {
+  constructor(
+    private collectionService: CollectionService
+  )
+  {
     this.nounSelected$ = new EventEmitter<Noun>();
   }
 
@@ -41,6 +46,7 @@ export class NounService {
   setSelected(noun: Noun) {
       this.selected = noun;
       this.nounSelected$.emit(noun);
+      this.collectionService.setCollection(noun.items);
   }
 
 

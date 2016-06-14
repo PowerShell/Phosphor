@@ -9,11 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var mock_nouns_1 = require('../util/mock-nouns');
 var CollectionService = (function () {
     function CollectionService() {
         //Currently placed here as mock data
         this.actions = ['New', 'Tools', 'Batch'];
         this.itemSelected$ = new core_1.EventEmitter();
+        //Grabbing to initialize first
+        this.items = mock_nouns_1.MOCKNOUNS[0].items;
     }
     CollectionService.prototype.getCollectionActions = function () {
         return Promise.resolve(this.actions);
@@ -21,6 +24,20 @@ var CollectionService = (function () {
     //Observer pattern
     CollectionService.prototype.setSelected = function (item) {
         this.itemSelected$.emit(item);
+    };
+    //Called from noun service to set the items
+    CollectionService.prototype.setCollection = function (items) {
+        this.items = items;
+    };
+    //This is called every keystroke to search using JavaScript's String indexOf method.
+    CollectionService.prototype.search = function (criteria) {
+        var result = [];
+        for (var i = 0; i < this.items.length; i++) {
+            if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+                result.push(this.items[i]);
+            }
+        }
+        return Promise.resolve(result);
     };
     CollectionService = __decorate([
         core_1.Injectable(), 
