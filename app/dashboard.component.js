@@ -9,25 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var hero_service_1 = require('./hero.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_component_1 = require('./noun.component');
 var collection_component_1 = require('./collection.component');
 var verb_component_1 = require('./verb.component');
 var DashboardComponent = (function () {
-    function DashboardComponent(router, heroService) {
+    function DashboardComponent(router) {
         this.router = router;
-        this.heroService = heroService;
-        this.heroes = [];
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.heroService.getHeroes()
-            .then(function (heroes) { return _this.heroes = heroes.slice(1, 5); });
-    };
-    DashboardComponent.prototype.gotoDetail = function (hero) {
-        var link = ['HeroDetail', { id: hero.id }];
-        this.router.navigate(link);
     };
     __decorate([
         core_1.Input(), 
@@ -40,7 +30,7 @@ var DashboardComponent = (function () {
             styleUrls: ['app/css/dashboard.component.css'],
             directives: [noun_component_1.NounComponent, collection_component_1.CollectionComponent, verb_component_1.VerbComponent]
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, hero_service_1.HeroService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], DashboardComponent);
     return DashboardComponent;
 }());

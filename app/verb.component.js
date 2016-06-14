@@ -17,7 +17,7 @@ var VerbComponent = (function () {
         this.router = router;
         this.collectionService = collectionService;
         this.verbService = verbService;
-        this.details = this.verbService.getDetails();
+        this.details = this.verbService.getDetails('none');
     }
     VerbComponent.prototype.ngOnInit = function () {
         var _this = this;

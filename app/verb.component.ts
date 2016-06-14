@@ -17,14 +17,14 @@ export class VerbComponent implements OnInit {
   private verbService: VerbService) { }
 
   verbs: string[];
-  details: string[] = this.verbService.getDetails();
+  details: string[] = this.verbService.getDetails('none');
 
   ngOnInit() {
     this.subscription = this.collectionService.itemSelected$.subscribe(
       item => this.getActions(item)
     );
 
-    this.verbService.getVerbs().then(verbs => this.verbs = verbs);    
+    this.verbService.getVerbs().then(verbs => this.verbs = verbs);
   }
 
   getActions(item) {

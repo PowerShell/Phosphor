@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
-
 import { Router } from '@angular/router-deprecated';
 
 import { NounComponent } from './noun.component';
@@ -17,22 +14,14 @@ import { VerbComponent } from './verb.component';
 })
 export class DashboardComponent implements OnInit {
 
-  heroes: Hero[] = [];
-
   @Input() selectedNoun;
 
   constructor(
-    private router: Router,
-    private heroService: HeroService) {
+    private router: Router) {
   }
 
   ngOnInit() {
-    this.heroService.getHeroes()
-      .then(heroes => this.heroes = heroes.slice(1,5));
+
   }
 
-  gotoDetail(hero: Hero) {
-    let link = ['HeroDetail', { id: hero.id }];
-    this.router.navigate(link);
-  }
 }
