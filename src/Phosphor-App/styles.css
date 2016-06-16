@@ -1,6 +1,6 @@
 h2 {
   color: #444;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "SegoeUI", Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
 body {
@@ -8,10 +8,10 @@ body {
 }
 body, input[text], button {
   color: #888;
-  font-family: Cambria, Georgia;
+  font-family: "SegoeUI", Cambria, Georgia;
 }
 button {
-  font-family: Arial;
+  font-family: "SegoeUI", Arial;
   background-color: #eee;
   border: none;
   padding: 5px 10px;
@@ -29,5 +29,5 @@ button:disabled {
 }
 /* everywhere else */
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "SegoeUI", Arial, Helvetica, sans-serif;
 }
