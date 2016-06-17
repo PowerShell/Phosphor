@@ -19,7 +19,7 @@
   <!-- Scroll View for list of nouns created -->
   <div class="scrollView">
     <div *ngFor="let noun of nouns">
-      <button class="hvr-grow hvr-bubble-right noun" (click)="setSelected(noun);">
+      <button class="hvr-grow noun" (click)="setSelected(noun);">
         {{noun.name}}
       </button>
     </div>
