@@ -1,6 +1,6 @@
-<div class="verb-blade col-md-4">
+<div class="verb-blade col-md-5">
 
-<div class="hvr-fade" style="height: 30%; width: 100%;">
+<div class="" style="height: 30%; width: 100%;">
 
   <!-- VERB ROW -->
   <h3 class="title">
@@ -19,15 +19,15 @@
 </div> <!-- END VERB ROW -->
 
 <!-- DETAIL ROW -->
-<div class="hvr-fade" style="height: 70%; width: 100%; text-align: left;">
+<div class="" style="height: 70%; width: 100%; text-align: left;">
   <h3 class="title" style="background-color: #2F2F2F; text-align: center">
     Details
   </h3>
 
 
   <!-- List of details. Will need to make it a ScrollView later -->
-  <div class="content" style="margin-left: 8%; margin-top: 5%; color: black;">
-    <div *ngFor="let detail of details" style="margin-bottom: 2%;">
+  <div class="content" style="margin-left: 8%; margin-top: 5%; color: black; overflow: auto; height: 80%;">
+    <div *ngFor="let detail of details">
       <h4>
         {{detail}}
       </h4>

@@ -31,3 +31,12 @@ button:disabled {
 * {
   font-family: "SegoeUI", Arial, Helvetica, sans-serif;
 }
+
+/* Hacky fix for search */
+.btn {
+  margin-top: 0;
+}
+
+input.c-text-field[type=text], input.form-control {
+  margin-top: 0;
+}

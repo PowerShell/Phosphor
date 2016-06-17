@@ -15,10 +15,13 @@ var NounComponent = (function () {
     function NounComponent(router, nounService) {
         this.router = router;
         this.nounService = nounService;
+        this.modules = ['All', 'Module A', 'Module B', 'Module C'];
     }
     NounComponent.prototype.getNouns = function () {
         var _this = this;
         this.nounService.getNouns().then(function (nouns) { return _this.nouns = nouns; });
+    };
+    NounComponent.prototype.getNounsByModule = function () {
     };
     NounComponent.prototype.ngOnInit = function () {
         this.getNouns();

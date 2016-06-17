@@ -17,9 +17,14 @@ export class NounComponent implements OnInit {
     private nounService: NounService) { }
 
   nouns: Noun[];
+  modules: string[] = ['All', 'Module A', 'Module B', 'Module C'];
 
   getNouns() {
       this.nounService.getNouns().then(nouns => this.nouns = nouns);
+  }
+
+  getNounsByModule() {
+    
   }
 
   ngOnInit() {

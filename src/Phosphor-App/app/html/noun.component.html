@@ -1,4 +1,4 @@
-<div class="noun-blade col-md-4 hvr-fade">
+<div class="noun-blade col-md-3">
 
   <h3 class="title">
     Nouns
@@ -9,11 +9,7 @@
       <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li><a href="#">All</a></li>
-          <li><a href="#">Module A</a></li>
-          <li><a href="#">Module B</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
+          <li *ngFor="let module of modules"><span> {{module}} </span></li>
         </ul>
       </div><!-- /btn-group -->
       <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
@@ -26,11 +22,6 @@
       <button class="hvr-grow hvr-bubble-right noun" (click)="setSelected(noun);">
         {{noun.name}}
       </button>
-
-      <p class="c-paragraph">
-testing testing testing
-
-      </p>
     </div>
   </div> <!-- END SCROLLVIEW -->
 
