@@ -24,11 +24,25 @@ var NounService = (function () {
         return Promise.resolve(mock_modules_1.MOCKMODULES);
     };
     //This is called every keystroke to search using JavaScript's String indexOf method.
-    NounService.prototype.search = function (criteria) {
+    /*
+  search(criteria) {
+    var result = [];
+
+    for (var i = 0; i < MOCKNOUNS.length; i++) {
+      if (MOCKNOUNS[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+        result.push(MOCKNOUNS[i]);
+        //Debug: console.log(MOCKNOUNS[i]);
+      }
+    }
+
+    return Promise.resolve(result);
+  }
+    */
+    NounService.prototype.search = function (criteria, nouns) {
         var result = [];
-        for (var i = 0; i < mock_nouns_1.MOCKNOUNS.length; i++) {
-            if (mock_nouns_1.MOCKNOUNS[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-                result.push(mock_nouns_1.MOCKNOUNS[i]);
+        for (var i = 0; i < nouns.length; i++) {
+            if (nouns[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+                result.push(nouns[i]);
             }
         }
         return Promise.resolve(result);

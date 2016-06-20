@@ -7,7 +7,7 @@
   <!-- BootStrap dropdown and action bar -->
   <div class="input-group">
       <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
+        <button id="module-dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li *ngFor="let module of modules" (click)="selectModule(module)" ><span> {{module.name}} </span></li>
         </ul>

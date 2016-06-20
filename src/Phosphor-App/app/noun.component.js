@@ -22,7 +22,10 @@ var NounComponent = (function () {
     };
     NounComponent.prototype.getModules = function () {
         var _this = this;
-        this.nounService.getModules().then(function (modules) { return _this.modules = modules; });
+        this.nounService.getModules().then(function (modules) {
+            _this.modules = modules;
+            _this.selectedModule = _this.modules[0];
+        });
     };
     NounComponent.prototype.getNounsByModule = function () {
     };
@@ -34,13 +37,16 @@ var NounComponent = (function () {
         var _this = this;
         //This is a bit hacky as we need casting.
         var criteria = document.getElementById("noun-search").value;
-        this.nounService.search(criteria).then(function (nouns) { return _this.nouns = nouns; });
+        this.nounService.search(criteria, this.selectedModule.nouns).then(function (nouns) { return _this.nouns = nouns; });
     };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
     };
     NounComponent.prototype.selectModule = function (selectedModule) {
         this.nouns = selectedModule.nouns;
+        this.selectedModule = selectedModule;
+        //DOM manipulation
+        document.getElementById("module-dropdown").innerText = selectedModule.name;
     };
     NounComponent = __decorate([
         core_1.Component({

@@ -18,13 +18,17 @@ export class NounComponent implements OnInit {
 
   nouns: Noun[];
   modules: any;
+  selectedModule: any;
 
   getNouns() {
       this.nounService.getNouns().then(nouns => this.nouns = nouns);
   }
 
   getModules() {
-      this.nounService.getModules().then(modules => this.modules = modules);
+      this.nounService.getModules().then(modules => {
+          this.modules = modules;
+          this.selectedModule = this.modules[0];
+      });      
   }
 
   getNounsByModule() {
@@ -33,13 +37,13 @@ export class NounComponent implements OnInit {
 
   ngOnInit() {
       this.getNouns();
-      this.getModules();
+      this.getModules();            
   }
 
   search() {
     //This is a bit hacky as we need casting.
     var criteria = (<HTMLInputElement>document.getElementById("noun-search")).value;
-    this.nounService.search(criteria).then(nouns => this.nouns = nouns);
+    this.nounService.search(criteria, this.selectedModule.nouns).then(nouns => this.nouns = nouns);
   }
 
   setSelected(selectedNoun) {
@@ -48,6 +52,10 @@ export class NounComponent implements OnInit {
 
   selectModule(selectedModule) {
       this.nouns = selectedModule.nouns;
+      this.selectedModule = selectedModule;
+
+      //DOM manipulation
+      document.getElementById("module-dropdown").innerText = selectedModule.name;
   }
 
 }

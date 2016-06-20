@@ -29,6 +29,7 @@ export class NounService {
   }
 
   //This is called every keystroke to search using JavaScript's String indexOf method.
+    /*
   search(criteria) {
     var result = [];
 
@@ -40,6 +41,20 @@ export class NounService {
     }
 
     return Promise.resolve(result);
+  }
+    */
+
+  search(criteria, nouns) {
+      var result = [];
+
+      for (var i = 0; i < nouns.length; i++) {
+          if (nouns[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+              result.push(nouns[i]);
+              //Debug: console.log(MOCKNOUNS[i]);
+          }
+      }
+
+      return Promise.resolve(result);
   }
 
   //Gets the items for the selected noun.
