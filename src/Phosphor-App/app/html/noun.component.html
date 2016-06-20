@@ -9,7 +9,7 @@
       <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li *ngFor="let module of modules"><span> {{module}} </span></li>
+          <li *ngFor="let module of modules" (click)="selectModule(module)" ><span> {{module.name}} </span></li>
         </ul>
       </div><!-- /btn-group -->
       <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">

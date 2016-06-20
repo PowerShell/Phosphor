@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var mock_nouns_1 = require('../util/mock-nouns');
+var mock_modules_1 = require('../util/mock-modules');
 var collection_service_1 = require('./collection.service');
 var NounService = (function () {
     function NounService(collectionService) {
@@ -18,6 +19,9 @@ var NounService = (function () {
     }
     NounService.prototype.getNouns = function () {
         return Promise.resolve(mock_nouns_1.MOCKNOUNS);
+    };
+    NounService.prototype.getModules = function () {
+        return Promise.resolve(mock_modules_1.MOCKMODULES);
     };
     //This is called every keystroke to search using JavaScript's String indexOf method.
     NounService.prototype.search = function (criteria) {

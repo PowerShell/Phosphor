@@ -6,6 +6,8 @@ import { NounComponent } from './noun.component';
 import { CollectionComponent } from './collection.component';
 import { VerbComponent } from './verb.component';
 
+import { MOCKMODULES } from './util/mock-modules';
+
 @Component({
   selector: 'my-dashboard',
   templateUrl: 'app/html/dashboard.component.html',
@@ -23,6 +25,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
+      console.log(MOCKMODULES);
+
   }
 
   toggleConsole() {
@@ -31,8 +35,8 @@ export class DashboardComponent implements OnInit {
       var psconsole = document.getElementById("ps-console").style.height = "2%";
     }
     else {
-      var dash = document.getElementById("dash").style.height = "90%";
-      var psconsole = document.getElementById("ps-console").style.height = "10%";      
+      var dash = document.getElementById("dash").style.height = "85%";
+      var psconsole = document.getElementById("ps-console").style.height = "15%";      
     }
 
     this.expanded = !this.expanded;

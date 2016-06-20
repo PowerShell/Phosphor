@@ -13,12 +13,14 @@ var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_component_1 = require('./noun.component');
 var collection_component_1 = require('./collection.component');
 var verb_component_1 = require('./verb.component');
+var mock_modules_1 = require('./util/mock-modules');
 var DashboardComponent = (function () {
     function DashboardComponent(router) {
         this.router = router;
         this.expanded = false;
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        console.log(mock_modules_1.MOCKMODULES);
     };
     DashboardComponent.prototype.toggleConsole = function () {
         if (this.expanded) {
@@ -26,9 +28,8 @@ var DashboardComponent = (function () {
             var psconsole = document.getElementById("ps-console").style.height = "2%";
         }
         else {
-            var dash = document.getElementById("dash").style.height = "90%";
-            var psconsole = document.getElementById("ps-console").style.height = "10%";
-            console.log('test');
+            var dash = document.getElementById("dash").style.height = "85%";
+            var psconsole = document.getElementById("ps-console").style.height = "15%";
         }
         this.expanded = !this.expanded;
     };

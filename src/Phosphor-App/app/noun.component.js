@@ -15,16 +15,20 @@ var NounComponent = (function () {
     function NounComponent(router, nounService) {
         this.router = router;
         this.nounService = nounService;
-        this.modules = ['All', 'Module A', 'Module B', 'Module C'];
     }
     NounComponent.prototype.getNouns = function () {
         var _this = this;
         this.nounService.getNouns().then(function (nouns) { return _this.nouns = nouns; });
     };
+    NounComponent.prototype.getModules = function () {
+        var _this = this;
+        this.nounService.getModules().then(function (modules) { return _this.modules = modules; });
+    };
     NounComponent.prototype.getNounsByModule = function () {
     };
     NounComponent.prototype.ngOnInit = function () {
         this.getNouns();
+        this.getModules();
     };
     NounComponent.prototype.search = function () {
         var _this = this;
@@ -34,6 +38,9 @@ var NounComponent = (function () {
     };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
+    };
+    NounComponent.prototype.selectModule = function (selectedModule) {
+        this.nouns = selectedModule.nouns;
     };
     NounComponent = __decorate([
         core_1.Component({

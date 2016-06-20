@@ -17,10 +17,14 @@ export class NounComponent implements OnInit {
     private nounService: NounService) { }
 
   nouns: Noun[];
-  modules: string[] = ['All', 'Module A', 'Module B', 'Module C'];
+  modules: any;
 
   getNouns() {
       this.nounService.getNouns().then(nouns => this.nouns = nouns);
+  }
+
+  getModules() {
+      this.nounService.getModules().then(modules => this.modules = modules);
   }
 
   getNounsByModule() {
@@ -28,7 +32,8 @@ export class NounComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getNouns();
+      this.getNouns();
+      this.getModules();
   }
 
   search() {
@@ -39,6 +44,10 @@ export class NounComponent implements OnInit {
 
   setSelected(selectedNoun) {
     this.nounService.setSelected(selectedNoun);
+  }
+
+  selectModule(selectedModule) {
+      this.nouns = selectedModule.nouns;
   }
 
 }
