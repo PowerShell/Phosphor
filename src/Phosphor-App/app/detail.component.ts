@@ -5,11 +5,11 @@ import { CollectionService } from './services/collection.service';
 import { VerbService } from './services/verb.service';
 
 @Component({
-  selector: 'verb-blade',
-  templateUrl: 'app/html/verb.component.html',
-  styleUrls: ['app/css/verb.component.css'],
+  selector: 'detail-blade',
+  templateUrl: 'app/html/detail.component.html',
+  styleUrls: ['app/css/detail.component.css'],
 })
-export class VerbComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
   subscription: any;
 

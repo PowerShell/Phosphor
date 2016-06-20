@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_component_1 = require('./noun.component');
 var collection_component_1 = require('./collection.component');
-var verb_component_1 = require('./verb.component');
+var detail_component_1 = require('./detail.component');
 var DashboardComponent = (function () {
     function DashboardComponent(router) {
         this.router = router;
@@ -24,10 +24,12 @@ var DashboardComponent = (function () {
         if (this.expanded) {
             var dash = document.getElementById("dash").style.height = "98%";
             var psconsole = document.getElementById("ps-console").style.height = "2%";
+            var psicon = document.getElementById("ps-icon").style.height = "100%";
         }
         else {
             var dash = document.getElementById("dash").style.height = "85%";
             var psconsole = document.getElementById("ps-console").style.height = "15%";
+            var psicon = document.getElementById("ps-icon").style.height = "20px";
         }
         this.expanded = !this.expanded;
     };
@@ -40,7 +42,7 @@ var DashboardComponent = (function () {
             selector: 'my-dashboard',
             templateUrl: 'app/html/dashboard.component.html',
             styleUrls: ['app/css/dashboard.component.css'],
-            directives: [noun_component_1.NounComponent, collection_component_1.CollectionComponent, verb_component_1.VerbComponent]
+            directives: [noun_component_1.NounComponent, collection_component_1.CollectionComponent, detail_component_1.DetailComponent]
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], DashboardComponent);

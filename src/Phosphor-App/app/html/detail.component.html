@@ -1,0 +1,42 @@
+<div class="detail-blade col-md-5">
+
+
+    <div class="" style="height: 25%; width: 100%;">  
+      <h3 class="title" style="background-color: #2F2F2F; text-align: center">
+        Details
+      </h3>
+
+      <!-- List of Verbs. Can make it scrollview later -->
+      <div class="container-fluid">
+        <div *ngFor="let verb of verbs" class="col-md-3 hvr-grow verb">
+          <img src="http://placehold.it/50x50">
+          <div>
+              {{verb}}
+          </div>
+        </div>
+      </div> <!-- END LIST OF VERBS -->
+    </div> <!-- END VERB ROW -->
+
+    <div style="border-bottom: thin outset #f0f0f5; width: 80%; margin-left: 10%; height: 3%;"> </div>
+
+    <div class="" style="height: 70%; width: 100%; text-align: left; margin-top: 5%">
+ 
+
+      <!-- List of details. -->
+      <div class="content" style="margin-left: 8%; color: black; overflow: auto; height: 80%;">
+        <div *ngFor="let detail of details">
+          <h4>
+            {{detail}}
+          </h4>
+
+          <h6 style="margin-left: 3%; padding-top: 1%; padding-bottom: 1%;">
+            &lt; metadata &gt;
+          </h6>
+        </div> <!-- END OF LIST -->
+
+
+      </div> <!-- END LIST OF DETAILS -->
+    </div> <!-- END DETAIL ROW -->
+
+
+</div>

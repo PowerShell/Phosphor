@@ -30,3 +30,8 @@
   width: 100%;
   margin-top: 12%;
 }
+
+#module-dropdown {
+  background-image: none;
+  background-color: #EEEEEE;    
+}

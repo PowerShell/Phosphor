@@ -46,7 +46,7 @@ var NounComponent = (function () {
         this.nouns = selectedModule.nouns;
         this.selectedModule = selectedModule;
         //DOM manipulation
-        document.getElementById("module-dropdown").innerText = selectedModule.name;
+        document.getElementById("module-dropdown").innerHTML = selectedModule.name + ' <span class="caret" > </span>';
     };
     NounComponent = __decorate([
         core_1.Component({

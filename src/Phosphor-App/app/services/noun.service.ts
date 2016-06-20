@@ -29,28 +29,12 @@ export class NounService {
   }
 
   //This is called every keystroke to search using JavaScript's String indexOf method.
-    /*
-  search(criteria) {
-    var result = [];
-
-    for (var i = 0; i < MOCKNOUNS.length; i++) {
-      if (MOCKNOUNS[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-        result.push(MOCKNOUNS[i]);
-        //Debug: console.log(MOCKNOUNS[i]);
-      }
-    }
-
-    return Promise.resolve(result);
-  }
-    */
-
   search(criteria, nouns) {
       var result = [];
 
       for (var i = 0; i < nouns.length; i++) {
           if (nouns[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-              result.push(nouns[i]);
-              //Debug: console.log(MOCKNOUNS[i]);
+              result.push(nouns[i]);              
           }
       }
 

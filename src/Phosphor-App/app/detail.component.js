@@ -12,13 +12,13 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var collection_service_1 = require('./services/collection.service');
 var verb_service_1 = require('./services/verb.service');
-var VerbComponent = (function () {
-    function VerbComponent(router, collectionService, verbService) {
+var DetailComponent = (function () {
+    function DetailComponent(router, collectionService, verbService) {
         this.router = router;
         this.collectionService = collectionService;
         this.verbService = verbService;
     }
-    VerbComponent.prototype.ngOnInit = function () {
+    DetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.subscription = this.collectionService.itemSelected$.subscribe(function (item) { return _this.getActions(item); });
         //Promises to initialize
@@ -26,19 +26,19 @@ var VerbComponent = (function () {
         this.verbService.getDetails('mock').then(function (details) { return _this.details = details; });
     };
     //Called as a listener for item selected from Collection
-    VerbComponent.prototype.getActions = function (item) {
+    DetailComponent.prototype.getActions = function (item) {
         //IMPLEMENT LOGIC HERE
         console.log(item);
     };
-    VerbComponent = __decorate([
+    DetailComponent = __decorate([
         core_1.Component({
-            selector: 'verb-blade',
-            templateUrl: 'app/html/verb.component.html',
-            styleUrls: ['app/css/verb.component.css'],
+            selector: 'detail-blade',
+            templateUrl: 'app/html/detail.component.html',
+            styleUrls: ['app/css/detail.component.css'],
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router, collection_service_1.CollectionService, verb_service_1.VerbService])
-    ], VerbComponent);
-    return VerbComponent;
+    ], DetailComponent);
+    return DetailComponent;
 }());
-exports.VerbComponent = VerbComponent;
-//# sourceMappingURL=verb.component.js.map
+exports.DetailComponent = DetailComponent;
+//# sourceMappingURL=detail.component.js.map

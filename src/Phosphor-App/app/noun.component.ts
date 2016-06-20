@@ -3,7 +3,7 @@ import { Router } from '@angular/router-deprecated';
 
 import { Noun } from './util/noun';
 import { NounService } from './services/noun.service';
-import { VerbComponent } from './verb.component'
+import { DetailComponent } from './detail.component';
 
 @Component({
   selector: 'noun-blade',
@@ -55,7 +55,7 @@ export class NounComponent implements OnInit {
       this.selectedModule = selectedModule;
 
       //DOM manipulation
-      document.getElementById("module-dropdown").innerText = selectedModule.name;
+      document.getElementById("module-dropdown").innerHTML = selectedModule.name + ' <span class="caret" > </span>';
   }
 
 }
