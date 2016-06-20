@@ -1,7 +1,7 @@
 <div class="dashboard">
 
   <!-- Used BootStrap's columns to create a 3 column layout -->
-    <div class="dash container-fluid">
+    <div id="dash" class="container-fluid">
 
       <!-- NOUN COLUMN -->
       <noun-blade>
@@ -16,9 +16,11 @@
       </verb-blade>
     </div>
 
-    <div style="height: 10%; background-color: #0078D7; color: white;">
-      Powershell popup
+    <div id="ps-console" (click)="toggleConsole()">
+      <img id="ps-icon" src="./app/img/psicon.png" style="height: 20px; width: 20px;"/>
 
     </div>
+
+
 
 </div>

@@ -16,8 +16,21 @@ var verb_component_1 = require('./verb.component');
 var DashboardComponent = (function () {
     function DashboardComponent(router) {
         this.router = router;
+        this.expanded = false;
     }
     DashboardComponent.prototype.ngOnInit = function () {
+    };
+    DashboardComponent.prototype.toggleConsole = function () {
+        if (this.expanded) {
+            var dash = document.getElementById("dash").style.height = "98%";
+            var psconsole = document.getElementById("ps-console").style.height = "2%";
+        }
+        else {
+            var dash = document.getElementById("dash").style.height = "90%";
+            var psconsole = document.getElementById("ps-console").style.height = "10%";
+            console.log('test');
+        }
+        this.expanded = !this.expanded;
     };
     __decorate([
         core_1.Input(), 

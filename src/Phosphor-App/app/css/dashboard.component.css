@@ -59,13 +59,26 @@ h4 {
     }
 }
 
-.dash {
+#dash {
   text-align: center;
   padding: 0;
-  height: 90%;
+  height: 98%;
 }
 
 .dashboard {
   text-align: center;
   margin: 0;
+}
+
+#ps-console {
+  cursor: pointer;
+  height: 2%;
+  background-color: #315D88;
+  text-align: left;
+}
+
+.expanded {
+  height: 10%;
+  background-color: #0078D7;
+  color: white;
 }
