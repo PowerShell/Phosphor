@@ -20,7 +20,7 @@ export class NounComponent implements OnInit {
   modules: any;
   selectedModule: any;
 
-  getNouns() {
+  getNouns() {      
       this.nounService.getNouns().then(nouns => this.nouns = nouns);
   }
 

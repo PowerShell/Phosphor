@@ -7,6 +7,8 @@
 
 .item {
   margin: 4px;
+  background-color: #464646;
+  color: white;
 }
 
 .title {
@@ -27,6 +29,7 @@
 .action {
   /* border: solid; */
   margin-top: 2%;
+  cursor: pointer;
 }
 
 #collection-search {

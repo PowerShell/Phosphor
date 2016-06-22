@@ -28,8 +28,9 @@
 
   <!-- List of items after selecting a noun -->
   <h4 style="margin-top: 7%;">Select from the list:</h4>
+    
 
-  <div class="scrollView">
+  <div *ngIf="items" class="scrollView">
     <div *ngFor="let item of items">
       <button class="hvr-grow item" (click)="setSelected(item)">
         {{item}}
@@ -37,6 +38,14 @@
     </div>
   </div>
 
+    <div *ngIf="!items" style="margin-top: 40%; margin-left: 12%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
 
 
 </div>

@@ -8,7 +8,8 @@
 .noun {
   margin: 4px;
   width: 40%;
-
+  background-color: #464646;
+  color: white;
 }
 
 .title {
@@ -33,5 +34,7 @@
 
 #module-dropdown {
   background-image: none;
-  background-color: #EEEEEE;    
+  background-color: #0078D7;
+  color: white;
+
 }

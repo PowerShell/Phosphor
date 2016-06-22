@@ -8,6 +8,7 @@
 .verb {
   /* border: solid; */
   margin-top: 2%;
+  cursor: pointer;
 }
 
 .title {
