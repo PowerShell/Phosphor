@@ -27,7 +27,7 @@ var AppComponent = (function () {
         }),
         router_deprecated_1.RouteConfig([
             {
-                path: '/dashboard',
+                path: '/',
                 name: 'Dashboard',
                 component: dashboard_component_1.DashboardComponent,
                 useAsDefault: true

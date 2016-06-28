@@ -21,7 +21,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 
 @RouteConfig([
   {
-    path: '/dashboard',
+    path: '/',
     name: 'Dashboard',
     component: DashboardComponent,
     useAsDefault: true
