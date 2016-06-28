@@ -10,18 +10,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var mock_nouns_1 = require('../util/mock-nouns');
-var mock_modules_1 = require('../util/mock-modules');
 var collection_service_1 = require('./collection.service');
 var NounService = (function () {
     function NounService(collectionService) {
         this.collectionService = collectionService;
         this.nounSelected$ = new core_1.EventEmitter();
     }
+    NounService.prototype.ngOnInit = function () {
+    };
     NounService.prototype.getNouns = function () {
-        return Promise.resolve(mock_nouns_1.MOCKNOUNS);
+        var servernouns = "" + document.getElementById("server-nouns").innerHTML;
+        var splitted = servernouns.split(",");
+        this.nouns = [];
+        this.modules = [];
+        //Module that contains all nouns:
+        var allModule = {
+            name: "All",
+            nouns: []
+        };
+        for (var i = 0; i < splitted.length; i++) {
+            var separate = splitted[i].split("-");
+            var noun = separate[0];
+            var module = separate[1];
+            var newNoun = {
+                name: noun,
+                id: i,
+                items: [],
+                module: module
+            };
+            this.nouns.push(newNoun);
+            console.log(module);
+            if (!this.modules[module]) {
+                var newModule = {
+                    name: module,
+                    nouns: []
+                };
+                newModule.nouns.push(newNoun);
+                this.modules[module] = newModule;
+            }
+            else {
+                this.modules[module].nouns.push(newNoun);
+            }
+            allModule.nouns.push(newNoun);
+        }
+        this.modules.push(allModule);
+        return Promise.resolve(this.nouns);
+        //return Promise.resolve(MOCKNOUNS);
     };
     NounService.prototype.getModules = function () {
-        return Promise.resolve(mock_modules_1.MOCKMODULES);
+        var allModules = [];
+        for (var k in this.modules) {
+            allModules.push(this.modules[k]);
+        }
+        return Promise.resolve(allModules);
     };
     //This is called every keystroke to search using JavaScript's String indexOf method.
     NounService.prototype.search = function (criteria, nouns) {

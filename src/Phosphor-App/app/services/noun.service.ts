@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
 
 import { MOCKNOUNS } from '../util/mock-nouns';
 import { MOCKMODULES } from '../util/mock-modules';
@@ -10,6 +10,8 @@ import { CollectionService } from './collection.service';
 export class NounService {
 
   selected: Noun;
+  nouns: any;
+  modules: any;
 
   public nounSelected$: EventEmitter<Noun>;
 
@@ -20,12 +22,75 @@ export class NounService {
     this.nounSelected$ = new EventEmitter<Noun>();
   }
 
+  ngOnInit() {
+
+  }
+
   getNouns() {
-    return Promise.resolve(MOCKNOUNS);
+    var servernouns = "" + document.getElementById("server-nouns").innerHTML;
+
+    var splitted = servernouns.split(",");
+
+    this.nouns = [];
+    this.modules = [];
+
+    //Module that contains all nouns:
+    var allModule = {
+      name: "All",
+      nouns: []
+    };
+
+    for (var i = 0; i < splitted.length; i++) {
+
+      var separate = splitted[i].split("-");
+
+      var noun = separate[0];
+      var module = separate[1];
+
+      var newNoun = {
+        name: noun,
+        id: i,
+        items: [],
+        module: module
+      };
+
+      this.nouns.push(newNoun);
+
+      console.log(module);
+
+      if (!this.modules[module]) {
+
+        var newModule = {
+          name: module,
+          nouns: []
+        };
+
+        newModule.nouns.push(newNoun);
+
+        this.modules[module] = newModule;
+      }
+      else {
+        this.modules[module].nouns.push(newNoun);
+      }
+
+      allModule.nouns.push(newNoun);
+    }
+
+    this.modules.push(allModule);
+
+    return Promise.resolve(this.nouns);
+    //return Promise.resolve(MOCKNOUNS);
   }
 
   getModules() {
-    return Promise.resolve(MOCKMODULES);
+
+    var allModules = [];
+
+    for (var k in this.modules) {
+      allModules.push(this.modules[k]);
+    }
+
+    return Promise.resolve(allModules);
   }
 
   //This is called every keystroke to search using JavaScript's String indexOf method.
@@ -34,7 +99,7 @@ export class NounService {
 
       for (var i = 0; i < nouns.length; i++) {
           if (nouns[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-              result.push(nouns[i]);              
+              result.push(nouns[i]);
           }
       }
 
@@ -44,7 +109,7 @@ export class NounService {
   //Gets the items for the selected noun.
   getNounItems(position) {
     return MOCKNOUNS[position - 1].items;
-  }  
+  }
 
   //Observer pattern to emit noun to subscribers
   setSelected(noun: Noun) {

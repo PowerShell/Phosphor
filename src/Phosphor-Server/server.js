@@ -41,7 +41,7 @@ PS.on('output', function(data){
       console.log("Noun: " + noun);
       console.log("Module: " + module);
 
-      nouns.push(noun);
+      nouns.push(noun + "-" + module);
 
       if (!modules["" + module]) {
         modules["" + module] = [];
@@ -85,7 +85,7 @@ PS.on('end', function(code) {
 
 var renderIndex = (req, res) => {
     //res.sendFile(path.resolve(__dirname, 'index.html'));
-    res.render('index.ejs', {test: "hello"});
+    res.render('index.ejs', {nouns: nouns, modules: modules});
 }
 
 app.get('/', renderIndex);
