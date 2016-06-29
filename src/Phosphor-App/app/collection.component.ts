@@ -31,14 +31,14 @@ export class CollectionComponent implements OnInit {
     let id = +this.routeParams.get('id');
 
     //May need to fix this. However, simply wrapping items in a promise causes errors.
-    this.items = this.nounService.getNounItems(1);
+    this.items = this.nounService.getNounItems("service");
     this.collectionService.getCollectionActions().then(actions => this.actions = actions);
 
     this.subscription = this.nounService.nounSelected$.subscribe(noun => this.onNounSelectionChange(noun));
   }
 
   onNounSelectionChange(noun: Noun) {
-    this.items = this.nounService.getNounItems(noun.id);
+    this.items = this.nounService.getNounItems(noun.name);
   }
 
   //Wrapper for observer pattern of service

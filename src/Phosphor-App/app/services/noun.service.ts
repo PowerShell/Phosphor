@@ -1,4 +1,7 @@
 import { Injectable, EventEmitter, OnInit } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
+import 'rxjs/Rx';
 
 import { MOCKNOUNS } from '../util/mock-nouns';
 import { MOCKMODULES } from '../util/mock-modules';
@@ -16,7 +19,8 @@ export class NounService {
   public nounSelected$: EventEmitter<Noun>;
 
   constructor(
-    private collectionService: CollectionService
+    private collectionService: CollectionService,
+    private http: Http
   )
   {
     this.nounSelected$ = new EventEmitter<Noun>();
@@ -55,8 +59,6 @@ export class NounService {
       };
 
       this.nouns.push(newNoun);
-
-      console.log(module);
 
       if (!this.modules[module]) {
 
@@ -107,8 +109,28 @@ export class NounService {
   }
 
   //Gets the items for the selected noun.
-  getNounItems(position) {
-    return MOCKNOUNS[position - 1].items;
+  getNounItems(name) {
+
+    //TODO Make an HTTP request to grab data from the server on the noun
+
+/*
+    var test = this.http.get("/shell").map(function(res) {
+      console.log(res);
+    }).catch(function(err, caught) {
+      console.log(err);
+      return caught;
+    });
+
+    console.log("test: " + test.json());
+    */
+
+    this.http.get('/shell?' + "noun=" + name)
+       .subscribe(
+            res => console.log(res),
+            error =>  console.log(error)
+    );
+
+    return MOCKNOUNS[2 - 1].items;
   }
 
   //Observer pattern to emit noun to subscribers

@@ -9,11 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/Rx');
 var mock_nouns_1 = require('../util/mock-nouns');
 var collection_service_1 = require('./collection.service');
 var NounService = (function () {
-    function NounService(collectionService) {
+    function NounService(collectionService, http) {
         this.collectionService = collectionService;
+        this.http = http;
         this.nounSelected$ = new core_1.EventEmitter();
     }
     NounService.prototype.ngOnInit = function () {
@@ -39,7 +42,6 @@ var NounService = (function () {
                 module: module
             };
             this.nouns.push(newNoun);
-            console.log(module);
             if (!this.modules[module]) {
                 var newModule = {
                     name: module,
@@ -75,8 +77,21 @@ var NounService = (function () {
         return Promise.resolve(result);
     };
     //Gets the items for the selected noun.
-    NounService.prototype.getNounItems = function (position) {
-        return mock_nouns_1.MOCKNOUNS[position - 1].items;
+    NounService.prototype.getNounItems = function (name) {
+        //TODO Make an HTTP request to grab data from the server on the noun
+        /*
+            var test = this.http.get("/shell").map(function(res) {
+              console.log(res);
+            }).catch(function(err, caught) {
+              console.log(err);
+              return caught;
+            });
+        
+            console.log("test: " + test.json());
+            */
+        this.http.get('/shell?' + "noun=" + name)
+            .subscribe(function (res) { return console.log(res); }, function (error) { return console.log(error); });
+        return mock_nouns_1.MOCKNOUNS[2 - 1].items;
     };
     //Observer pattern to emit noun to subscribers
     NounService.prototype.setSelected = function (noun) {
@@ -86,7 +101,7 @@ var NounService = (function () {
     };
     NounService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [collection_service_1.CollectionService])
+        __metadata('design:paramtypes', [collection_service_1.CollectionService, http_1.Http])
     ], NounService);
     return NounService;
 }());

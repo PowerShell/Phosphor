@@ -3,7 +3,7 @@ var path = require('path');
 var port = process.env.PORT || 3000;
 var app = express();
 
-var shell = require('node-powershell');
+var shell = require('node-powershell').Shell;
 
 var bodyParser = require('body-parser');
 
@@ -24,6 +24,54 @@ var verbs = [];
 var nouns = [];
 var modules = [];
 
+
+PS.execute().then(function(data) {
+  data = data.output;
+  var splitted = data.split("-");
+
+  var firstSplit = (splitted[0] + "").split(/[\s,]+/).join().split(",");
+
+  if (firstSplit[0] === "Cmdlet") {
+    var verb = firstSplit[firstSplit.length - 1];
+
+    var secondSplit = (splitted[1] + "").split(/[\s,]+/).join().split(",");
+    var noun =  secondSplit[0];
+    var module = secondSplit[secondSplit.length - 2];
+
+/*
+    console.log("Verb: " + verb);
+    console.log("Noun: " + noun);
+    console.log("Module: " + module);
+*/
+
+    nouns.push(noun + "-" + module);
+
+    if (!modules["" + module]) {
+      modules["" + module] = [];
+      modules["" + module].push(noun);
+    }
+    else {
+        modules["" + module].push(noun);
+    }
+
+    var unique = true;
+
+    for (var i = 0; i < modules.length; i++) {
+      if (modules[i] === module) {
+        unique = false;
+      }
+    }
+
+    if (unique) {
+      modules.push(module);
+    }
+
+    verbs.push(verb);
+  }
+}).catch(function(err) {
+  console.log(err);
+});
+
 PS.on('output', function(data){
     //console.log(data);
     var splitted = data.split("-");
@@ -37,9 +85,11 @@ PS.on('output', function(data){
       var noun =  secondSplit[0];
       var module = secondSplit[secondSplit.length - 2];
 
+/*
       console.log("Verb: " + verb);
       console.log("Noun: " + noun);
       console.log("Module: " + module);
+*/
 
       nouns.push(noun + "-" + module);
 
@@ -93,7 +143,25 @@ app.get('/', renderIndex);
 app.get('/shell', (req, res) => {
   console.log('hello');
 
-  res.render('index.ejs', {test: nouns});
+  var query = req.query;
+  var noun = query.noun;
+
+  var nounData;
+
+  PS = new shell("get-" + noun);
+
+  PS.execute(function(data){
+      data = data.output;
+      console.log(data);
+      //nounData = data;
+      //res.send(data);
+  }).catch(function(err) {
+    console.log("Error: " + err);
+  });
+
+  res.send(nouns);
+
+  //res.send(nounData);
 
   /*
   PS = new shell("./test.ps1");
