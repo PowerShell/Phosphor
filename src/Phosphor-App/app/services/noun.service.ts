@@ -124,13 +124,17 @@ export class NounService {
     console.log("test: " + test.json());
     */
 
+    var nounItems;
+
     this.http.get('/shell?' + "noun=" + name)
        .subscribe(
-            res => console.log(res.json()),
-            error =>  console.log(error)
+            res => { console.log(res.json()); nounItems = res.json(); },
+            error => { console.log(error); nounItems = null; }
     );
 
-    return MOCKNOUNS[2 - 1].items;
+    setTimeout((function() {console.log("HELLO WORLD!" + nounItems); return nounItems;}), 2000);
+
+    //return MOCKNOUNS[2 - 1].items;
   }
 
   //Observer pattern to emit noun to subscribers

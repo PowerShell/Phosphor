@@ -10,14 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
+var http_1 = require('@angular/http');
+require('rxjs/Rx');
 var noun_service_1 = require('./services/noun.service');
 var collection_service_1 = require('./services/collection.service');
 var CollectionComponent = (function () {
     //Necessary imports
-    function CollectionComponent(router, nounService, routeParams, collectionService) {
+    function CollectionComponent(router, nounService, routeParams, http, collectionService) {
         this.router = router;
         this.nounService = nounService;
         this.routeParams = routeParams;
+        this.http = http;
         this.collectionService = collectionService;
     }
     //Initialization
@@ -25,12 +28,16 @@ var CollectionComponent = (function () {
         var _this = this;
         var id = +this.routeParams.get('id');
         //May need to fix this. However, simply wrapping items in a promise causes errors.
-        this.items = this.nounService.getNounItems("service");
+        this.http.get('/shell?' + "noun=" + "service")
+            .subscribe(function (res) { console.log(res.json()); _this.items = res.json(); }, function (error) { console.log(error); _this.items = null; });
         this.collectionService.getCollectionActions().then(function (actions) { return _this.actions = actions; });
         this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.onNounSelectionChange(noun); });
     };
     CollectionComponent.prototype.onNounSelectionChange = function (noun) {
-        this.items = this.nounService.getNounItems(noun.name);
+        var _this = this;
+        this.items = null;
+        this.http.get('/shell?' + "noun=" + noun.name)
+            .subscribe(function (res) { console.log(res.json()); _this.items = res.json(); }, function (error) { console.log(error); _this.items = null; });
     };
     //Wrapper for observer pattern of service
     CollectionComponent.prototype.setSelected = function (item) {
@@ -52,7 +59,7 @@ var CollectionComponent = (function () {
             templateUrl: 'app/html/collection.component.html',
             styleUrls: ['app/css/collection.component.css']
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService, router_deprecated_1.RouteParams, collection_service_1.CollectionService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService, router_deprecated_1.RouteParams, http_1.Http, collection_service_1.CollectionService])
     ], CollectionComponent);
     return CollectionComponent;
 }());

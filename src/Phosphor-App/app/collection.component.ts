@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouteParams } from '@angular/router-deprecated';
 
+import { Http, Response } from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
+import 'rxjs/Rx';
+
 import { Noun } from './util/noun';
 import { NounService } from './services/noun.service';
 
@@ -20,6 +24,7 @@ export class CollectionComponent implements OnInit {
     private router: Router,
     private nounService: NounService,
     private routeParams: RouteParams,
+    private http: Http,
     private collectionService: CollectionService) { }
 
   //Data for Collection
@@ -31,14 +36,24 @@ export class CollectionComponent implements OnInit {
     let id = +this.routeParams.get('id');
 
     //May need to fix this. However, simply wrapping items in a promise causes errors.
-    this.items = this.nounService.getNounItems("service");
+    this.http.get('/shell?' + "noun=" + "service")
+       .subscribe(
+            res => { console.log(res.json()); this.items = res.json(); },
+            error => { console.log(error); this.items = null; }
+    );
+
     this.collectionService.getCollectionActions().then(actions => this.actions = actions);
 
     this.subscription = this.nounService.nounSelected$.subscribe(noun => this.onNounSelectionChange(noun));
   }
 
   onNounSelectionChange(noun: Noun) {
-    this.items = this.nounService.getNounItems(noun.name);
+    this.items = null;
+    this.http.get('/shell?' + "noun=" + noun.name)
+       .subscribe(
+            res => { console.log(res.json()); this.items = res.json(); },
+            error => { console.log(error); this.items = null; }
+    );
   }
 
   //Wrapper for observer pattern of service

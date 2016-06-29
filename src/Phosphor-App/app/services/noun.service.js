@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/Rx');
-var mock_nouns_1 = require('../util/mock-nouns');
 var collection_service_1 = require('./collection.service');
 var NounService = (function () {
     function NounService(collectionService, http) {
@@ -89,9 +88,11 @@ var NounService = (function () {
         
             console.log("test: " + test.json());
             */
+        var nounItems;
         this.http.get('/shell?' + "noun=" + name)
-            .subscribe(function (res) { return console.log(res.json()); }, function (error) { return console.log(error); });
-        return mock_nouns_1.MOCKNOUNS[2 - 1].items;
+            .subscribe(function (res) { console.log(res.json()); nounItems = res.json(); }, function (error) { console.log(error); nounItems = null; });
+        setTimeout((function () { console.log("HELLO WORLD!" + nounItems); return nounItems; }), 2000);
+        //return MOCKNOUNS[2 - 1].items;
     };
     //Observer pattern to emit noun to subscribers
     NounService.prototype.setSelected = function (noun) {

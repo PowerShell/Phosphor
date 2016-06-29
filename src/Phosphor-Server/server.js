@@ -116,7 +116,7 @@ app.get('/shell', (req, res) => {
   setTimeout((function() {
       res.send(result);
     }
-  ), 2000);
+  ), 3000);
 
 
 
