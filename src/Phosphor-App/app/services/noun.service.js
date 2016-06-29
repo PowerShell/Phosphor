@@ -90,7 +90,7 @@ var NounService = (function () {
             console.log("test: " + test.json());
             */
         this.http.get('/shell?' + "noun=" + name)
-            .subscribe(function (res) { return console.log(res); }, function (error) { return console.log(error); });
+            .subscribe(function (res) { return console.log(res.json()); }, function (error) { return console.log(error); });
         return mock_nouns_1.MOCKNOUNS[2 - 1].items;
     };
     //Observer pattern to emit noun to subscribers

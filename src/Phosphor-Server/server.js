@@ -3,7 +3,7 @@ var path = require('path');
 var port = process.env.PORT || 3000;
 var app = express();
 
-var shell = require('node-powershell').Shell;
+var shell = require('node-powershell');
 
 var bodyParser = require('body-parser');
 
@@ -23,54 +23,6 @@ console.log(__dirname);
 var verbs = [];
 var nouns = [];
 var modules = [];
-
-
-PS.execute().then(function(data) {
-  data = data.output;
-  var splitted = data.split("-");
-
-  var firstSplit = (splitted[0] + "").split(/[\s,]+/).join().split(",");
-
-  if (firstSplit[0] === "Cmdlet") {
-    var verb = firstSplit[firstSplit.length - 1];
-
-    var secondSplit = (splitted[1] + "").split(/[\s,]+/).join().split(",");
-    var noun =  secondSplit[0];
-    var module = secondSplit[secondSplit.length - 2];
-
-/*
-    console.log("Verb: " + verb);
-    console.log("Noun: " + noun);
-    console.log("Module: " + module);
-*/
-
-    nouns.push(noun + "-" + module);
-
-    if (!modules["" + module]) {
-      modules["" + module] = [];
-      modules["" + module].push(noun);
-    }
-    else {
-        modules["" + module].push(noun);
-    }
-
-    var unique = true;
-
-    for (var i = 0; i < modules.length; i++) {
-      if (modules[i] === module) {
-        unique = false;
-      }
-    }
-
-    if (unique) {
-      modules.push(module);
-    }
-
-    verbs.push(verb);
-  }
-}).catch(function(err) {
-  console.log(err);
-});
 
 PS.on('output', function(data){
     //console.log(data);
@@ -148,20 +100,25 @@ app.get('/shell', (req, res) => {
 
   var nounData;
 
-  PS = new shell("get-" + noun);
+  var result = [];
 
-  PS.execute(function(data){
-      data = data.output;
-      console.log(data);
-      //nounData = data;
-      //res.send(data);
-  }).catch(function(err) {
-    console.log("Error: " + err);
-  });
+  function psgo() {
+    PS = new shell("get-" + noun);
 
-  res.send(nouns);
+    PS.on('output', function(data){
+        console.log(data);
+        result.push(data);
+    });
+  }
 
-  //res.send(nounData);
+  psgo();
+
+  setTimeout((function() {
+      res.send(result);
+    }
+  ), 2000);
+
+
 
   /*
   PS = new shell("./test.ps1");

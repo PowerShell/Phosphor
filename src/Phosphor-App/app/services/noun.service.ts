@@ -126,7 +126,7 @@ export class NounService {
 
     this.http.get('/shell?' + "noun=" + name)
        .subscribe(
-            res => console.log(res),
+            res => console.log(res.json()),
             error =>  console.log(error)
     );
 
