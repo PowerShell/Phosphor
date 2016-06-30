@@ -36,11 +36,7 @@ export class CollectionComponent implements OnInit {
     let id = +this.routeParams.get('id');
 
     //May need to fix this. However, simply wrapping items in a promise causes errors.
-    this.http.get('/shell?' + "noun=" + "service")
-       .subscribe(
-            res => { console.log(res.json()); this.items = res.json(); },
-            error => { console.log(error); this.items = null; }
-    );
+    this.requestNounItems("service");
 
     this.collectionService.getCollectionActions().then(actions => this.actions = actions);
 
@@ -49,9 +45,14 @@ export class CollectionComponent implements OnInit {
 
   onNounSelectionChange(noun: Noun) {
     this.items = null;
-    this.http.get('/shell?' + "noun=" + noun.name)
+    this.requestNounItems(noun.name);
+  }
+
+
+  requestNounItems(noun: string) {
+    this.http.get('/shell?' + "noun=" + noun)
        .subscribe(
-            res => { console.log(res.json()); this.items = res.json(); },
+            res => { /* console.log(res.json()); */ this.items = res.json(); },
             error => { console.log(error); this.items = null; }
     );
   }

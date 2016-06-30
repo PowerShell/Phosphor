@@ -28,16 +28,18 @@ var CollectionComponent = (function () {
         var _this = this;
         var id = +this.routeParams.get('id');
         //May need to fix this. However, simply wrapping items in a promise causes errors.
-        this.http.get('/shell?' + "noun=" + "service")
-            .subscribe(function (res) { console.log(res.json()); _this.items = res.json(); }, function (error) { console.log(error); _this.items = null; });
+        this.requestNounItems("service");
         this.collectionService.getCollectionActions().then(function (actions) { return _this.actions = actions; });
         this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.onNounSelectionChange(noun); });
     };
     CollectionComponent.prototype.onNounSelectionChange = function (noun) {
-        var _this = this;
         this.items = null;
-        this.http.get('/shell?' + "noun=" + noun.name)
-            .subscribe(function (res) { console.log(res.json()); _this.items = res.json(); }, function (error) { console.log(error); _this.items = null; });
+        this.requestNounItems(noun.name);
+    };
+    CollectionComponent.prototype.requestNounItems = function (noun) {
+        var _this = this;
+        this.http.get('/shell?' + "noun=" + noun)
+            .subscribe(function (res) { _this.items = res.json(); }, function (error) { console.log(error); _this.items = null; });
     };
     //Wrapper for observer pattern of service
     CollectionComponent.prototype.setSelected = function (item) {

@@ -43,7 +43,11 @@ PS.on('output', function(data){
       console.log("Module: " + module);
 */
 
-      nouns.push(noun + "-" + module);
+      if (!nouns[noun]) {
+        nouns[noun] = noun;
+        nouns.push(noun + "-" + module);
+      }
+
 
       if (!modules["" + module]) {
         modules["" + module] = [];
@@ -64,6 +68,7 @@ PS.on('output', function(data){
       if (unique) {
         modules.push(module);
       }
+
 
       verbs.push(verb);
     }
