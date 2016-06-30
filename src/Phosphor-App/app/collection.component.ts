@@ -50,7 +50,7 @@ export class CollectionComponent implements OnInit {
 
 
   requestNounItems(noun: string) {
-    this.http.get('/shell?' + "noun=" + noun)
+    this.http.get('/nounitems?' + "noun=" + noun)
        .subscribe(
             res => { /* console.log(res.json()); */ this.items = res.json(); },
             error => { console.log(error); this.items = null; }

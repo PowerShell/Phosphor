@@ -38,7 +38,7 @@ var CollectionComponent = (function () {
     };
     CollectionComponent.prototype.requestNounItems = function (noun) {
         var _this = this;
-        this.http.get('/shell?' + "noun=" + noun)
+        this.http.get('/nounitems?' + "noun=" + noun)
             .subscribe(function (res) { _this.items = res.json(); }, function (error) { console.log(error); _this.items = null; });
     };
     //Wrapper for observer pattern of service

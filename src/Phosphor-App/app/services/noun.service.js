@@ -89,7 +89,7 @@ var NounService = (function () {
             console.log("test: " + test.json());
             */
         var nounItems;
-        this.http.get('/shell?' + "noun=" + name)
+        this.http.get('/nounitems?' + "noun=" + name)
             .subscribe(function (res) { console.log(res.json()); nounItems = res.json(); }, function (error) { console.log(error); nounItems = null; });
         setTimeout((function () { console.log("HELLO WORLD!" + nounItems); return nounItems; }), 2000);
         //return MOCKNOUNS[2 - 1].items;

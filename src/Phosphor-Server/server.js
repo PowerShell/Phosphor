@@ -69,8 +69,12 @@ PS.on('output', function(data){
         modules.push(module);
       }
 
+      if (!verbs["" + noun]) {
+        verbs["" + noun] = [];
+      }
 
-      verbs.push(verb);
+      verbs["" + noun].push(verb);
+      //console.log("Noun: " + noun + " | Verb: " + verbs[noun]);
     }
 
     //console.log(data);
@@ -97,13 +101,12 @@ var renderIndex = (req, res) => {
 
 app.get('/', renderIndex);
 
-app.get('/shell', (req, res) => {
-  console.log('hello');
+app.get('/nounitems', (req, res) => {
 
   var query = req.query;
   var noun = query.noun;
 
-  var nounData;
+  console.log("Request for Noun Items for noun: " + noun);
 
   var result = [];
 
@@ -123,18 +126,16 @@ app.get('/shell', (req, res) => {
     }
   ), 3000);
 
+});
 
+app.get('/verbs', (req, res) => {
+  var query = req.query;
+  var noun = query.noun;
 
-  /*
-  PS = new shell("./test.ps1");
+  console.log("Request for verbs for noun: " + noun);
 
-  PS.on('output', function(data){
-      console.log(data);
-  });
-  */
-
-  //res.send(nouns);
-})
+  res.send(verbs["" + noun]);
+});
 
 var server = app.listen(port, function() {
     var host = server.address().address;
