@@ -10,15 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
+var http_1 = require('@angular/http');
+require('rxjs/Rx');
 var noun_component_1 = require('./noun.component');
+var noun_service_1 = require('./services/noun.service');
 var collection_component_1 = require('./collection.component');
 var detail_component_1 = require('./detail.component');
 var DashboardComponent = (function () {
-    function DashboardComponent(router) {
+    function DashboardComponent(router, http, nounService) {
         this.router = router;
+        this.http = http;
+        this.nounService = nounService;
         this.expanded = false;
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.verbs = null;
+        this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.getVerbs(noun); });
+    };
+    DashboardComponent.prototype.getVerbs = function (noun) {
+        var _this = this;
+        this.selectedNoun = noun.name;
+        this.verbs = null;
+        this.http.get('/verbs?' + "noun=" + noun.name)
+            .subscribe(function (res) { console.log(res.json()); _this.verbs = res.json(); }, function (error) { console.log(error); _this.verbs = null; });
     };
     DashboardComponent.prototype.toggleConsole = function () {
         if (this.expanded) {
@@ -33,10 +48,9 @@ var DashboardComponent = (function () {
         }
         this.expanded = !this.expanded;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], DashboardComponent.prototype, "selectedNoun", void 0);
+    DashboardComponent.prototype.getCommand = function (verb) {
+        document.getElementById("ps-command").innerHTML = verb + "-" + this.selectedNoun;
+    };
     DashboardComponent = __decorate([
         core_1.Component({
             selector: 'my-dashboard',
@@ -44,7 +58,7 @@ var DashboardComponent = (function () {
             styleUrls: ['app/css/dashboard.component.css'],
             directives: [noun_component_1.NounComponent, collection_component_1.CollectionComponent, detail_component_1.DetailComponent]
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, http_1.Http, noun_service_1.NounService])
     ], DashboardComponent);
     return DashboardComponent;
 }());

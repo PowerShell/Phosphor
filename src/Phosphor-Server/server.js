@@ -134,7 +134,12 @@ app.get('/verbs', (req, res) => {
 
   console.log("Request for verbs for noun: " + noun);
 
-  res.send(verbs["" + noun]);
+  //res.send(verbs["" + noun]);
+
+  setTimeout((function() {
+      res.send(verbs["" + noun]);
+    }
+  ), 400);
 });
 
 var server = app.listen(port, function() {

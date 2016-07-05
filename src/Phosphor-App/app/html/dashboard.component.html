@@ -11,13 +11,22 @@
 
       <div style="text-align: left; color: #4685CC; background-color: white; height: 5%;">
         <div style="padding-top: 1%; padding-left: 1%;">
-          <span style="border: solid thin #4685CC; margin: 0.5%; padding: 3px; padding-left: 8px; padding-right: 8px;"> New </span>
-          <span style="border: solid thin #4685CC; margin: 0.5%; padding: 3px; padding-left: 8px; padding-right: 8px;"> Stop </span>
-          <span style="border: solid thin #4685CC; margin: 0.5%; padding: 3px; padding-left: 8px; padding-right: 8px;"> Add </span>
+
+          <div *ngIf="!verbs" style="margin-top: 0%; margin-left: 0%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+
+          <span *ngFor="let verb of verbs">
+                <span class="hvr-fade verb" (click)="getCommand(verb)"> {{verb}} </span>
+          </span>
         </div>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-4">
         <noun-blade>
         </noun-blade>
         <collection-blade>
@@ -31,9 +40,9 @@
 
     </div>
 
-    <div id="ps-console" (click)="toggleConsole()">
+    <div id="ps-console" (click)="toggleConsole()" style="color: white;">
       <img id="ps-icon" src="./app/img/psicon.png" style="height: 100%; width: 20px;"/>
-
+      <span id="ps-command"> </span>
     </div>
 
 

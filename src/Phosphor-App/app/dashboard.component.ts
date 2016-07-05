@@ -2,7 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Router } from '@angular/router-deprecated';
 
+import { Http, Response } from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
+import 'rxjs/Rx';
+
 import { NounComponent } from './noun.component';
+import { NounService } from './services/noun.service';
+
 import { CollectionComponent } from './collection.component';
 import { DetailComponent } from './detail.component';
 
@@ -16,15 +22,37 @@ import { MOCKMODULES } from './util/mock-modules';
 })
 export class DashboardComponent implements OnInit {
 
-  @Input() selectedNoun;
-
   expanded: boolean = false;
 
+  subscription: any;
+
+  verbs: any;
+
+  selectedNoun: any;
+
   constructor(
-    private router: Router) { }
+    private router: Router,
+    private http: Http,
+    private nounService: NounService
+  ) { }
 
-  ngOnInit() {      
+  ngOnInit() {
+    this.verbs = null;
 
+    this.subscription = this.nounService.nounSelected$.subscribe(noun => this.getVerbs(noun));
+  }
+
+  getVerbs(noun) {
+
+    this.selectedNoun = noun.name;
+
+    this.verbs = null;
+
+    this.http.get('/verbs?' + "noun=" + noun.name)
+       .subscribe(
+            res => {  console.log(res.json());  this.verbs = res.json(); },
+            error => { console.log(error); this.verbs = null; }
+    );
   }
 
   toggleConsole() {
@@ -35,11 +63,17 @@ export class DashboardComponent implements OnInit {
     }
     else {
       var dash = document.getElementById("dash").style.height = "85%";
-      var psconsole = document.getElementById("ps-console").style.height = "15%";      
+      var psconsole = document.getElementById("ps-console").style.height = "15%";
       var psicon = document.getElementById("ps-icon").style.height = "20px";
     }
 
     this.expanded = !this.expanded;
+  }
+
+  getCommand(verb) {
+    document.getElementById("ps-command").innerHTML = verb + "-" + this.selectedNoun;
+
+    //Get-Command New-Service -Syntax
   }
 
 }

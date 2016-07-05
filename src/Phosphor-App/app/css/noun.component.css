@@ -48,10 +48,10 @@
 }
 
 .listnoun:hover {
-  -webkit-transition: background-color 500ms ease-out 0.1s;
-  -moz-transition: background-color 500ms ease-out 0.1s;
-  -o-transition: background-color 500ms ease-out 0.1s;
-  transition: background-color 500ms ease-out 0.1s;
+  -webkit-transition: background-color 100ms ease-out 0.05s;
+  -moz-transition: background-color 100ms ease-out 0.05s;
+  -o-transition: background-color 100ms ease-out 0.05s;
+  transition: background-color 100ms ease-out 0.05s;
 
   background-color: #CAE0F5;
 

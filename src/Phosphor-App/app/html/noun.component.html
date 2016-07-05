@@ -13,7 +13,7 @@
 
     <span style="float: right; width: 70%;">
       <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
-      <ul style="border: solid thin black; height: 200px; overflow-y: auto; position: absolute; margin-top: 36px; min-width: 70%; ">
+      <ul style="border: solid thin black; height: 200px; overflow-y: auto; position: absolute; margin-top: 36px; min-width: 70%; max-width: 70%;">
         <li class="listnoun" style="z-index: 1000" *ngFor="let noun of nouns" (click)="setSelected(noun);">
           {{noun.name}}
         </li>

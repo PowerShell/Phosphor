@@ -82,3 +82,13 @@ h4 {
   background-color: #0078D7;
   color: white;
 }
+
+.verb {
+  border: solid thin #4685CC;
+  margin: 0.5%;
+  padding: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  cursor: pointer;
+  display: inline;
+}
