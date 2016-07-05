@@ -1,33 +1,5 @@
 <div class="detail-blade col-md-5">
-
-
-    <div class="" style="height: 25%; width: 100%;">
-      <h3 class="title" style="background-color: #2F2F2F; text-align: center">
-        Details
-      </h3>
-
-      <!-- List of Verbs. Can make it scrollview later -->
-      <div *ngIf="verbs" class="container-fluid">
-        <div *ngFor="let verb of verbs" class="col-md-3 hvr-grow verb">
-          <img src="http://placehold.it/50x50">
-          <div>
-              {{verb}}
-          </div>
-        </div>
-      </div> <!-- END LIST OF VERBS -->
-
-
-        <div *ngIf="!verbs" style="margin-top: 13%; margin-left: 10%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-    </div> <!-- END VERB ROW -->
-
-    <div style="border-bottom: thin outset #f0f0f5; width: 80%; margin-left: 10%; height: 3%;"> </div>
+    
 
     <div class="" style="height: 67%; width: 100%; text-align: left; margin-top: 5%">
 

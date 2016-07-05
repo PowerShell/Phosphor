@@ -1,34 +1,23 @@
-<div class="collection-blade col-md-4">
-
-  <h3 class="title">
-    Collection
-  </h3>
+<div class="collection-blade">
 
   <!-- Separator for icons -->
   <div class="col-md-2"></div>
 
   <!-- Icons for Actions -->
   <div class="container-fluid">
-    <div *ngFor="let action of actions" class="col-md-3 hvr-grow action">
-      <img src="http://placehold.it/50x50">
-      <div>
-          {{action}}
-      </div>
-    </div>
-  </div>
 
   <!-- Separator for icons -->
   <div class="col-md-1"></div>
 
+
+  <!-- List of items after selecting a noun -->
+  <h4>Select from the list:</h4>
 
   <div style="text-align: center;">
     <!-- SEARCH by name -->
     <input id="collection-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
   </div>
 
-  <!-- List of items after selecting a noun -->
-  <h4 style="margin-top: 7%;">Select from the list:</h4>
-    
 
   <div *ngIf="items" class="scrollView">
     <div *ngFor="let item of items">
@@ -45,7 +34,7 @@
         <span></span>
         <span></span>
     </div>
-    
+
 
 
 </div>

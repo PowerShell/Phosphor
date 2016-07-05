@@ -1,29 +1,38 @@
-<div class="noun-blade col-md-3">
-
-  <h3 class="title">
-    Nouns
-  </h3>
+<div class="noun-blade">
 
   <!-- BootStrap dropdown and action bar -->
   <div class="input-group">
+    <span style="float: left; width: 30%; text-align: left;">
       <div class="input-group-btn">
         <button id="module-dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
         <ul class="dropdown-menu" style="overflow: auto; height: 1000%;">
           <li *ngFor="let module of modules" (click)="selectModule(module)" ><span> {{module.name}} </span></li>
         </ul>
       </div><!-- /btn-group -->
+    </span>
+
+    <span style="float: right; width: 70%;">
       <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
-    </div><!-- /input-group -->
+      <ul style="border: solid thin black; height: 200px; overflow-y: auto; position: absolute; margin-top: 36px; min-width: 70%; ">
+        <li class="listnoun" style="z-index: 1000" *ngFor="let noun of nouns" (click)="setSelected(noun);">
+          {{noun.name}}
+        </li>
+      </ul>
+    </span>
+
+  </div><!-- /input-group -->
 
 
   <!-- Scroll View for list of nouns created -->
+  <!--
   <div class="scrollView" *ngIf="nouns">
-    <div *ngFor="let noun of nouns">
+    <div *ngFor="let noun of nouns" style="position: relative; z-index: -1;">
       <button class="hvr-grow noun" (click)="setSelected(noun);">
         {{noun.name}}
       </button>
     </div>
-  </div> <!-- END SCROLLVIEW -->'
+  </div>
+  -->
 
 
     <div *ngIf="!nouns" style="margin-top: 50%; margin-left: 15%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">

@@ -1,19 +1,34 @@
 <div class="dashboard">
 
   <!-- Used BootStrap's columns to create a 3 column layout -->
-    <div id="dash" class="container-fluid">      
+    <div id="dash" class="container-fluid">
 
-      <!-- NOUN COLUMN -->
-      <noun-blade>
-      </noun-blade>
+      <div style="text-align: left; height: 5%; background-color: black; color: white; font-size: 2em;">
+        <div style="margin-left: 1%; padding-top: 0.5%;">
+          PowerShell Auto-Generated UI
+        </div>
+      </div>
 
-      <!-- COLLECTION COLUMN -->
-      <collection-blade>
-      </collection-blade>
+      <div style="text-align: left; color: #4685CC; background-color: white; height: 5%;">
+        <div style="padding-top: 1%; padding-left: 1%;">
+          <span style="border: solid thin #4685CC; margin: 0.5%; padding: 3px; padding-left: 8px; padding-right: 8px;"> New </span>
+          <span style="border: solid thin #4685CC; margin: 0.5%; padding: 3px; padding-left: 8px; padding-right: 8px;"> Stop </span>
+          <span style="border: solid thin #4685CC; margin: 0.5%; padding: 3px; padding-left: 8px; padding-right: 8px;"> Add </span>
+        </div>
+      </div>
 
-      <!-- VERB COLUMN -->
+      <div class="col-md-3">
+        <noun-blade>
+        </noun-blade>
+        <collection-blade>
+        </collection-blade>
+      </div>
+
       <detail-blade>
       </detail-blade>
+
+
+
     </div>
 
     <div id="ps-console" (click)="toggleConsole()">
