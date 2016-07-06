@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class VerbService {
@@ -7,6 +7,8 @@ export class VerbService {
   verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
   details = ['Name: ', 'DisplayName: ', 'Status: ', 'DependentServices: ',
              'ServicesDependedOn: ', 'CanPauseAndContinue: '];
+
+  verbDetails: string;
 
   //Data wrapped in a Promise
   getVerbs() {
@@ -17,6 +19,18 @@ export class VerbService {
     return Promise.resolve(this.details);
   }
 
+  public verbDetailsSelection$: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor(
+  )
+  {
+    
+  }
+
+  setVerbDetails(verb: string) {
+      this.verbDetails = verb;
+      this.verbDetailsSelection$.emit(verb);
+  }
 
 
   //General Algorithm for mapping verbs to images and similar verbs together

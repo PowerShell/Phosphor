@@ -9,6 +9,8 @@ import 'rxjs/Rx';
 import { NounComponent } from './noun.component';
 import { NounService } from './services/noun.service';
 
+import { VerbService } from './services/verb.service';
+
 import { CollectionComponent } from './collection.component';
 import { DetailComponent } from './detail.component';
 
@@ -33,7 +35,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private http: Http,
-    private nounService: NounService
+    private nounService: NounService,
+    private verbService: VerbService
   ) { }
 
   ngOnInit() {
@@ -72,13 +75,29 @@ export class DashboardComponent implements OnInit {
 
   getCommand(verb) {
     var old = document.getElementById("ps-command").innerHTML;
+    var command = verb + "-" + this.selectedNoun;
 
-    document.getElementById("ps-command").innerHTML = old + "<span>" + verb + "-" + this.selectedNoun + "</span> <br>";
+    document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
+
+    document.getElementById("details").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
+        + '<span></span>'
+        + '<span></span>'
+        + '<span></span>'
+        + '<span></span>'
+        + '<span></span>'
+        + '</div>';
+
+    this.http.get('/command-details?' + "command=" + command)
+       .subscribe(
+            res => {  console.log(res.json());  this.verbService.setVerbDetails(res.json()); },
+            error => { console.log(error); }
+    );
 
     //A way to quickly scroll to the bottom
     document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
 
     //Get-Command New-Service -Syntax
   }
+
 
 }

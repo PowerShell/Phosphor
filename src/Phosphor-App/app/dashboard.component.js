@@ -14,13 +14,15 @@ var http_1 = require('@angular/http');
 require('rxjs/Rx');
 var noun_component_1 = require('./noun.component');
 var noun_service_1 = require('./services/noun.service');
+var verb_service_1 = require('./services/verb.service');
 var collection_component_1 = require('./collection.component');
 var detail_component_1 = require('./detail.component');
 var DashboardComponent = (function () {
-    function DashboardComponent(router, http, nounService) {
+    function DashboardComponent(router, http, nounService, verbService) {
         this.router = router;
         this.http = http;
         this.nounService = nounService;
+        this.verbService = verbService;
         this.expanded = false;
     }
     DashboardComponent.prototype.ngOnInit = function () {
@@ -49,8 +51,19 @@ var DashboardComponent = (function () {
         this.expanded = !this.expanded;
     };
     DashboardComponent.prototype.getCommand = function (verb) {
+        var _this = this;
         var old = document.getElementById("ps-command").innerHTML;
-        document.getElementById("ps-command").innerHTML = old + "<span>" + verb + "-" + this.selectedNoun + "</span> <br>";
+        var command = verb + "-" + this.selectedNoun;
+        document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
+        document.getElementById("details").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
+            + '<span></span>'
+            + '<span></span>'
+            + '<span></span>'
+            + '<span></span>'
+            + '<span></span>'
+            + '</div>';
+        this.http.get('/command-details?' + "command=" + command)
+            .subscribe(function (res) { console.log(res.json()); _this.verbService.setVerbDetails(res.json()); }, function (error) { console.log(error); });
         //A way to quickly scroll to the bottom
         document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
         //Get-Command New-Service -Syntax
@@ -62,7 +75,7 @@ var DashboardComponent = (function () {
             styleUrls: ['app/css/dashboard.component.css'],
             directives: [noun_component_1.NounComponent, collection_component_1.CollectionComponent, detail_component_1.DetailComponent]
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, http_1.Http, noun_service_1.NounService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, http_1.Http, noun_service_1.NounService, verb_service_1.VerbService])
     ], DashboardComponent);
     return DashboardComponent;
 }());

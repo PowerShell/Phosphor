@@ -21,6 +21,8 @@ var DetailComponent = (function () {
     DetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.subscription = this.collectionService.itemSelected$.subscribe(function (item) { return _this.getActions(item); });
+        this.verbService.getVerbs();
+        this.subscribeVerbDetails = this.verbService.verbDetailsSelection$.subscribe(function (item) { return _this.setVerbDetails(item); });
         //Promises to initialize
         this.verbService.getVerbs().then(function (verbs) { return _this.verbs = verbs; });
         this.verbService.getDetails('mock').then(function (details) { return _this.details = details; });
@@ -29,6 +31,20 @@ var DetailComponent = (function () {
     DetailComponent.prototype.getActions = function (item) {
         //IMPLEMENT LOGIC HERE
         console.log(item);
+    };
+    DetailComponent.prototype.setVerbDetails = function (items) {
+        var htmlBuilder = "";
+        console.log("Verb details: " + items);
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].charAt(0) == "-") {
+                htmlBuilder += "<h3> " + items[i].substring(1);
+                +"</h3>";
+                if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
+                    htmlBuilder += "------ <button> input </button>";
+                }
+            }
+        }
+        document.getElementById("details").innerHTML = htmlBuilder;
     };
     DetailComponent = __decorate([
         core_1.Component({

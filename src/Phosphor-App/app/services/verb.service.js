@@ -15,6 +15,7 @@ var VerbService = (function () {
         this.verbs = ['set', 'stop', 'add', 'extend', 'modify', 'reduce', '...'];
         this.details = ['Name: ', 'DisplayName: ', 'Status: ', 'DependentServices: ',
             'ServicesDependedOn: ', 'CanPauseAndContinue: '];
+        this.verbDetailsSelection$ = new core_1.EventEmitter();
     }
     //Data wrapped in a Promise
     VerbService.prototype.getVerbs = function () {
@@ -22,6 +23,10 @@ var VerbService = (function () {
     };
     VerbService.prototype.getDetails = function (verb) {
         return Promise.resolve(this.details);
+    };
+    VerbService.prototype.setVerbDetails = function (verb) {
+        this.verbDetails = verb;
+        this.verbDetailsSelection$.emit(verb);
     };
     VerbService = __decorate([
         core_1.Injectable(), 

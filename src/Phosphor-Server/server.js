@@ -146,7 +146,7 @@ app.get('/command-details', (req, res) => {
   var query = req.query;
   var command = query.command;
 
-  var result = "";
+  var result = [];
 
   console.log("Request for command details: " + command);
 
@@ -155,13 +155,29 @@ app.get('/command-details', (req, res) => {
   PS.on('output', function(data) {
     console.log(data);
 
-    for (var i = 0; i < data.length; i++) {
-      result += data.charAt(i);
+    var split = data.split(" ");
+
+    for (var i = 1; i < split.length - 1; i++) {
+      var cleansed = "";
+
+      var current = split[i];
+
+      for (var j = 0; j < current.length; j++) {
+        if (valid[current.charAt(j)]) {
+          cleansed += current.charAt(j);
+        }
+      }
+
+      console.log(cleansed);
+      result.push(cleansed);
+
     }
+
 
   });
 
   setTimeout((function() {
+      console.log("result: " + result);
       res.send(result);
     }
   ), 2000);
@@ -173,3 +189,65 @@ var server = app.listen(port, function() {
     var port = server.address().port;
     console.log('This express app is listening on port:' + port);
 });
+
+var valid = [];
+
+valid['a'] = 1;
+valid['b'] = 1;
+valid['c'] = 1;
+valid['d'] = 1;
+valid['e'] = 1;
+valid['f'] = 1;
+valid['g'] = 1;
+valid['h'] = 1;
+valid['i'] = 1;
+valid['j'] = 1;
+valid['k'] = 1;
+valid['l'] = 1;
+valid['m'] = 1;
+valid['n'] = 1;
+valid['o'] = 1;
+valid['p'] = 1;
+valid['q'] = 1;
+valid['r'] = 1;
+valid['s'] = 1;
+valid['t'] = 1;
+valid['u'] = 1;
+valid['v'] = 1;
+valid['w'] = 1;
+valid['x'] = 1;
+valid['y'] = 1;
+valid['z'] = 1;
+
+valid['A'] = 1;
+valid['B'] = 1;
+valid['C'] = 1;
+valid['D'] = 1;
+valid['E'] = 1;
+valid['F'] = 1;
+valid['G'] = 1;
+valid['H'] = 1;
+valid['I'] = 1;
+valid['J'] = 1;
+valid['K'] = 1;
+valid['L'] = 1;
+valid['M'] = 1;
+valid['N'] = 1;
+valid['O'] = 1;
+valid['P'] = 1;
+valid['Q'] = 1;
+valid['R'] = 1;
+valid['S'] = 1;
+valid['T'] = 1;
+valid['U'] = 1;
+valid['V'] = 1;
+valid['W'] = 1;
+valid['X'] = 1;
+valid['Y'] = 1;
+valid['Z'] = 1;
+
+valid['-'] = 1;
+/*
+valid['['] = 1;
+valid[']'] = 1;
+*/
