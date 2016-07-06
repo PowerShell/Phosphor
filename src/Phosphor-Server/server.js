@@ -111,7 +111,7 @@ app.get('/nounitems', (req, res) => {
   var result = [];
 
   function psgo() {
-    PS = new shell("get-" + noun);
+    PS = new shell("Get-" + noun);
 
     PS.on('output', function(data){
         console.log(data);
@@ -140,6 +140,32 @@ app.get('/verbs', (req, res) => {
       res.send(verbs["" + noun]);
     }
   ), 400);
+});
+
+app.get('/command-details', (req, res) => {
+  var query = req.query;
+  var command = query.command;
+
+  var result = "";
+
+  console.log("Request for command details: " + command);
+
+  PS = new shell("Get-Command " + command + " -Syntax");
+
+  PS.on('output', function(data) {
+    console.log(data);
+
+    for (var i = 0; i < data.length; i++) {
+      result += data.charAt(i);
+    }
+
+  });
+
+  setTimeout((function() {
+      res.send(result);
+    }
+  ), 2000);
+
 });
 
 var server = app.listen(port, function() {

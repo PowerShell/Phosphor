@@ -71,7 +71,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getCommand(verb) {
-    document.getElementById("ps-command").innerHTML = verb + "-" + this.selectedNoun;
+    var old = document.getElementById("ps-command").innerHTML;
+
+    document.getElementById("ps-command").innerHTML = old + "<span>" + verb + "-" + this.selectedNoun + "</span> <br>";
+
+    //A way to quickly scroll to the bottom
+    document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
 
     //Get-Command New-Service -Syntax
   }

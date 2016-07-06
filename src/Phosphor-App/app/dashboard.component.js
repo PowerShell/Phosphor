@@ -49,7 +49,11 @@ var DashboardComponent = (function () {
         this.expanded = !this.expanded;
     };
     DashboardComponent.prototype.getCommand = function (verb) {
-        document.getElementById("ps-command").innerHTML = verb + "-" + this.selectedNoun;
+        var old = document.getElementById("ps-command").innerHTML;
+        document.getElementById("ps-command").innerHTML = old + "<span>" + verb + "-" + this.selectedNoun + "</span> <br>";
+        //A way to quickly scroll to the bottom
+        document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
+        //Get-Command New-Service -Syntax
     };
     DashboardComponent = __decorate([
         core_1.Component({
