@@ -8,7 +8,7 @@ export class VerbService {
   details = ['Name: ', 'DisplayName: ', 'Status: ', 'DependentServices: ',
              'ServicesDependedOn: ', 'CanPauseAndContinue: '];
 
-  verbDetails: string;
+  verbDetails: any;
 
   //Data wrapped in a Promise
   getVerbs() {
@@ -19,15 +19,15 @@ export class VerbService {
     return Promise.resolve(this.details);
   }
 
-  public verbDetailsSelection$: EventEmitter<string> = new EventEmitter<string>();
+  public verbDetailsSelection$: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
   )
   {
-    
+
   }
 
-  setVerbDetails(verb: string) {
+  setVerbDetails(verb) {
       this.verbDetails = verb;
       this.verbDetailsSelection$.emit(verb);
   }

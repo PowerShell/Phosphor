@@ -46,11 +46,16 @@ export class DetailComponent implements OnInit {
     console.log(item);
   }
 
-  setVerbDetails(items) {
+  setVerbDetails(resItems) {
 
     var htmlBuilder = "";
 
-    console.log("Verb details: " + items);
+    console.log("Verb details: " + resItems);
+    console.log(resItems.json());
+
+    //Currently just grabs the first option from the response.
+    var items = resItems.json()[0];
+
 
     for (var i = 0; i < items.length; i++) {
       if (items[i].charAt(0) == "-") {

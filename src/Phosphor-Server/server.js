@@ -122,6 +122,7 @@ app.get('/nounitems', (req, res) => {
   psgo();
 
   setTimeout((function() {
+      result.pop();
       res.send(result);
     }
   ), 3000);
@@ -155,8 +156,40 @@ app.get('/command-details', (req, res) => {
   PS.on('output', function(data) {
     console.log(data);
 
-    var split = data.split(" ");
+    var split = data.split(command);
 
+    console.log("Split: " + split);
+
+    for (var splitIdx = 1; splitIdx < split.length; splitIdx++) {
+      console.log("Split idx: " + splitIdx + ": " + split[splitIdx]);
+
+      var currSyntax = split[splitIdx];
+
+      var tokens = currSyntax.split(" ");
+
+      var arr = [];
+
+      //Starting at 1 gets rid of the "" and ending before the last one is just common parameters
+      for (var tokenIdx = 1; tokenIdx < tokens.length - 1; tokenIdx++) {
+        var cleansed = "";
+
+        var current = tokens[tokenIdx];
+
+        for (var j = 0; j < current.length; j++) {
+          if (valid[current.charAt(j)]) {
+            cleansed += current.charAt(j);
+          }
+        }
+
+        console.log(cleansed);
+        arr.push(cleansed)
+      }
+
+      result.push(arr);
+
+    }
+
+    /* Case where there is only one way to write the syntax
     for (var i = 1; i < split.length - 1; i++) {
       var cleansed = "";
 
@@ -172,6 +205,7 @@ app.get('/command-details', (req, res) => {
       result.push(cleansed);
 
     }
+    */
 
 
   });

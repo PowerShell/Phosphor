@@ -1,5 +1,5 @@
 .detail-blade {
-  height: 80%;
+  height: 100.5%;
   padding: 0;
   border: 2px solid #D9D9D9;
   text-align: center;
@@ -20,5 +20,5 @@
 }
 
 #details {
-  padding-left: 5%;    
+  padding-left: 5%;
 }

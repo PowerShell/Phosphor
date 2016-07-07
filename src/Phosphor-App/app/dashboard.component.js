@@ -63,7 +63,7 @@ var DashboardComponent = (function () {
             + '<span></span>'
             + '</div>';
         this.http.get('/command-details?' + "command=" + command)
-            .subscribe(function (res) { console.log(res.json()); _this.verbService.setVerbDetails(res.json()); }, function (error) { console.log(error); });
+            .subscribe(function (res) { console.log(res.json()); _this.verbService.setVerbDetails(res); }, function (error) { console.log(error); });
         //A way to quickly scroll to the bottom
         document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
         //Get-Command New-Service -Syntax

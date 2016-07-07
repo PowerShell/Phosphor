@@ -32,9 +32,12 @@ var DetailComponent = (function () {
         //IMPLEMENT LOGIC HERE
         console.log(item);
     };
-    DetailComponent.prototype.setVerbDetails = function (items) {
+    DetailComponent.prototype.setVerbDetails = function (resItems) {
         var htmlBuilder = "";
-        console.log("Verb details: " + items);
+        console.log("Verb details: " + resItems);
+        console.log(resItems.json());
+        //Currently just grabs the first option from the response.
+        var items = resItems.json()[0];
         for (var i = 0; i < items.length; i++) {
             if (items[i].charAt(0) == "-") {
                 htmlBuilder += "<h3> " + items[i].substring(1);
@@ -43,7 +46,7 @@ var DetailComponent = (function () {
                     htmlBuilder += "------ <button> input </button>";
                 }
                 else {
-                    htmlBuilder += '<div class="checkbox"> <label><input type="checkbox" value="">Option 1</label> </div>';
+                    htmlBuilder += '<div class="checkbox"> <label><input type="checkbox" value="">This should be a checkbox</label> </div>';
                 }
             }
         }

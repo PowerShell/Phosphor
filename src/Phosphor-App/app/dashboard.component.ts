@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
 
     this.http.get('/command-details?' + "command=" + command)
        .subscribe(
-            res => {  console.log(res.json());  this.verbService.setVerbDetails(res.json()); },
+            res => {  console.log(res.json());  this.verbService.setVerbDetails(res); },
             error => { console.log(error); }
     );
 

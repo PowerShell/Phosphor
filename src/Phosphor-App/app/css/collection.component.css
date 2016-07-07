@@ -1,5 +1,5 @@
 .collection-blade {
-  height: 50%;
+  height: 75.5%;
   padding: 0;
   border: 2px solid #D9D9D9;
   text-align: center;
@@ -7,8 +7,8 @@
 
 .item {
   margin: 4px;
-  background-color: #464646;
-  color: white;
+  background-color: #F0F4FA;
+  color: #327EC8;
 }
 
 .title {
