@@ -38,9 +38,12 @@ var DetailComponent = (function () {
         for (var i = 0; i < items.length; i++) {
             if (items[i].charAt(0) == "-") {
                 htmlBuilder += "<h3> " + items[i].substring(1);
-                +"</h3>";
+                +"</h3> <br>";
                 if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
                     htmlBuilder += "------ <button> input </button>";
+                }
+                else {
+                    htmlBuilder += '<div class="checkbox"> <label><input type="checkbox" value="">Option 1</label> </div>';
                 }
             }
         }

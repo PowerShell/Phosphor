@@ -184,6 +184,18 @@ app.get('/command-details', (req, res) => {
 
 });
 
+app.get('command-parameters', (req, res) => {
+  var query = req.query;
+  var command = req.command;
+  //Grab Parameters: (Get-Command New-Name).Parameters
+  //Grab valid values for a particular parameter: (Get-Command New-Name).Parameters["Type"].Attributes[0].ValidValues
+
+  /* PS = new shell("(Get-Command New-Name).Parameters["Type"].Attributes[0].ValidValues"); */
+
+
+
+});
+
 var server = app.listen(port, function() {
     var host = server.address().address;
     var port = server.address().port;

@@ -55,10 +55,13 @@ export class DetailComponent implements OnInit {
     for (var i = 0; i < items.length; i++) {
       if (items[i].charAt(0) == "-") {
 
-        htmlBuilder += "<h3> " + items[i].substring(1); + "</h3>";
+        htmlBuilder += "<h3> " + items[i].substring(1); + "</h3> <br>";
 
         if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
             htmlBuilder += "------ <button> input </button>";
+        }
+        else {
+          htmlBuilder += '<div class="checkbox"> <label><input type="checkbox" value="">This should be a checkbox</label> </div>';
         }
       }
     }
