@@ -26,6 +26,7 @@ var DetailComponent = (function () {
         //Promises to initialize
         this.verbService.getVerbs().then(function (verbs) { return _this.verbs = verbs; });
         this.verbService.getDetails('mock').then(function (details) { return _this.details = details; });
+        this.detailArr = [];
     };
     //Called as a listener for item selected from Collection
     DetailComponent.prototype.getActions = function (item) {
@@ -34,23 +35,57 @@ var DetailComponent = (function () {
     };
     DetailComponent.prototype.setVerbDetails = function (resItems) {
         var htmlBuilder = "";
+        this.detailArr = [];
         console.log("Verb details: " + resItems);
         console.log(resItems.json());
-        //Currently just grabs the first option from the response.
-        var items = resItems.json()[0];
-        for (var i = 0; i < items.length; i++) {
-            if (items[i].charAt(0) == "-") {
-                if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
-                    htmlBuilder += "<h4> " + items[i].substring(1);
-                    +"</h4> <br> <br> ";
-                    htmlBuilder += '<input type="text" class="form-control" placeholder="">';
-                }
-                else {
-                    htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">' + items[i].substring(1) + '</button> <br>';
+        for (var detailIdx = 0; detailIdx < resItems.json().length; detailIdx++) {
+            var items = resItems.json()[detailIdx];
+            htmlBuilder = "";
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].charAt(0) == "-") {
+                    if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
+                        htmlBuilder += "<h4> " + items[i].substring(1);
+                        +"</h4> <br> <br> ";
+                        htmlBuilder += '<input type="text" class="form-control" placeholder="">';
+                    }
+                    else {
+                        htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">' + items[i].substring(1) + '</button> <br>';
+                    }
                 }
             }
+            this.detailArr.push(htmlBuilder);
         }
+        this.currDetail = 0;
+        document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+        console.log(this.detailArr);
+        /*
+        //Currently just grabs the first option from the response.
+        var items = resItems.json()[0];
+    
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].charAt(0) == "-") {
+    
+            if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
+                htmlBuilder += "<h4> " + items[i].substring(1); + "</h4> <br> <br> ";
+                htmlBuilder += '<input type="text" class="form-control" placeholder="">';
+            }
+            else {
+              htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">' + items[i].substring(1) +  '</button> <br>';
+            }
+          }
+        }
+    
         document.getElementById("details").innerHTML = htmlBuilder;
+    
+        */
+    };
+    DetailComponent.prototype.leftDetailChange = function () {
+        this.currDetail = (this.currDetail + this.detailArr.length - 1) % this.detailArr.length;
+        document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+    };
+    DetailComponent.prototype.rightDetailChange = function () {
+        this.currDetail = (this.currDetail + 1) % this.detailArr.length;
+        document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
     };
     DetailComponent = __decorate([
         core_1.Component({

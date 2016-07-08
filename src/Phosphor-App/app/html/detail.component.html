@@ -27,5 +27,12 @@
       </div> <!-- END LIST OF DETAILS -->
     </div> <!-- END DETAIL ROW -->
 
+    <div *ngIf="detailArr.length >= 1" style="margin-top: 3%; color: #4685CC">
+        <span class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="leftDetailChange()"> < </span>
+        <span class="hvr-fade detailButton"> Run </span>
+        <span class="hvr-fade detailButton"> PS Preview </span>
+        <span class="hvr-fade detailButton"> Copy to Clipboard </span>
+        <span class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="rightDetailChange()"> > </span>
+    </div>
 
 </div>
