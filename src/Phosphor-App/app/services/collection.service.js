@@ -28,6 +28,7 @@ var CollectionService = (function () {
     //Called from noun service to set the items
     CollectionService.prototype.setCollection = function (items) {
         this.items = items;
+        console.log(items);
     };
     //This is called every keystroke to search using JavaScript's String indexOf method.
     CollectionService.prototype.search = function (criteria) {

@@ -31,6 +31,7 @@ export class CollectionService {
   //Called from noun service to set the items
   setCollection(items) {
     this.items = items;
+    console.log(items);
   }
 
   //This is called every keystroke to search using JavaScript's String indexOf method.
@@ -40,7 +41,7 @@ export class CollectionService {
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
         result.push(this.items[i]);
-        //Debug: console.log(this.items[i]);
+        //console.log(this.items[i]);
       }
     }
 

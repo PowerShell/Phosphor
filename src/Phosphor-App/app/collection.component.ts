@@ -52,7 +52,7 @@ export class CollectionComponent implements OnInit {
   requestNounItems(noun: string) {
     this.http.get('/nounitems?' + "noun=" + noun)
        .subscribe(
-            res => { /* console.log(res.json()); */ this.items = res.json(); },
+            res => { /* console.log(res.json()); */ this.items = res.json(); this.collectionService.setCollection(this.items); },
             error => { console.log(error); this.items = null; }
     );
   }
