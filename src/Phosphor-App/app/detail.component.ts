@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 
+import { Http, Response } from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
+import 'rxjs/Rx';
+
 import { CollectionService } from './services/collection.service';
 import { VerbService } from './services/verb.service';
 
@@ -18,6 +22,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private router: Router,
     private collectionService: CollectionService,
+    private http: Http,
     private verbService: VerbService) { }
 
   //Information for Verb-Blade
@@ -26,6 +31,14 @@ export class DetailComponent implements OnInit {
 
   detailArr: any;
   currDetail: any;
+
+  switchParams: any;
+
+  inputs: string[];
+  switches: string[];
+
+  allInputs: any;
+  allSwitches: any;
 
   ngOnInit() {
     this.subscription = this.collectionService.itemSelected$.subscribe(
@@ -44,6 +57,13 @@ export class DetailComponent implements OnInit {
 
 
     this.detailArr = [];
+    this.switchParams = [];
+
+    this.inputs = [];
+    this.switches = [];
+
+    this.allInputs = [];
+    this.allSwitches = [];
   }
 
   //Called as a listener for item selected from Collection
@@ -56,6 +76,11 @@ export class DetailComponent implements OnInit {
 
     var htmlBuilder = "";
     this.detailArr = [];
+    this.inputs = [];
+    this.switches = [];
+    this.allInputs = [];
+    this.allSwitches = [];
+    this.details = [];
 
     console.log("Verb details: " + resItems);
     console.log(resItems.json());
@@ -65,15 +90,20 @@ export class DetailComponent implements OnInit {
 
       htmlBuilder = "";
 
+      this.allSwitches.push([]);
+      this.allInputs.push([]);
+
       for (var i = 0; i < items.length; i++) {
         if (items[i].charAt(0) == "-") {
 
           if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
               htmlBuilder += "<h4> " + items[i].substring(1); + "</h4> <br> <br> ";
-              htmlBuilder += '<input type="text" class="form-control" placeholder="">';
+              htmlBuilder += '<input type="text" class="form-control detailInput" placeholder="">';
+              this.allInputs[detailIdx].push(items[i].substring(1));
           }
           else {
-            htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">' + items[i].substring(1) +  '</button> <br>';
+            htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam('+ items[i].substring(1) + ')">' + items[i].substring(1) +  '</button> <br>';
+            this.allSwitches[detailIdx].push(items[i].substring(1));
           }
         }
       }
@@ -84,40 +114,86 @@ export class DetailComponent implements OnInit {
 
     this.currDetail = 0;
 
-    document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+    this.inputs = this.allInputs[0];
+    this.switches = this.allSwitches[0];
+
+    //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
     console.log(this.detailArr);
 
-    /*
-    //Currently just grabs the first option from the response.
-    var items = resItems.json()[0];
+    console.log(this.inputs);
+    console.log(this.switches);
 
-    for (var i = 0; i < items.length; i++) {
-      if (items[i].charAt(0) == "-") {
+    document.getElementById("information").innerHTML = "";
 
-        if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
-            htmlBuilder += "<h4> " + items[i].substring(1); + "</h4> <br> <br> ";
-            htmlBuilder += '<input type="text" class="form-control" placeholder="">';
-        }
-        else {
-          htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">' + items[i].substring(1) +  '</button> <br>';
-        }
-      }
-    }
-
-    document.getElementById("details").innerHTML = htmlBuilder;
-
-    */
 
   }
 
   leftDetailChange() {
     this.currDetail = (this.currDetail + this.detailArr.length - 1) % this.detailArr.length;
-    document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+    this.inputs = this.allInputs[this.currDetail];
+    this.switches = this.allSwitches[this.currDetail];
+
+    //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
   }
 
   rightDetailChange() {
     this.currDetail = (this.currDetail + 1) % this.detailArr.length;
-    document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+    this.inputs = this.allInputs[this.currDetail];
+    this.switches = this.allSwitches[this.currDetail];
+
+    //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+  }
+
+  addSwitchParam(option) {
+    console.log("switch");
+    if (this.switchParams[option]) {
+      this.switchParams[option] = false;
+      console.log("off");
+    }
+    else {
+      this.switchParams[option] = true;
+      console.log("on");
+    }
+  }
+
+  run() {
+    console.log("running");
+    var params = "";
+
+    var inputs = document.getElementsByClassName("detailInput");
+    for (var i = 0; i < inputs.length; i++) {
+      var children = (inputs[i] as any).children;
+
+      console.log(children[3].value);
+      console.log(children[0].textContent);
+
+      if (children[3].value) {
+        params += "-" + children[0].textContent;        
+        params += " " + children[3].value + " ";
+      }
+
+    }
+
+    for (var k in this.switchParams) {
+      console.log(k);
+      console.log("value: " + this.switchParams[k]);
+
+      if (this.switchParams[k] === true) {
+        params += "-" + k;
+      }
+
+    }
+
+    console.log(this.verbService.currentCommand);
+
+    console.log("command=" + this.verbService.currentCommand + "&" + "params=" + params);
+
+    this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
+       .subscribe(
+            res => {  console.log(res.json());  },
+            error => { console.log(error); }
+    );
+
   }
 
 }

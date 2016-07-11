@@ -10,12 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
+var http_1 = require('@angular/http');
+require('rxjs/Rx');
 var collection_service_1 = require('./services/collection.service');
 var verb_service_1 = require('./services/verb.service');
 var DetailComponent = (function () {
-    function DetailComponent(router, collectionService, verbService) {
+    function DetailComponent(router, collectionService, http, verbService) {
         this.router = router;
         this.collectionService = collectionService;
+        this.http = http;
         this.verbService = verbService;
     }
     DetailComponent.prototype.ngOnInit = function () {
@@ -27,6 +30,11 @@ var DetailComponent = (function () {
         this.verbService.getVerbs().then(function (verbs) { return _this.verbs = verbs; });
         this.verbService.getDetails('mock').then(function (details) { return _this.details = details; });
         this.detailArr = [];
+        this.switchParams = [];
+        this.inputs = [];
+        this.switches = [];
+        this.allInputs = [];
+        this.allSwitches = [];
     };
     //Called as a listener for item selected from Collection
     DetailComponent.prototype.getActions = function (item) {
@@ -36,56 +44,90 @@ var DetailComponent = (function () {
     DetailComponent.prototype.setVerbDetails = function (resItems) {
         var htmlBuilder = "";
         this.detailArr = [];
+        this.inputs = [];
+        this.switches = [];
+        this.allInputs = [];
+        this.allSwitches = [];
+        this.details = [];
         console.log("Verb details: " + resItems);
         console.log(resItems.json());
         for (var detailIdx = 0; detailIdx < resItems.json().length; detailIdx++) {
             var items = resItems.json()[detailIdx];
             htmlBuilder = "";
+            this.allSwitches.push([]);
+            this.allInputs.push([]);
             for (var i = 0; i < items.length; i++) {
                 if (items[i].charAt(0) == "-") {
                     if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
                         htmlBuilder += "<h4> " + items[i].substring(1);
                         +"</h4> <br> <br> ";
-                        htmlBuilder += '<input type="text" class="form-control" placeholder="">';
+                        htmlBuilder += '<input type="text" class="form-control detailInput" placeholder="">';
+                        this.allInputs[detailIdx].push(items[i].substring(1));
                     }
                     else {
-                        htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">' + items[i].substring(1) + '</button> <br>';
+                        htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(' + items[i].substring(1) + ')">' + items[i].substring(1) + '</button> <br>';
+                        this.allSwitches[detailIdx].push(items[i].substring(1));
                     }
                 }
             }
             this.detailArr.push(htmlBuilder);
         }
         this.currDetail = 0;
-        document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+        this.inputs = this.allInputs[0];
+        this.switches = this.allSwitches[0];
+        //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
         console.log(this.detailArr);
-        /*
-        //Currently just grabs the first option from the response.
-        var items = resItems.json()[0];
-    
-        for (var i = 0; i < items.length; i++) {
-          if (items[i].charAt(0) == "-") {
-    
-            if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
-                htmlBuilder += "<h4> " + items[i].substring(1); + "</h4> <br> <br> ";
-                htmlBuilder += '<input type="text" class="form-control" placeholder="">';
-            }
-            else {
-              htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">' + items[i].substring(1) +  '</button> <br>';
-            }
-          }
-        }
-    
-        document.getElementById("details").innerHTML = htmlBuilder;
-    
-        */
+        console.log(this.inputs);
+        console.log(this.switches);
+        document.getElementById("information").innerHTML = "";
     };
     DetailComponent.prototype.leftDetailChange = function () {
         this.currDetail = (this.currDetail + this.detailArr.length - 1) % this.detailArr.length;
-        document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+        this.inputs = this.allInputs[this.currDetail];
+        this.switches = this.allSwitches[this.currDetail];
+        //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
     };
     DetailComponent.prototype.rightDetailChange = function () {
         this.currDetail = (this.currDetail + 1) % this.detailArr.length;
-        document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+        this.inputs = this.allInputs[this.currDetail];
+        this.switches = this.allSwitches[this.currDetail];
+        //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+    };
+    DetailComponent.prototype.addSwitchParam = function (option) {
+        console.log("switch");
+        if (this.switchParams[option]) {
+            this.switchParams[option] = false;
+            console.log("off");
+        }
+        else {
+            this.switchParams[option] = true;
+            console.log("on");
+        }
+    };
+    DetailComponent.prototype.run = function () {
+        console.log("running");
+        var params = "";
+        var inputs = document.getElementsByClassName("detailInput");
+        for (var i = 0; i < inputs.length; i++) {
+            var children = inputs[i].children;
+            console.log(children[3].value);
+            console.log(children[0].textContent);
+            if (children[3].value) {
+                params += "-" + children[0].textContent;
+                params += " " + children[3].value + " ";
+            }
+        }
+        for (var k in this.switchParams) {
+            console.log(k);
+            console.log("value: " + this.switchParams[k]);
+            if (this.switchParams[k] === true) {
+                params += "-" + k;
+            }
+        }
+        console.log(this.verbService.currentCommand);
+        console.log("command=" + this.verbService.currentCommand + "&" + "params=" + params);
+        this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
+            .subscribe(function (res) { console.log(res.json()); }, function (error) { console.log(error); });
     };
     DetailComponent = __decorate([
         core_1.Component({
@@ -93,7 +135,7 @@ var DetailComponent = (function () {
             templateUrl: 'app/html/detail.component.html',
             styleUrls: ['app/css/detail.component.css'],
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, collection_service_1.CollectionService, verb_service_1.VerbService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, collection_service_1.CollectionService, http_1.Http, verb_service_1.VerbService])
     ], DetailComponent);
     return DetailComponent;
 }());

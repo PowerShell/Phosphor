@@ -218,7 +218,8 @@ app.get('/command-details', (req, res) => {
 
 });
 
-app.get('command-parameters', (req, res) => {
+
+app.get('/command-parameters', (req, res) => {
   var query = req.query;
   var command = req.command;
   //Grab Parameters: (Get-Command New-Name).Parameters
@@ -226,9 +227,25 @@ app.get('command-parameters', (req, res) => {
 
   /* PS = new shell("(Get-Command New-Name).Parameters["Type"].Attributes[0].ValidValues"); */
 
-
+  res.send("not implemented");
 
 });
+
+app.get('/run', (req, res) => {
+  var query = req.query;
+  var command = query.command;
+  var params = query.params;
+
+  PS = new shell(command + " " + params);
+
+  PS.on('output', function(data) {
+    console.log(data);
+  });
+
+  res.send("done");
+
+});
+
 
 var server = app.listen(port, function() {
     var host = server.address().address;

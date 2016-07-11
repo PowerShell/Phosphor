@@ -79,13 +79,15 @@ export class DashboardComponent implements OnInit {
 
     document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
 
-    document.getElementById("details").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
+    document.getElementById("information").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
         + '<span></span>'
         + '<span></span>'
         + '<span></span>'
         + '<span></span>'
         + '<span></span>'
         + '</div>';
+
+    this.verbService.currentCommand = command;
 
     this.http.get('/command-details?' + "command=" + command)
        .subscribe(

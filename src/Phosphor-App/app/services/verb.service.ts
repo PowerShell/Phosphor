@@ -10,6 +10,8 @@ export class VerbService {
 
   verbDetails: any;
 
+  public currentCommand: string;
+
   //Data wrapped in a Promise
   getVerbs() {
     return Promise.resolve(this.verbs);

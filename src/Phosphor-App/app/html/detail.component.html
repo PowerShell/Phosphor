@@ -1,20 +1,34 @@
 <div class="detail-blade">
 
-
     <div class="" style="height: 84%; width: 100%; text-align: left; margin-top: 5%">
 
       <!-- List of details. -->
       <div id="details" class="content" style="margin-left: 8%; color: black; overflow: auto; height: 100%;">
-        <div *ngIf="details" *ngFor="let detail of details">
-          <h4 style="padding-top: 1%;">
-            {{detail}}
-          </h4>
+        <div id="information">
+          <div *ngFor="let detail of details">
+            <h4 style="padding-top: 1%;">
+              {{detail}}
+            </h4>
 
-          <h6 style="margin-left: 3%; padding-top: 1%; padding-bottom: 1%;">
-            &lt; metadata &gt;
-          </h6>
+            <h6 style="margin-left: 3%; padding-top: 1%; padding-bottom: 1%;">
+              &lt; metadata &gt;
+            </h6>
+          </div>
         </div> <!-- END OF LIST -->
 
+        <div class="detailInput" *ngFor="let input of inputs">
+          <h4> {{input}} </h4> <br> <br>
+          <input type="text" class="form-control" placeholder="">
+
+        </div>
+
+        <div *ngFor="let switch of switches">
+          <br />
+          <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(switch)"> {{switch}} </button>
+          <br />
+        </div>
+
+        <!--
           <div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
               <span></span>
               <span></span>
@@ -22,14 +36,16 @@
               <span></span>
               <span></span>
           </div>
-
+        -->
 
       </div> <!-- END LIST OF DETAILS -->
     </div> <!-- END DETAIL ROW -->
 
+
+
     <div *ngIf="detailArr.length >= 1" style="margin-top: 3%; color: #4685CC">
         <span class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="leftDetailChange()"> < </span>
-        <span class="hvr-fade detailButton"> Run </span>
+        <span class="hvr-fade detailButton" (click)="run()"> Run </span>
         <span class="hvr-fade detailButton"> PS Preview </span>
         <span class="hvr-fade detailButton"> Copy to Clipboard </span>
         <span class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="rightDetailChange()"> > </span>
