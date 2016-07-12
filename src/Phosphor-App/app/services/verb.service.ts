@@ -12,6 +12,8 @@ export class VerbService {
 
   public currentCommand: string;
 
+  public previewCommand$: EventEmitter<String>;
+
   //Data wrapped in a Promise
   getVerbs() {
     return Promise.resolve(this.verbs);
@@ -26,12 +28,16 @@ export class VerbService {
   constructor(
   )
   {
-
+    this.previewCommand$ = new EventEmitter<String>();
   }
 
   setVerbDetails(verb) {
       this.verbDetails = verb;
       this.verbDetailsSelection$.emit(verb);
+  }
+
+  setPreview(command) {
+    this.previewCommand$.emit(command);
   }
 
 

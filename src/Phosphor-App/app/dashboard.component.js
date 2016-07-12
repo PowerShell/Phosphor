@@ -29,6 +29,8 @@ var DashboardComponent = (function () {
         var _this = this;
         this.verbs = null;
         this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.getVerbs(noun); });
+        var old = document.getElementById("ps-command").innerHTML;
+        this.psSubscription = this.verbService.previewCommand$.subscribe(function (command) { return document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>"; });
     };
     DashboardComponent.prototype.getVerbs = function (noun) {
         var _this = this;

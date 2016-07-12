@@ -156,8 +156,7 @@ export class DetailComponent implements OnInit {
     }
   }
 
-  run() {
-    console.log("running");
+  grabParams() {
     var params = "";
 
     var inputs = document.getElementsByClassName("detailInput");
@@ -168,7 +167,7 @@ export class DetailComponent implements OnInit {
       console.log(children[0].textContent);
 
       if (children[3].value) {
-        params += "-" + children[0].textContent;        
+        params += "-" + children[0].textContent.replace(/\s+/g, '');
         params += " " + children[3].value + " ";
       }
 
@@ -184,6 +183,14 @@ export class DetailComponent implements OnInit {
 
     }
 
+    return params;
+  }
+
+  run() {
+    console.log("running");
+
+    var params = this.grabParams();
+
     console.log(this.verbService.currentCommand);
 
     console.log("command=" + this.verbService.currentCommand + "&" + "params=" + params);
@@ -194,6 +201,16 @@ export class DetailComponent implements OnInit {
             error => { console.log(error); }
     );
 
+    this.switchParams = [];
+
+  }
+
+  previewCommand(command) {
+    this.verbService.setPreview(this.verbService.currentCommand + " " + this.grabParams());
+  }
+
+  copyToClipboard() {
+    window.prompt("Copy to clipboard: Ctrl+C, Enter", this.verbService.currentCommand + " " + this.grabParams());
   }
 
 }

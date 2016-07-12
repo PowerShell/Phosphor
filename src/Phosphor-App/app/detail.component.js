@@ -104,8 +104,7 @@ var DetailComponent = (function () {
             console.log("on");
         }
     };
-    DetailComponent.prototype.run = function () {
-        console.log("running");
+    DetailComponent.prototype.grabParams = function () {
         var params = "";
         var inputs = document.getElementsByClassName("detailInput");
         for (var i = 0; i < inputs.length; i++) {
@@ -113,7 +112,7 @@ var DetailComponent = (function () {
             console.log(children[3].value);
             console.log(children[0].textContent);
             if (children[3].value) {
-                params += "-" + children[0].textContent;
+                params += "-" + children[0].textContent.replace(/\s+/g, '');
                 params += " " + children[3].value + " ";
             }
         }
@@ -124,10 +123,22 @@ var DetailComponent = (function () {
                 params += "-" + k;
             }
         }
+        return params;
+    };
+    DetailComponent.prototype.run = function () {
+        console.log("running");
+        var params = this.grabParams();
         console.log(this.verbService.currentCommand);
         console.log("command=" + this.verbService.currentCommand + "&" + "params=" + params);
         this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
             .subscribe(function (res) { console.log(res.json()); }, function (error) { console.log(error); });
+        this.switchParams = [];
+    };
+    DetailComponent.prototype.previewCommand = function (command) {
+        this.verbService.setPreview(this.verbService.currentCommand + " " + this.grabParams());
+    };
+    DetailComponent.prototype.copyToClipboard = function () {
+        window.prompt("Copy to clipboard: Ctrl+C, Enter", this.verbService.currentCommand + " " + this.grabParams());
     };
     DetailComponent = __decorate([
         core_1.Component({

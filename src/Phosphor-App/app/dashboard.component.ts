@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
 
   subscription: any;
 
+  psSubscription: any;
+
   verbs: any;
 
   selectedNoun: any;
@@ -43,7 +45,10 @@ export class DashboardComponent implements OnInit {
     this.verbs = null;
 
     this.subscription = this.nounService.nounSelected$.subscribe(noun => this.getVerbs(noun));
-  }
+
+    var old = document.getElementById("ps-command").innerHTML;
+    this.psSubscription = this.verbService.previewCommand$.subscribe(command => document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>");
+  }  
 
   getVerbs(noun) {
 
