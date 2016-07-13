@@ -55,13 +55,15 @@ export class DetailComponent implements OnInit {
     this.verbService.getVerbs().then(verbs => this.verbs = verbs);
     this.verbService.getDetails('mock').then(details => this.details = details);
 
-
+    //Collects information from the HTTP request on syntax.
     this.detailArr = [];
     this.switchParams = [];
 
+    //Local information for current pane
     this.inputs = [];
     this.switches = [];
 
+    //Collects information for all switchable panes for the command
     this.allInputs = [];
     this.allSwitches = [];
   }
@@ -128,6 +130,7 @@ export class DetailComponent implements OnInit {
 
   }
 
+  /***** PANE SWITCHING LOGIC *****/
   leftDetailChange() {
     this.currDetail = (this.currDetail + this.detailArr.length - 1) % this.detailArr.length;
     this.inputs = this.allInputs[this.currDetail];
@@ -143,7 +146,9 @@ export class DetailComponent implements OnInit {
 
     //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
   }
+  /***** END OF PANE SWITCHING LOGIC *****/
 
+  //HELPER FOR KEEPING TRACK OF SWITCHES
   addSwitchParam(option) {
     console.log("switch");
     if (this.switchParams[option]) {
@@ -156,6 +161,7 @@ export class DetailComponent implements OnInit {
     }
   }
 
+  //HELPER FOR BUILDING PARAMETERS
   grabParams() {
     var params = "";
 
@@ -186,6 +192,8 @@ export class DetailComponent implements OnInit {
     return params;
   }
 
+
+  /***** BUTTON DETAILS LOGIC *****/
   run() {
     console.log("running");
 
@@ -205,8 +213,17 @@ export class DetailComponent implements OnInit {
     this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
        .subscribe(
             res => {
-              console.log(res.json());              
-              document.getElementById("output").innerHTML = res.json();
+              console.log(res.json());
+              //document.getElementById("output").innerHTML = res.json();
+
+              var newHtml = "";
+              var results = res.json();
+              for (var i = 1; i < results.length - 1; i++) {
+                newHtml += '<div>' + results[i] + '</div>';
+              }
+
+              document.getElementById("output").innerHTML = newHtml;
+
               document.getElementById("output").scrollTop = document.getElementById("output").scrollHeight;
             },
             error => { console.log(error); }
@@ -224,5 +241,7 @@ export class DetailComponent implements OnInit {
   copyToClipboard() {
     window.prompt("Copy to clipboard: Ctrl+C, Enter", this.verbService.currentCommand + " " + this.grabParams());
   }
+
+  /***** END OF BUTTON DETAILS LOGIC *****/
 
 }

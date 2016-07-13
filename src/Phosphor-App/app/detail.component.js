@@ -29,10 +29,13 @@ var DetailComponent = (function () {
         //Promises to initialize
         this.verbService.getVerbs().then(function (verbs) { return _this.verbs = verbs; });
         this.verbService.getDetails('mock').then(function (details) { return _this.details = details; });
+        //Collects information from the HTTP request on syntax.
         this.detailArr = [];
         this.switchParams = [];
+        //Local information for current pane
         this.inputs = [];
         this.switches = [];
+        //Collects information for all switchable panes for the command
         this.allInputs = [];
         this.allSwitches = [];
     };
@@ -81,6 +84,7 @@ var DetailComponent = (function () {
         console.log(this.switches);
         document.getElementById("information").innerHTML = "";
     };
+    /***** PANE SWITCHING LOGIC *****/
     DetailComponent.prototype.leftDetailChange = function () {
         this.currDetail = (this.currDetail + this.detailArr.length - 1) % this.detailArr.length;
         this.inputs = this.allInputs[this.currDetail];
@@ -93,6 +97,8 @@ var DetailComponent = (function () {
         this.switches = this.allSwitches[this.currDetail];
         //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
     };
+    /***** END OF PANE SWITCHING LOGIC *****/
+    //HELPER FOR KEEPING TRACK OF SWITCHES
     DetailComponent.prototype.addSwitchParam = function (option) {
         console.log("switch");
         if (this.switchParams[option]) {
@@ -104,6 +110,7 @@ var DetailComponent = (function () {
             console.log("on");
         }
     };
+    //HELPER FOR BUILDING PARAMETERS
     DetailComponent.prototype.grabParams = function () {
         var params = "";
         var inputs = document.getElementsByClassName("detailInput");
@@ -125,6 +132,7 @@ var DetailComponent = (function () {
         }
         return params;
     };
+    /***** BUTTON DETAILS LOGIC *****/
     DetailComponent.prototype.run = function () {
         console.log("running");
         var params = this.grabParams();
@@ -140,7 +148,13 @@ var DetailComponent = (function () {
         this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
             .subscribe(function (res) {
             console.log(res.json());
-            document.getElementById("output").innerHTML = res.json();
+            //document.getElementById("output").innerHTML = res.json();
+            var newHtml = "";
+            var results = res.json();
+            for (var i = 1; i < results.length - 1; i++) {
+                newHtml += '<div>' + results[i] + '</div>';
+            }
+            document.getElementById("output").innerHTML = newHtml;
             document.getElementById("output").scrollTop = document.getElementById("output").scrollHeight;
         }, function (error) { console.log(error); });
         this.switchParams = [];
