@@ -115,7 +115,7 @@ app.get('/nounitems', (req, res) => {
 
     PS.on('output', function(data){
         console.log(data);
-        result.push(data);
+        result.push(data);        
     });
   }
 
@@ -236,13 +236,19 @@ app.get('/run', (req, res) => {
   var command = query.command;
   var params = query.params;
 
+  var result = [];
+
   PS = new shell(command + " " + params);
 
   PS.on('output', function(data) {
     console.log(data);
+    result.push(data);
   });
 
-  res.send("done");
+  setTimeout((function() {
+      res.send(result);
+    }
+  ), 3000);
 
 });
 

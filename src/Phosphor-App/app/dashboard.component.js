@@ -29,8 +29,9 @@ var DashboardComponent = (function () {
         var _this = this;
         this.verbs = null;
         this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.getVerbs(noun); });
-        var old = document.getElementById("ps-command").innerHTML;
-        this.psSubscription = this.verbService.previewCommand$.subscribe(function (command) { return document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>"; });
+        this.psSubscription = this.verbService.previewCommand$.subscribe(function (command) {
+            _this.updateConsole(command);
+        });
     };
     DashboardComponent.prototype.getVerbs = function (noun) {
         var _this = this;
@@ -54,9 +55,8 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.getCommand = function (verb) {
         var _this = this;
-        var old = document.getElementById("ps-command").innerHTML;
         var command = verb + "-" + this.selectedNoun;
-        document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
+        this.updateConsole(command);
         document.getElementById("information").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
             + '<span></span>'
             + '<span></span>'
@@ -67,9 +67,13 @@ var DashboardComponent = (function () {
         this.verbService.currentCommand = command;
         this.http.get('/command-details?' + "command=" + command)
             .subscribe(function (res) { console.log(res.json()); _this.verbService.setVerbDetails(res); }, function (error) { console.log(error); });
+        //Get-Command New-Service -Syntax
+    };
+    DashboardComponent.prototype.updateConsole = function (command) {
+        var old = document.getElementById("ps-command").innerHTML;
+        document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
         //A way to quickly scroll to the bottom
         document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
-        //Get-Command New-Service -Syntax
     };
     DashboardComponent = __decorate([
         core_1.Component({

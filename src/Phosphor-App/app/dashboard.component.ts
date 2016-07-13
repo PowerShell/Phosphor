@@ -46,9 +46,11 @@ export class DashboardComponent implements OnInit {
 
     this.subscription = this.nounService.nounSelected$.subscribe(noun => this.getVerbs(noun));
 
-    var old = document.getElementById("ps-command").innerHTML;
-    this.psSubscription = this.verbService.previewCommand$.subscribe(command => document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>");
-  }  
+    this.psSubscription = this.verbService.previewCommand$.subscribe(command =>  {
+      this.updateConsole(command);
+    });
+
+  }
 
   getVerbs(noun) {
 
@@ -79,10 +81,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getCommand(verb) {
-    var old = document.getElementById("ps-command").innerHTML;
     var command = verb + "-" + this.selectedNoun;
 
-    document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
+    this.updateConsole(command);
 
     document.getElementById("information").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
         + '<span></span>'
@@ -100,10 +101,15 @@ export class DashboardComponent implements OnInit {
             error => { console.log(error); }
     );
 
+    //Get-Command New-Service -Syntax
+  }
+
+  updateConsole(command) {
+    var old = document.getElementById("ps-command").innerHTML;
+    document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
+
     //A way to quickly scroll to the bottom
     document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
-
-    //Get-Command New-Service -Syntax
   }
 
 

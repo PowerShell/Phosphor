@@ -192,17 +192,29 @@ export class DetailComponent implements OnInit {
     var params = this.grabParams();
 
     console.log(this.verbService.currentCommand);
-
     console.log("command=" + this.verbService.currentCommand + "&" + "params=" + params);
+
+    document.getElementById("output").innerHTML = '<div style="margin-top: 50%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
+        + '<span></span>'
+        + '<span></span>'
+        + '<span></span>'
+        + '<span></span>'
+        + '<span></span>'
+        + '</div>';
 
     this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
        .subscribe(
-            res => {  console.log(res.json());  },
+            res => {
+              console.log(res.json());              
+              document.getElementById("output").innerHTML = res.json();
+              document.getElementById("output").scrollTop = document.getElementById("output").scrollHeight;
+            },
             error => { console.log(error); }
     );
 
     this.switchParams = [];
 
+    this.verbService.setPreview(this.verbService.currentCommand + " " + this.grabParams());
   }
 
   previewCommand(command) {
