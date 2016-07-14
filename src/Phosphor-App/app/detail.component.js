@@ -161,7 +161,6 @@ var DetailComponent = (function () {
             }
             _this.outputShown = true;
             document.getElementById("output").innerHTML = newHtml;
-            document.getElementById("output").scrollTop = document.getElementById("output").scrollHeight;
         }, function (error) { console.log(error); });
         this.switchParams = [];
         this.verbService.setPreview(this.verbService.currentCommand + " " + this.grabParams());

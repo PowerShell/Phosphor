@@ -232,7 +232,6 @@ export class DetailComponent implements OnInit {
 
               document.getElementById("output").innerHTML = newHtml;
 
-              document.getElementById("output").scrollTop = document.getElementById("output").scrollHeight;
             },
             error => { console.log(error); }
     );

@@ -7,8 +7,18 @@
 
 .item {
   margin: 4px;
-  background-color: #F0F4FA;
-  color: #327EC8;
+  background-color: white;
+  cursor: pointer
+}
+
+.item:hover {
+  -webkit-transition: background-color 100ms ease-out 0.05s;
+  -moz-transition: background-color 100ms ease-out 0.05s;
+  -o-transition: background-color 100ms ease-out 0.05s;
+  transition: background-color 100ms ease-out 0.05s;
+
+  background-color: #CAE0F5;
+
 }
 
 .title {
