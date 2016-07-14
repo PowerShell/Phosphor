@@ -115,7 +115,7 @@ app.get('/nounitems', (req, res) => {
 
     PS.on('output', function(data){
         console.log(data);
-        result.push(data);        
+        result.push(data);
     });
   }
 
@@ -138,7 +138,7 @@ app.get('/verbs', (req, res) => {
   //res.send(verbs["" + noun]);
 
   setTimeout((function() {
-      res.send(verbs["" + noun]);
+      res.send(verbs["" + noun.trim()]);
     }
   ), 400);
 });
@@ -246,6 +246,7 @@ app.get('/run', (req, res) => {
   });
 
   setTimeout((function() {
+    console.log('result: ' + result);
       res.send(result);
     }
   ), 3000);

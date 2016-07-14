@@ -81,6 +81,10 @@ export class DashboardComponent implements OnInit {
   }
 
   getCommand(verb) {
+
+    document.getElementById("details").style.display = "block";
+    document.getElementById("output").style.display = "none";
+
     var command = verb + "-" + this.selectedNoun;
 
     this.updateConsole(command);

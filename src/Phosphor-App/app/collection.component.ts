@@ -29,7 +29,9 @@ export class CollectionComponent implements OnInit {
 
   //Data for Collection
   items: string[];
+  headers: string[];
   actions: string[];
+  rows: any;
 
   //Initialization
   ngOnInit() {
@@ -52,7 +54,49 @@ export class CollectionComponent implements OnInit {
   requestNounItems(noun: string) {
     this.http.get('/nounitems?' + "noun=" + noun)
        .subscribe(
-            res => { /* console.log(res.json()); */ this.items = res.json(); this.collectionService.setCollection(this.items); },
+            res => { /* console.log(res.json()); */
+
+              this.headers = [];
+              this.rows = [];
+
+              this.items = res.json();
+              this.collectionService.setCollection(this.items);
+              if (this.items.length > 1) {
+                  var currHeader = this.items[1];
+              }
+              this.headers = currHeader.match(/\S+/g);
+
+              var rows = [];
+
+              for (var i = this.headers.length - 1; i < this.items.length; i++) {
+                console.log(this.items[i].split(" "));
+                var currRow = this.items[i].match(/\S+/g);
+
+                console.log("typeof: " + typeof currRow);
+
+                var builder;
+
+                if (currRow != null && currRow.length > this.headers.length) {
+                  builder = currRow[this.headers.length - 1];
+
+                  for (var j = this.headers.length; j < currRow.length; j++) {
+                    builder += " " + currRow[j];
+                  }
+
+                  if (currRow.length > this.headers.length) {
+                    currRow[this.headers.length - 1] = builder;
+                  }
+
+                  currRow = currRow.slice(0, this.headers.length);
+                }
+
+                rows.push(currRow);
+
+              }
+
+              this.rows = rows;
+
+            },
             error => { console.log(error); this.items = null; }
     );
   }

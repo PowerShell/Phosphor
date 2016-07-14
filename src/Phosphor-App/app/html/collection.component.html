@@ -19,6 +19,7 @@
   </div>
 
 
+  <!--
   <div *ngIf="items" class="scrollView">
     <div *ngFor="let item of items">
       <button class="hvr-grow item" (click)="setSelected(item)">
@@ -26,6 +27,7 @@
       </button>
     </div>
   </div>
+-->
 
     <div *ngIf="!items" style="margin-top: 40%; margin-left: 12%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
         <span></span>
@@ -33,6 +35,27 @@
         <span></span>
         <span></span>
         <span></span>
+    </div>
+
+    <div class="scrollView">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr id="headers">
+            <th *ngFor="let header of headers">
+              {{header}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows">
+            <td *ngFor="let col of row">
+              {{col}}
+            </td>
+          </tr>        
+        </tbody>
+      </table>
+
     </div>
 
 

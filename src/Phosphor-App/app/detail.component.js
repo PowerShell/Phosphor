@@ -20,6 +20,7 @@ var DetailComponent = (function () {
         this.collectionService = collectionService;
         this.http = http;
         this.verbService = verbService;
+        this.outputShown = false;
     }
     DetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -116,9 +117,10 @@ var DetailComponent = (function () {
         var inputs = document.getElementsByClassName("detailInput");
         for (var i = 0; i < inputs.length; i++) {
             var children = inputs[i].children;
-            console.log(children[3].value);
-            console.log(children[0].textContent);
-            if (children[3].value) {
+            console.log(children);
+            //console.log(children[3].value);
+            //console.log(children[0].textContent);
+            if (children[3] != null && children[3].value) {
                 params += "-" + children[0].textContent.replace(/\s+/g, '');
                 params += " " + children[3].value + " ";
             }
@@ -134,10 +136,13 @@ var DetailComponent = (function () {
     };
     /***** BUTTON DETAILS LOGIC *****/
     DetailComponent.prototype.run = function () {
+        var _this = this;
         console.log("running");
         var params = this.grabParams();
         console.log(this.verbService.currentCommand);
         console.log("command=" + this.verbService.currentCommand + "&" + "params=" + params);
+        document.getElementById("details").style.display = "none";
+        document.getElementById("output").style.display = "block";
         document.getElementById("output").innerHTML = '<div style="margin-top: 50%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
             + '<span></span>'
             + '<span></span>'
@@ -151,9 +156,10 @@ var DetailComponent = (function () {
             //document.getElementById("output").innerHTML = res.json();
             var newHtml = "";
             var results = res.json();
-            for (var i = 1; i < results.length - 1; i++) {
+            for (var i = 0; i < results.length; i++) {
                 newHtml += '<div>' + results[i] + '</div>';
             }
+            _this.outputShown = true;
             document.getElementById("output").innerHTML = newHtml;
             document.getElementById("output").scrollTop = document.getElementById("output").scrollHeight;
         }, function (error) { console.log(error); });
@@ -165,6 +171,11 @@ var DetailComponent = (function () {
     };
     DetailComponent.prototype.copyToClipboard = function () {
         window.prompt("Copy to clipboard: Ctrl+C, Enter", this.verbService.currentCommand + " " + this.grabParams());
+    };
+    DetailComponent.prototype.exitOutput = function () {
+        document.getElementById("details").style.display = "block";
+        document.getElementById("output").style.display = "none";
+        this.outputShown = false;
     };
     DetailComponent = __decorate([
         core_1.Component({

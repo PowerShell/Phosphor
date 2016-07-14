@@ -39,7 +39,35 @@ var CollectionComponent = (function () {
     CollectionComponent.prototype.requestNounItems = function (noun) {
         var _this = this;
         this.http.get('/nounitems?' + "noun=" + noun)
-            .subscribe(function (res) { _this.items = res.json(); _this.collectionService.setCollection(_this.items); }, function (error) { console.log(error); _this.items = null; });
+            .subscribe(function (res) {
+            _this.headers = [];
+            _this.rows = [];
+            _this.items = res.json();
+            _this.collectionService.setCollection(_this.items);
+            if (_this.items.length > 1) {
+                var currHeader = _this.items[1];
+            }
+            _this.headers = currHeader.match(/\S+/g);
+            var rows = [];
+            for (var i = _this.headers.length - 1; i < _this.items.length; i++) {
+                console.log(_this.items[i].split(" "));
+                var currRow = _this.items[i].match(/\S+/g);
+                console.log("typeof: " + typeof currRow);
+                var builder;
+                if (currRow != null && currRow.length > _this.headers.length) {
+                    builder = currRow[_this.headers.length - 1];
+                    for (var j = _this.headers.length; j < currRow.length; j++) {
+                        builder += " " + currRow[j];
+                    }
+                    if (currRow.length > _this.headers.length) {
+                        currRow[_this.headers.length - 1] = builder;
+                    }
+                    currRow = currRow.slice(0, _this.headers.length);
+                }
+                rows.push(currRow);
+            }
+            _this.rows = rows;
+        }, function (error) { console.log(error); _this.items = null; });
     };
     //Wrapper for observer pattern of service
     CollectionComponent.prototype.setSelected = function (item) {

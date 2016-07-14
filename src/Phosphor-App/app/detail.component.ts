@@ -40,6 +40,8 @@ export class DetailComponent implements OnInit {
   allInputs: any;
   allSwitches: any;
 
+  outputShown: boolean = false;
+
   ngOnInit() {
     this.subscription = this.collectionService.itemSelected$.subscribe(
       item => this.getActions(item)
@@ -75,7 +77,6 @@ export class DetailComponent implements OnInit {
   }
 
   setVerbDetails(resItems) {
-
     var htmlBuilder = "";
     this.detailArr = [];
     this.inputs = [];
@@ -169,10 +170,12 @@ export class DetailComponent implements OnInit {
     for (var i = 0; i < inputs.length; i++) {
       var children = (inputs[i] as any).children;
 
-      console.log(children[3].value);
-      console.log(children[0].textContent);
+      console.log(children);
 
-      if (children[3].value) {
+      //console.log(children[3].value);
+      //console.log(children[0].textContent);
+
+      if (children[3] != null && children[3].value) {
         params += "-" + children[0].textContent.replace(/\s+/g, '');
         params += " " + children[3].value + " ";
       }
@@ -202,6 +205,9 @@ export class DetailComponent implements OnInit {
     console.log(this.verbService.currentCommand);
     console.log("command=" + this.verbService.currentCommand + "&" + "params=" + params);
 
+    document.getElementById("details").style.display = "none";
+    document.getElementById("output").style.display = "block";
+
     document.getElementById("output").innerHTML = '<div style="margin-top: 50%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
         + '<span></span>'
         + '<span></span>'
@@ -218,9 +224,11 @@ export class DetailComponent implements OnInit {
 
               var newHtml = "";
               var results = res.json();
-              for (var i = 1; i < results.length - 1; i++) {
+              for (var i = 0; i < results.length; i++) {
                 newHtml += '<div>' + results[i] + '</div>';
               }
+
+              this.outputShown = true;
 
               document.getElementById("output").innerHTML = newHtml;
 
@@ -240,6 +248,12 @@ export class DetailComponent implements OnInit {
 
   copyToClipboard() {
     window.prompt("Copy to clipboard: Ctrl+C, Enter", this.verbService.currentCommand + " " + this.grabParams());
+  }
+
+  exitOutput() {
+    document.getElementById("details").style.display = "block";
+    document.getElementById("output").style.display = "none";
+    this.outputShown = false;
   }
 
   /***** END OF BUTTON DETAILS LOGIC *****/
