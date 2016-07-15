@@ -50,12 +50,12 @@
 
 
     <div *ngIf="detailArr.length >= 1" style="margin-top: 3%; color: #4685CC">
-        <span class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="leftDetailChange()"> < </span>
-        <span class="hvr-fade detailButton" (click)="run()"> Run </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="leftDetailChange()"> < </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="run()"> Run </span>
         <span *ngIf="outputShown == true" class="hvr-fade detailButton" (click)="exitOutput()"> Exit Output </span>
-        <span class="hvr-fade detailButton" (click)="previewCommand()"> PS Preview </span>
-        <span class="hvr-fade detailButton" (click)="copyToClipboard()"> Copy to Clipboard </span>
-        <span class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="rightDetailChange()"> > </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="previewCommand()"> PS Preview </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="copyToClipboard()"> Copy to Clipboard </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="rightDetailChange()"> > </span>
     </div>
 
 

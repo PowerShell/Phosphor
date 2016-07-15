@@ -34,6 +34,7 @@ var CollectionComponent = (function () {
     };
     CollectionComponent.prototype.onNounSelectionChange = function (noun) {
         this.items = null;
+        document.getElementById("listItems").style.display = "none";
         this.requestNounItems(noun.name);
     };
     CollectionComponent.prototype.requestNounItems = function (noun) {
@@ -67,6 +68,7 @@ var CollectionComponent = (function () {
                 rows.push(currRow);
             }
             _this.rows = rows;
+            document.getElementById("listItems").style.display = "block";
         }, function (error) { console.log(error); _this.items = null; });
     };
     //Wrapper for observer pattern of service

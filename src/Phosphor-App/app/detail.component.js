@@ -129,7 +129,7 @@ var DetailComponent = (function () {
             console.log(k);
             console.log("value: " + this.switchParams[k]);
             if (this.switchParams[k] === true) {
-                params += "-" + k;
+                params += "-" + k + " ";
             }
         }
         return params;
@@ -157,7 +157,7 @@ var DetailComponent = (function () {
             var newHtml = "";
             var results = res.json();
             for (var i = 0; i < results.length; i++) {
-                newHtml += '<div>' + results[i] + '</div>';
+                newHtml += '<div style="font-size: 1.3em;">' + results[i] + '</div>';
             }
             _this.outputShown = true;
             document.getElementById("output").innerHTML = newHtml;

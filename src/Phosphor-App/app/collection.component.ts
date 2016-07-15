@@ -47,6 +47,7 @@ export class CollectionComponent implements OnInit {
 
   onNounSelectionChange(noun: Noun) {
     this.items = null;
+    document.getElementById("listItems").style.display = "none";
     this.requestNounItems(noun.name);
   }
 
@@ -95,6 +96,8 @@ export class CollectionComponent implements OnInit {
               }
 
               this.rows = rows;
+
+              document.getElementById("listItems").style.display = "block";
 
             },
             error => { console.log(error); this.items = null; }

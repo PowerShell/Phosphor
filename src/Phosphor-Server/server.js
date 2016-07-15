@@ -101,6 +101,22 @@ var renderIndex = (req, res) => {
 
 app.get('/', renderIndex);
 
+app.get('/test', (req, res) => {
+
+  var result = [];
+
+  PS = new shell("Get-Service | fl");
+
+  PS.on('output', function(data) {
+    console.log(data);
+    result += data;
+  });
+
+  setTimeout(function() {
+    res.send(result);
+  }, 2000);
+});
+
 app.get('/nounitems', (req, res) => {
 
   var query = req.query;

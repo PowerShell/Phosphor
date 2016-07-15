@@ -187,7 +187,7 @@ export class DetailComponent implements OnInit {
       console.log("value: " + this.switchParams[k]);
 
       if (this.switchParams[k] === true) {
-        params += "-" + k;
+        params += "-" + k + " ";
       }
 
     }
@@ -225,7 +225,7 @@ export class DetailComponent implements OnInit {
               var newHtml = "";
               var results = res.json();
               for (var i = 0; i < results.length; i++) {
-                newHtml += '<div>' + results[i] + '</div>';
+                newHtml += '<div style="font-size: 1.3em;">' + results[i] + '</div>';
               }
 
               this.outputShown = true;

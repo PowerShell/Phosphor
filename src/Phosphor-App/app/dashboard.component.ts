@@ -75,6 +75,8 @@ export class DashboardComponent implements OnInit {
         (<HTMLElement>psicons[i]).style.height = "100%";
       }
 
+      //A way to quickly scroll to the bottom
+      document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
     }
     else {
       var dash = document.getElementById("dash").style.height = "85%";
