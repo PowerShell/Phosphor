@@ -67,8 +67,8 @@ export class DashboardComponent implements OnInit {
 
   toggleConsole() {
     if (this.expanded) {
-      var dash = document.getElementById("dash").style.height = "98%";
-      var psconsole = document.getElementById("ps-console").style.height = "2%";
+      var dash = document.getElementById("dash").style.height = "97%";
+      var psconsole = document.getElementById("ps-console").style.height = "3%";
       var psicon = document.getElementById("ps-icon").style.height = "100%";
     }
     else {
