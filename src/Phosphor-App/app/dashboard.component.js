@@ -44,12 +44,18 @@ var DashboardComponent = (function () {
         if (this.expanded) {
             var dash = document.getElementById("dash").style.height = "97%";
             var psconsole = document.getElementById("ps-console").style.height = "3%";
-            var psicon = document.getElementById("ps-icon").style.height = "100%";
+            var psicons = document.getElementsByClassName("ps-icon");
+            for (var i = 0; i < psicons.length; i++) {
+                psicons[i].style.height = "100%";
+            }
         }
         else {
             var dash = document.getElementById("dash").style.height = "85%";
             var psconsole = document.getElementById("ps-console").style.height = "15%";
-            var psicon = document.getElementById("ps-icon").style.height = "20px";
+            var psicons = document.getElementsByClassName("ps-icon");
+            for (var i = 0; i < psicons.length; i++) {
+                psicons[i].style.height = "30px";
+            }
         }
         this.expanded = !this.expanded;
     };
@@ -73,7 +79,7 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.updateConsole = function (command) {
         var old = document.getElementById("ps-command").innerHTML;
-        document.getElementById("ps-command").innerHTML = old + "<span>" + command + "</span> <br>";
+        document.getElementById("ps-command").innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 100%; width: 30px;"/>' + "<span>" + command + "</span>";
         //A way to quickly scroll to the bottom
         document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
     };
