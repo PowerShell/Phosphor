@@ -41,8 +41,7 @@ input.c-text-field[type=text], input.form-control {
   margin-top: 0;
 }
 
-@font-face {
-        font-family: "MWF-MDL2";
-        src: url("./app/fonts/MWFMDL2.woff") format("woff"), 
-        url("./app/fonts/MWFMDL2.ttf") format("truetype"), 
-        url("./app/fonts/MWFMDL2.svg") format("svg"); }
+input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}

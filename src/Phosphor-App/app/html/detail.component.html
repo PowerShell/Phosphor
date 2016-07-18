@@ -24,9 +24,9 @@
 
         <br />
 
-        <div *ngFor="let switch of switches">
-          <br />
-          <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(switch)"> {{switch}} </button>
+        <div *ngFor="let switch of switches" style="font-size: 1.3em;">
+          <input type="checkbox" name="Switch" (click)="addSwitchParam(switch)"> {{switch}} <br>
+          <!-- <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(switch)"> {{switch}} </button> -->
           <br />
         </div>
 
@@ -50,12 +50,12 @@
 
 
     <div *ngIf="detailArr.length >= 1" style="margin-top: 3%; color: #4685CC">
-        <span *ngIf="outputShown == false" class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="leftDetailChange()"> < </span>
+        <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="leftDetailChange()"> < </span>
         <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="run()"> Run </span>
         <span *ngIf="outputShown == true" class="hvr-fade detailButton" (click)="exitOutput()"> Exit Output </span>
         <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="previewCommand()"> PS Preview </span>
         <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="copyToClipboard()"> Copy to Clipboard </span>
-        <span *ngIf="outputShown == false" class="hvr-fade detailButton" *ngIf="detailArr.length >= 2" (click)="rightDetailChange()"> > </span>
+        <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="rightDetailChange()"> > </span>
     </div>
 
 
