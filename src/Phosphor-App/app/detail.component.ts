@@ -19,6 +19,8 @@ export class DetailComponent implements OnInit {
 
   subscribeVerbDetails: any;
 
+  itemClickSubscription: any;
+
   constructor(
     private router: Router,
     private collectionService: CollectionService,
@@ -41,6 +43,8 @@ export class DetailComponent implements OnInit {
   allSwitches: any;
 
   outputShown: boolean = false;
+
+  serviceFl: any;
 
   ngOnInit() {
     this.subscription = this.collectionService.itemSelected$.subscribe(
@@ -68,15 +72,49 @@ export class DetailComponent implements OnInit {
     //Collects information for all switchable panes for the command
     this.allInputs = [];
     this.allSwitches = [];
+
+    //Preloading data for services fl demo
+    this.http.get('/servicefl')
+       .subscribe(
+            res => {
+              console.log(res.json());
+              //console.log(res);
+              //document.getElementById("output").innerHTML = res.json();
+              this.serviceFl = res.json();
+            },
+            error => { console.log(error); }
+    );
+
+    this.itemClickSubscription = this.collectionService.itemClicked$.subscribe(idx =>
+      this.setItemClicked(idx)
+    );
+
   }
 
-  //Called as a listener for item selected from Collection
   getActions(item) {
-    //IMPLEMENT LOGIC HERE
     console.log(item);
   }
 
-  setVerbDetails(resItems) {
+
+  setItemClicked(idx) {
+      //Change HTML to serviceFL
+
+      var htmlBuilder = "";
+      var details = this.serviceFl[idx].split(";");
+
+      console.log(this.serviceFl[idx]);
+      console.log(this.serviceFl[idx].split(";"));
+
+      for (var i = 0; i < details.length; i++) {
+          console.log("deet: "+  details[i]);
+          htmlBuilder += "<div style='font-size: 1.15em; margin-bottom: 2%;'>" + details[i] + "</div>";
+      }
+
+      document.getElementById("information").innerHTML = htmlBuilder;
+      document.getElementById("inputs").style.display = "none";
+  }
+
+  setVerbDetails(resItems) {    
     var htmlBuilder = "";
     this.detailArr = [];
     this.inputs = [];
@@ -172,12 +210,12 @@ export class DetailComponent implements OnInit {
 
       console.log(children);
 
-      //console.log(children[3].value);
-      //console.log(children[0].textContent);
+      console.log(children[1]);
+      console.log(children[0]);
 
-      if (children[3] != null && children[3].value) {
+      if (children[1] != null && children[1].value) {
         params += "-" + children[0].textContent.replace(/\s+/g, '');
-        params += " " + children[3].value + " ";
+        params += " " + children[1].value + " ";
       }
 
     }

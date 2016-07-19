@@ -51,9 +51,8 @@ var CollectionComponent = (function () {
             _this.headers = currHeader.match(/\S+/g);
             var rows = [];
             for (var i = _this.headers.length - 1; i < _this.items.length; i++) {
-                console.log(_this.items[i].split(" "));
+                //console.log(this.items[i].split(" "));
                 var currRow = _this.items[i].match(/\S+/g);
-                console.log("typeof: " + typeof currRow);
                 var builder;
                 if (currRow != null && currRow.length > _this.headers.length) {
                     builder = currRow[_this.headers.length - 1];
@@ -80,6 +79,9 @@ var CollectionComponent = (function () {
         //This is a bit hacky as we need casting.
         var criteria = document.getElementById("collection-search").value;
         this.collectionService.search(criteria).then(function (items) { return _this.items = items; });
+    };
+    CollectionComponent.prototype.itemClick = function (idx) {
+        this.collectionService.setItemClick(idx);
     };
     //Cleanup
     CollectionComponent.prototype.ngOnDestroy = function () {

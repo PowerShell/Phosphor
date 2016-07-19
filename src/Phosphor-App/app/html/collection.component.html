@@ -48,7 +48,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="item" *ngFor="let row of rows">
+          <tr class="item" *ngFor="let row of rows; let i = index" (click)="itemClick(i)">
             <td *ngFor="let col of row">
               {{col}}
             </td>

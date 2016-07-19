@@ -39,11 +39,33 @@ var DetailComponent = (function () {
         //Collects information for all switchable panes for the command
         this.allInputs = [];
         this.allSwitches = [];
+        //Preloading data for services fl demo
+        this.http.get('/servicefl')
+            .subscribe(function (res) {
+            console.log(res.json());
+            //console.log(res);
+            //document.getElementById("output").innerHTML = res.json();
+            _this.serviceFl = res.json();
+        }, function (error) { console.log(error); });
+        this.itemClickSubscription = this.collectionService.itemClicked$.subscribe(function (idx) {
+            return _this.setItemClicked(idx);
+        });
     };
-    //Called as a listener for item selected from Collection
     DetailComponent.prototype.getActions = function (item) {
-        //IMPLEMENT LOGIC HERE
         console.log(item);
+    };
+    DetailComponent.prototype.setItemClicked = function (idx) {
+        //Change HTML to serviceFL
+        var htmlBuilder = "";
+        var details = this.serviceFl[idx].split(";");
+        console.log(this.serviceFl[idx]);
+        console.log(this.serviceFl[idx].split(";"));
+        for (var i = 0; i < details.length; i++) {
+            console.log("deet: " + details[i]);
+            htmlBuilder += "<div style='font-size: 1.15em; margin-bottom: 2%;'>" + details[i] + "</div>";
+        }
+        document.getElementById("information").innerHTML = htmlBuilder;
+        document.getElementById("inputs").style.display = "none";
     };
     DetailComponent.prototype.setVerbDetails = function (resItems) {
         var htmlBuilder = "";
@@ -118,11 +140,11 @@ var DetailComponent = (function () {
         for (var i = 0; i < inputs.length; i++) {
             var children = inputs[i].children;
             console.log(children);
-            //console.log(children[3].value);
-            //console.log(children[0].textContent);
-            if (children[3] != null && children[3].value) {
+            console.log(children[1]);
+            console.log(children[0]);
+            if (children[1] != null && children[1].value) {
                 params += "-" + children[0].textContent.replace(/\s+/g, '');
-                params += " " + children[3].value + " ";
+                params += " " + children[1].value + " ";
             }
         }
         for (var k in this.switchParams) {

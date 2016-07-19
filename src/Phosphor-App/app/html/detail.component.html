@@ -16,18 +16,25 @@
           </div>
         </div> <!-- END OF LIST -->
 
-        <div class="detailInput" *ngFor="let input of inputs">
-          <h4 style="padding-top: 5px;"> {{input}} </h4>
-          <input type="text" class="form-control" placeholder="">
+        <div id="inputs">                  
+          <div class="detailInput" *ngFor="let input of inputs">
+            <h4 style="padding-top: 5px;"> {{input}} </h4>
+            <input type="text" class="form-control" placeholder="">
 
-        </div>
+          </div>
 
-        <br />
-
-        <div *ngFor="let switch of switches" style="font-size: 1.3em;">
-          <input type="checkbox" name="Switch" (click)="addSwitchParam(switch)"> {{switch}} <br>
-          <!-- <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(switch)"> {{switch}} </button> -->
           <br />
+
+          <div *ngFor="let switch of switches" style="font-size: 1.3em;">
+            <span style="color: #4685CC; border: 1px solid #4685CC; padding: 2px; border-radius: 3px;">
+              <input type="checkbox" name="Switch" (click)="addSwitchParam(switch)"> {{switch}}
+            </span>
+
+            <br />
+            <br />
+            <!-- <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(switch)"> {{switch}} </button> -->
+
+          </div>
         </div>
 
         <!--

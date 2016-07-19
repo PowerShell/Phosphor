@@ -8,6 +8,7 @@ export class CollectionService {
   //Observer pattern below
   selectedItem: string;
   public itemSelected$: EventEmitter<string>;
+  public itemClicked$: EventEmitter<any>;
 
   //Currently placed here as mock data
   actions = ['New', 'Tools', 'Batch'];
@@ -15,6 +16,7 @@ export class CollectionService {
 
   constructor() {
     this.itemSelected$ = new EventEmitter<string>();
+    this.itemClicked$ = new EventEmitter<any>();
     //Grabbing to initialize first
     this.items = MOCKNOUNS[0].items;
   }
@@ -46,6 +48,11 @@ export class CollectionService {
     }
 
     return Promise.resolve(result);
+  }
+
+  setItemClick(idx) {
+    console.log("Set Item Clicked");
+    this.itemClicked$.emit(idx - 1);
   }
 
   //General Algorithm for mapping verbs to images and similar verbs together

@@ -101,15 +101,28 @@ var renderIndex = (req, res) => {
 
 app.get('/', renderIndex);
 
-app.get('/test', (req, res) => {
+app.get('/servicefl', (req, res) => {
 
   var result = [];
+
+  var ptr = -1;
+
+  var curr = "";
 
   PS = new shell("Get-Service | fl");
 
   PS.on('output', function(data) {
-    console.log(data);
-    result += data;
+    if (data.length > 3) {
+      if (data.substring(0,4) === "Name") {
+        ptr++;
+
+        if (ptr != 0) {
+          result.push(curr);
+          curr = "";
+        }
+      }
+      curr+= data + ";";
+    }
   });
 
   setTimeout(function() {

@@ -15,6 +15,7 @@ var CollectionService = (function () {
         //Currently placed here as mock data
         this.actions = ['New', 'Tools', 'Batch'];
         this.itemSelected$ = new core_1.EventEmitter();
+        this.itemClicked$ = new core_1.EventEmitter();
         //Grabbing to initialize first
         this.items = mock_nouns_1.MOCKNOUNS[0].items;
     }
@@ -39,6 +40,10 @@ var CollectionService = (function () {
             }
         }
         return Promise.resolve(result);
+    };
+    CollectionService.prototype.setItemClick = function (idx) {
+        console.log("Set Item Clicked");
+        this.itemClicked$.emit(idx - 1);
     };
     CollectionService = __decorate([
         core_1.Injectable(), 

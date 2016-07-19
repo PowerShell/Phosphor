@@ -93,6 +93,7 @@ export class DashboardComponent implements OnInit {
 
   getCommand(verb) {
 
+    document.getElementById("inputs").style.display = "block";
     document.getElementById("details").style.display = "block";
     document.getElementById("output").style.display = "none";
 

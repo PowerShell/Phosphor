@@ -70,10 +70,8 @@ export class CollectionComponent implements OnInit {
               var rows = [];
 
               for (var i = this.headers.length - 1; i < this.items.length; i++) {
-                console.log(this.items[i].split(" "));
-                var currRow = this.items[i].match(/\S+/g);
-
-                console.log("typeof: " + typeof currRow);
+                //console.log(this.items[i].split(" "));
+                var currRow = this.items[i].match(/\S+/g);                
 
                 var builder;
 
@@ -115,11 +113,13 @@ export class CollectionComponent implements OnInit {
     this.collectionService.search(criteria).then(items => this.items = items);
   }
 
+  itemClick(idx) {
+    this.collectionService.setItemClick(idx);
+  }
+
   //Cleanup
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-
 
 }
