@@ -92,10 +92,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getCommand(verb) {
-
-    document.getElementById("inputs").style.display = "block";
-    document.getElementById("details").style.display = "block";
     document.getElementById("output").style.display = "none";
+    document.getElementById("inputs").style.display = "none";
 
     var command = verb + "-" + this.selectedNoun;
 
@@ -113,7 +111,12 @@ export class DashboardComponent implements OnInit {
 
     this.http.get('/command-details?' + "command=" + command)
        .subscribe(
-            res => {  console.log(res.json());  this.verbService.setVerbDetails(res); },
+            res => {
+              console.log(res.json());
+              this.verbService.setVerbDetails(res);
+              document.getElementById("inputs").style.display = "block";
+              document.getElementById("details").style.display = "block";
+            },
             error => { console.log(error); }
     );
 

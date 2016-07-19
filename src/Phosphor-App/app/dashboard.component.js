@@ -63,8 +63,8 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.getCommand = function (verb) {
         var _this = this;
-        document.getElementById("details").style.display = "block";
         document.getElementById("output").style.display = "none";
+        document.getElementById("inputs").style.display = "none";
         var command = verb + "-" + this.selectedNoun;
         this.updateConsole(command);
         document.getElementById("information").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
@@ -76,7 +76,12 @@ var DashboardComponent = (function () {
             + '</div>';
         this.verbService.currentCommand = command;
         this.http.get('/command-details?' + "command=" + command)
-            .subscribe(function (res) { console.log(res.json()); _this.verbService.setVerbDetails(res); }, function (error) { console.log(error); });
+            .subscribe(function (res) {
+            console.log(res.json());
+            _this.verbService.setVerbDetails(res);
+            document.getElementById("inputs").style.display = "block";
+            document.getElementById("details").style.display = "block";
+        }, function (error) { console.log(error); });
         //Get-Command New-Service -Syntax
     };
     DashboardComponent.prototype.updateConsole = function (command) {
