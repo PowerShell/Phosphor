@@ -127,7 +127,7 @@ app.get('/servicefl', (req, res) => {
 
   setTimeout(function() {
     res.send(result);
-  }, 2000);
+  }, 3000);
 });
 
 app.get('/nounitems', (req, res) => {
