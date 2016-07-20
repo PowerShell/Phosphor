@@ -1,0 +1,63 @@
+<div class="collection-blade">
+
+  <!-- Separator for icons -->
+  <div class="col-md-2"></div>
+
+  <!-- Icons for Actions -->
+  <div class="container-fluid">
+
+  <!-- Separator for icons -->
+  <div class="col-md-1"></div>
+
+
+  <!-- List of items after selecting a noun -->
+  <h4>Select from the list:</h4>
+
+  <div style="text-align: center;">
+    <!-- SEARCH by name -->
+    <input id="collection-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
+  </div>
+
+
+  <!--
+  <div *ngIf="items" class="scrollView">
+    <div *ngFor="let item of items">
+      <button class="hvr-grow item" (click)="setSelected(item)">
+        {{item}}
+      </button>
+    </div>
+  </div>
+-->
+
+    <div *ngIf="!items" style="margin-top: 40%; margin-left: 12%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div id="listItems" class="scrollView">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr id="headers">
+            <th *ngFor="let header of headers">
+              {{header}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="item" *ngFor="let row of rows; let i = index" (click)="itemClick(i)">
+            <td *ngFor="let col of row">
+              {{col}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+
+
+</div>

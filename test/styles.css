@@ -1,0 +1,47 @@
+h2 {
+  color: #444;
+  font-family: "SegoeUI", Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body {
+  margin: 0;
+}
+body, input[text], button {
+  color: #888;
+  font-family: "SegoeUI", Cambria, Georgia;
+}
+button {
+  font-family: "SegoeUI", Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+/* everywhere else */
+* {
+  font-family: "SegoeUI", Arial, Helvetica, sans-serif;
+}
+
+/* Hacky fix for search */
+.btn {
+  margin-top: 0;
+}
+
+input.c-text-field[type=text], input.form-control {
+  margin-top: 0;
+}
+
+input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
