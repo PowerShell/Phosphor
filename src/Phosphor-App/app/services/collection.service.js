@@ -61,7 +61,7 @@ var CollectionService = (function () {
     };
     CollectionService.prototype.setItemClick = function (idx) {
         console.log("Set Item Clicked");
-        this.itemClicked$.emit(idx - 1);
+        this.itemClicked$.emit(idx);
     };
     CollectionService = __decorate([
         core_1.Injectable(), 

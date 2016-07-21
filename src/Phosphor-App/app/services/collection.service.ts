@@ -74,7 +74,7 @@ export class CollectionService {
 
   setItemClick(idx) {
     console.log("Set Item Clicked");
-    this.itemClicked$.emit(idx - 1);
+    this.itemClicked$.emit(idx);
   }
 
   //General Algorithm for mapping verbs to images and similar verbs together

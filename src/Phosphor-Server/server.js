@@ -143,8 +143,10 @@ app.get('/nounitems', (req, res) => {
     PS = new shell("Get-" + noun);
 
     PS.on('output', function(data){
+      if (!data.includes("--")) {
         console.log(data);
         result.push(data);
+      }
     });
   }
 

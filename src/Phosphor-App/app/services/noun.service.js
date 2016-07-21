@@ -98,7 +98,7 @@ var NounService = (function () {
     NounService.prototype.setSelected = function (noun) {
         this.selected = noun;
         this.nounSelected$.emit(noun);
-        this.collectionService.setCollection(noun.items);
+        //this.collectionService.setCollection(noun.items);
     };
     NounService = __decorate([
         core_1.Injectable(), 
