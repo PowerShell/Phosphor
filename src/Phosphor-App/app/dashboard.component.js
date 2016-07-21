@@ -24,6 +24,7 @@ var DashboardComponent = (function () {
         this.nounService = nounService;
         this.verbService = verbService;
         this.expanded = false;
+        this.startup = true;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -35,6 +36,7 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.getVerbs = function (noun) {
         var _this = this;
+        this.startup = false;
         this.selectedNoun = noun.name;
         this.verbs = null;
         this.http.get('/verbs?' + "noun=" + noun.name)

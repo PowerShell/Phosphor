@@ -44,7 +44,7 @@ export class DetailComponent implements OnInit {
 
   outputShown: boolean = false;
 
-  serviceFl: any;
+  serviceFl: any;  
 
   ngOnInit() {
     this.subscription = this.collectionService.itemSelected$.subscribe(
@@ -114,7 +114,7 @@ export class DetailComponent implements OnInit {
       document.getElementById("inputs").style.display = "none";
   }
 
-  setVerbDetails(resItems) {    
+  setVerbDetails(resItems) {
     var htmlBuilder = "";
     this.detailArr = [];
     this.inputs = [];

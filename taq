@@ -1,0 +1,408 @@
+[33mcommit 38ffe2d41158ca02bcc24d2b6b544646e1b7755b[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 19 15:52:29 2016 -0700
+
+    Most of the rewrite is now done with the removal of some setTimeouts for performance improvements. Everything else seems to be ported and working fine
+
+[33mcommit 71a3649b68d3a431ba22c4f9cf1b141e1a9cfe6e[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 19 15:46:52 2016 -0700
+
+    noun items now works
+
+[33mcommit 8578934daa59dd665722294c72b01294772bbc9b[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 19 15:38:35 2016 -0700
+
+    Service fl rewritten
+
+[33mcommit 61d5f99b8e4502c51783cf36231f4ce8d9aec50c[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 19 15:29:29 2016 -0700
+
+    Get-Command works again
+
+[33mcommit b841bfdfa968827223dfc09098cc85e87241d1e8[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 19 13:52:58 2016 -0700
+
+    Transitions now smoother
+
+[33mcommit 4af02a104cd80562a92c665440f5f0da06928663[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 19 13:42:56 2016 -0700
+
+    Data for services hard wired in for selection
+
+[33mcommit 111b700a10ac6f9f6f2943fd83647b939e88e5cf[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Mon Jul 18 13:05:01 2016 -0700
+
+    Fixed checkboxes for the details pane and removed min-height in verbs row to increase responsiveness
+
+[33mcommit 696b1b651a2929b7358ab67f01a87a7d2244f85a[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Fri Jul 15 15:55:54 2016 -0700
+
+    Tweaks to details output and smoothed transition for item list
+
+[33mcommit ba3040b9d65efcddfe02a7a33084136b4ef6d385[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Fri Jul 15 10:47:28 2016 -0700
+
+    Console image now stays the same
+
+[33mcommit d24ccb00ffb9ab18ba76f4f86d8a74fd36e9a146[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Fri Jul 15 09:54:15 2016 -0700
+
+    Adjusted font size to be bigger
+
+[33mcommit 13afe4e61abd87c2cc90a27078a8c017c965a0be[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Thu Jul 14 16:48:47 2016 -0700
+
+    UI tweaks for details and expansion of listview pane
+
+[33mcommit 71d260a0fd55568388b6f5af35a688078986a4cb[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Thu Jul 14 14:37:45 2016 -0700
+
+    Added several UI tweaks and a prototyped table
+
+[33mcommit 8f839ee749841c7a58e37748698b0a90b28d3b55[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jul 13 14:46:49 2016 -0700
+
+    Cleaned up output to make it look a bit nicer
+
+[33mcommit 66f22853a0f9ffb916fe6b7a1f6add9b085b0797[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jul 13 11:39:10 2016 -0700
+
+    Rudimentary way of showing output working
+
+[33mcommit 576715f988abac6c31e18067656cc406b90d9091[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 12 15:24:43 2016 -0700
+
+    PS Preview and copying to clipboard both now work. Did some bug fixing
+
+[33mcommit aa92466a7378338ce8c55de47da261429d7f19ee[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Mon Jul 11 16:05:33 2016 -0700
+
+    Basic end to end for executing PS commands from the web ui working
+
+[33mcommit 89052e95d234f4e8bb6efd061af2d3d273d0dacf[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Fri Jul 8 16:12:57 2016 -0700
+
+    The generated UI is now scrollable
+
+[33mcommit 153384352080612749a47dda58d7189b88ef398f[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Thu Jul 7 17:44:38 2016 -0700
+
+    Fixed a bug in search where Collection was not setting the items after the REST request
+
+[33mcommit fd314aad6cbcd05bcac1c343027cf99d132c87f9[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Thu Jul 7 15:44:06 2016 -0700
+
+    Rehauled UI after design meeting
+
+[33mcommit b047228525d8c04c4739aacb517ee12c0a1cc6d8[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jul 6 17:08:33 2016 -0700
+
+    Attempted to add checkboxes
+
+[33mcommit 7a3fdc2e7988d37e0ffe4d63204b2615e3b1cf26[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jul 6 15:57:49 2016 -0700
+
+    Command details API working. Got UI to show based on verbs in the details pane. Need to start adding input boxes
+
+[33mcommit 55c6bafeda6e7d554bde29d3d0eb50dc849509bc[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 5 17:06:47 2016 -0700
+
+    Added wiring to the PS console and a route from the server for generating verb details
+
+[33mcommit 3721e6c957beaf22d704cf1f3a7d58b3e87cffab[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 5 15:05:13 2016 -0700
+
+    Verbs are now generated when clicking on an item and PS preview shows what's going on
+
+[33mcommit 2f96a4ab77d7c88fd6cfb104880ac19c90e5b162[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jul 5 12:48:24 2016 -0700
+
+    Rehauled UI from designers
+
+[33mcommit a6356c2584ed604d7fa9b0ddf78c6aa0e98d5ab3[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Thu Jun 30 16:22:44 2016 -0700
+
+    Created a GET for verbs
+
+[33mcommit 5927663d0294e767c2723d66407b5e91c3f36951[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Thu Jun 30 15:40:58 2016 -0700
+
+    Refactored some things
+
+[33mcommit 6b8449e6a4d37bd2baf3692d23daa491650af408[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jun 29 16:06:41 2016 -0700
+
+    Collection backend works...crudely and hackily
+
+[33mcommit 79cf4662d0dfea7f121d89da380f633ed3dcd384[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jun 29 14:54:04 2016 -0700
+
+    A bit hacky, but a timeout lets things work
+
+[33mcommit f20541d1eb9637f8ac70b7eaafa4840a578263a8[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jun 29 13:50:12 2016 -0700
+
+    REST request with new node-powershell
+
+[33mcommit 010755c3929683f54bdb0b0f06510718f26afbc0[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jun 28 16:24:28 2016 -0700
+
+    Real PS data loads into the Nouns component blade. Module selection also works and search did not break. Sweet!!
+
+[33mcommit 26bfb64dabcc5fba0987731f077f85d645252314[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jun 28 11:54:59 2016 -0700
+
+    Finally was able to hook up the server to the client and render some data
+
+[33mcommit 4d509edcfd99295b2c685843378a093c2c9a3b32[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jun 22 14:46:09 2016 -0700
+
+    Color adjustments and console bar placement fix
+
+[33mcommit f8c90a3675beeab5d3e2a6733ee58203b14d311b[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Mon Jun 20 15:31:03 2016 -0700
+
+    Renamed verb blade to details. Moved things around from verbs to details and verbs underneath
+
+[33mcommit f321f55d5e3e1f7f9f1e49847d6f0954a6dd5c0b[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Mon Jun 20 12:04:11 2016 -0700
+
+    Fixed a bug for searching through modules and updating the module dropdown name when selected
+
+[33mcommit 06ae8b84b21397b0023af02243cb15636f2a4f8b[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Mon Jun 20 11:45:15 2016 -0700
+
+    Mocking modules now works and selection also works.
+
+[33mcommit caff2d469f3fab79b03afd145771ab4c4b3ac141[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Mon Jun 20 10:47:04 2016 -0700
+
+    Added a display for powershell console that pops up and back down when toggled
+
+[33mcommit 1464d0e6d96a2b8fab7da78e40108f8e9898f3ca[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Fri Jun 17 15:53:51 2016 -0700
+
+    established a small window for PS popup
+
+[33mcommit d031fc35b6fb367a30fc48a305f56ac78665a9be[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Fri Jun 17 14:00:39 2016 -0700
+
+    Added more tightening of the UI and module hooks
+
+[33mcommit bc2f984bccd172337d4e2ab9d58fdc175de04681[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Thu Jun 16 14:29:12 2016 -0700
+
+    Playing around with the mwf framework
+
+[33mcommit b10f5c478714a3e7ec83e5f4c2012b37998cace9[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Wed Jun 15 13:22:54 2016 -0700
+
+    Folder directories
+
+[33mcommit 61e4cafff12759a15e5d5c7b17be754b387d4fe5[m
+Merge: db1d3d2 4c03408
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jun 14 16:39:12 2016 -0700
+
+    Merge branch 'developertommy-angular' of https://github.com/PowerShell/Phosphor into developertommy-angular
+
+[33mcommit db1d3d28dc9e31692ddfbf078b14cf364007c9d1[m
+Author: Tommy Nguyen <its.tommy.nguyen@gmail.com>
+Date:   Tue Jun 14 16:38:51 2016 -0700
+
+    Removed border from action icons
+
+[33mcommit 4c034080f8c94b2f5e65a14f1633ad0d80ef3e9a[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 16:37:42 2016 -0700
+
+    Removed border from action icons
+
+[33mcommit c22e5f8f7653c02a8adf9a5ee1c37dfff1f9ff98[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 15:57:52 2016 -0700
+
+    Added a script preview as a thing to try out
+
+[33mcommit 43d54207bf86a3ebbcdeac2e1be7251df88f5e50[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 15:51:56 2016 -0700
+
+    Added some elements to preview what the application may look like
+
+[33mcommit 93eae28a7db9025a9de7043d38186c5ddb3bb62b[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 15:43:39 2016 -0700
+
+    Filled page with more mock data
+
+[33mcommit 0949b55da44536ee5919229f4130d3903b89ddb4[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 14:47:42 2016 -0700
+
+    Replaced input boxes in details with metadata placeholder tags
+
+[33mcommit 09bb56397e84df2d4597a39247aba83f3245b866[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 14:33:20 2016 -0700
+
+    Fix to push out directories
+
+[33mcommit 869acd6e75fc66a5f48cb86ae2ce263d2c496485[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 14:30:25 2016 -0700
+
+    Search now works for Collection and has been wired up. Also changed the mock noun items to emphasize that search works
+
+[33mcommit becc4fb53d02920b50dff0802b3f2113182a59a2[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 13:55:29 2016 -0700
+
+    Re-arranged things into their respective directories
+
+[33mcommit c3c3830f8bc55ad4448cd166d42eb19ad03bf7d9[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 13:53:55 2016 -0700
+
+    Commeneted and cleaned up code
+
+[33mcommit 8cedf71179e992557e60b0c32f6443ef25aac5d6[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 11:43:15 2016 -0700
+
+    Cleaned out the tutorial code
+
+[33mcommit b8ef15fc5a3da1925195869da92abedabafdbc2e[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Tue Jun 14 11:35:26 2016 -0700
+
+    Wired up component interaction and replaced static details with dynamic details
+
+[33mcommit 41cb2ec933776c3531531225177a5183677032b9[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Mon Jun 13 15:20:07 2016 -0700
+
+    Made it visually visible to change the list of items from Nouns to Collection and cleaned up some code
+
+[33mcommit c3e83d7c9738d73a7640a0cd26bba682ac428422[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Mon Jun 13 15:02:25 2016 -0700
+
+    Finally got component to component interaction between nouns and collections to work
+
+[33mcommit 577896113edf7bc2a85c9f7d88ef000114812f3a[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Fri Jun 10 14:48:49 2016 -0700
+
+    Added more to details. Routing is not quite there yet. At an impasse. Will discuss in sync.
+
+[33mcommit 0bd211613576d773b78997328346de8117aaadc3[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Fri Jun 10 11:59:58 2016 -0700
+
+    Consolidated search bar and dropdown into one thing
+
+[33mcommit 01df8a7194523cd7fad4858bf01b34ca6d913807[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Fri Jun 10 10:25:28 2016 -0700
+
+    Cleaned up nouns and added case insensitivity to search
+
+[33mcommit 85fdab64d6677b073434892e43e588eb784ac57f[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 17:05:19 2016 -0700
+
+    Made the application full screen
+
+[33mcommit abcdd3ac04034b9572536484b4a8cb6649e2d5e6[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 15:36:05 2016 -0700
+
+    Some adjustments to verb
+
+[33mcommit 2b32ec9305c916d99638c3d6070a4196de9615b3[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 15:18:47 2016 -0700
+
+    No longer need to click a button to search in nouns
+
+[33mcommit 9f1774e0022af96597eff3991bda8ead67ea2d41[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 15:06:41 2016 -0700
+
+    Small fix
+
+[33mcommit b3a3b44757bfb9890885edca2f55bf9f38056afd[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 14:59:27 2016 -0700
+
+    Search now works for nouns visually
+
+[33mcommit 6ea962267e94b6ff3bcb8039f7075b1dd41bb3b9[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 14:52:37 2016 -0700
+
+    Implemented a very basic search that outputs to the console
+
+[33mcommit 88ce12cc914b2cf1f8b552daa47f83d534b5c8e6[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 14:22:40 2016 -0700
+
+    Made some scrollviews and fake tabs for organization
+
+[33mcommit 8aaa852daacf3e366f9cc51bc07c11706066a5f3[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Thu Jun 9 13:46:39 2016 -0700
+
+    Rehauled UI with initial boxes and imports of BootStrap and Hover.css
+
+[33mcommit ff7fb9160c588424807dd6bd57a66789965bb728[m
+Author: Tommy Nguyen <t-tonguy@microsoft.com>
+Date:   Wed Jun 8 14:35:40 2016 -0700
+
+    Went through tutorial for routing in Angular. Will start refactoring code to create a harness for the actual application
+
+[33mcommit 90752303273bee9344a6b1532ec7629225509637[m
+Author: David Wilson <daviwil@microsoft.com>
+Date:   Fri Jun 3 11:35:35 2016 -0700
+
+    Add README.md
