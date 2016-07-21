@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 
 import { CollectionService } from './services/collection.service';
 import { VerbService } from './services/verb.service';
+import { NounService} from './services/noun.service';
 
 @Component({
   selector: 'detail-blade',
@@ -24,6 +25,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private router: Router,
     private collectionService: CollectionService,
+    private nounService: NounService,
     private http: Http,
     private verbService: VerbService) { }
 
@@ -44,7 +46,7 @@ export class DetailComponent implements OnInit {
 
   outputShown: boolean = false;
 
-  serviceFl: any;  
+  serviceFl: any;
 
   ngOnInit() {
     this.subscription = this.collectionService.itemSelected$.subscribe(
@@ -269,6 +271,8 @@ export class DetailComponent implements OnInit {
               this.outputShown = true;
 
               document.getElementById("output").innerHTML = newHtml;
+
+              this.nounService.setSelected(this.nounService.selected);
 
             },
             error => { console.log(error); }

@@ -15,7 +15,7 @@ export class NounService {
   selected: Noun;
   nouns: any;
   modules: any;
-
+  
   public nounSelected$: EventEmitter<Noun>;
 
   constructor(
@@ -141,7 +141,7 @@ export class NounService {
   setSelected(noun: Noun) {
       this.selected = noun;
       this.nounSelected$.emit(noun);
-      this.collectionService.setCollection(noun.items);
+      //this.collectionService.setCollection(noun.items);
   }
 
 

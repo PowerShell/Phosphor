@@ -14,10 +14,12 @@ var http_1 = require('@angular/http');
 require('rxjs/Rx');
 var collection_service_1 = require('./services/collection.service');
 var verb_service_1 = require('./services/verb.service');
+var noun_service_1 = require('./services/noun.service');
 var DetailComponent = (function () {
-    function DetailComponent(router, collectionService, http, verbService) {
+    function DetailComponent(router, collectionService, nounService, http, verbService) {
         this.router = router;
         this.collectionService = collectionService;
+        this.nounService = nounService;
         this.http = http;
         this.verbService = verbService;
         this.outputShown = false;
@@ -183,6 +185,7 @@ var DetailComponent = (function () {
             }
             _this.outputShown = true;
             document.getElementById("output").innerHTML = newHtml;
+            _this.nounService.setSelected(_this.nounService.selected);
         }, function (error) { console.log(error); });
         this.switchParams = [];
         this.verbService.setPreview(this.verbService.currentCommand + " " + this.grabParams());
@@ -204,7 +207,7 @@ var DetailComponent = (function () {
             templateUrl: 'app/html/detail.component.html',
             styleUrls: ['app/css/detail.component.css'],
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, collection_service_1.CollectionService, http_1.Http, verb_service_1.VerbService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, collection_service_1.CollectionService, noun_service_1.NounService, http_1.Http, verb_service_1.VerbService])
     ], DetailComponent);
     return DetailComponent;
 }());

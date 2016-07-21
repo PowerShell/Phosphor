@@ -41,6 +41,7 @@ var NounComponent = (function () {
     };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
+        this.selectedNoun = selectedNoun;
     };
     NounComponent.prototype.selectModule = function (selectedModule) {
         this.nouns = selectedModule.nouns;
