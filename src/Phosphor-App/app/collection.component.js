@@ -44,7 +44,6 @@ var CollectionComponent = (function () {
             _this.headers = [];
             _this.rows = [];
             _this.items = res.json();
-            _this.collectionService.setCollection(_this.items);
             if (_this.items.length > 1) {
                 var currHeader = _this.items[1];
             }
@@ -67,6 +66,7 @@ var CollectionComponent = (function () {
                 rows.push(currRow);
             }
             _this.rows = rows;
+            _this.collectionService.setCollection(_this.items, _this.rows);
             document.getElementById("listItems").style.display = "block";
         }, function (error) { console.log(error); _this.items = null; });
     };
@@ -78,7 +78,7 @@ var CollectionComponent = (function () {
         var _this = this;
         //This is a bit hacky as we need casting.
         var criteria = document.getElementById("collection-search").value;
-        this.collectionService.search(criteria).then(function (items) { return _this.items = items; });
+        this.collectionService.search(criteria).then(function (rows) { return _this.rows = rows; });
     };
     CollectionComponent.prototype.itemClick = function (idx) {
         this.collectionService.setItemClick(idx);

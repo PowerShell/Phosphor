@@ -13,6 +13,7 @@ export class CollectionService {
   //Currently placed here as mock data
   actions = ['New', 'Tools', 'Batch'];
   items: string[];
+  rows: string[];
 
   constructor() {
     this.itemSelected$ = new EventEmitter<string>();
@@ -31,22 +32,43 @@ export class CollectionService {
   }
 
   //Called from noun service to set the items
-  setCollection(items) {
+  setCollection(items, rows) {
     this.items = items;
-    console.log(items);
+    this.rows = rows;
+    //console.log(items);
+    console.log(rows);
   }
 
   //This is called every keystroke to search using JavaScript's String indexOf method.
   search(criteria) {
     var result = [];
 
+    for (var i = 0; i < this.rows.length; i++) {
+
+      var found = false;
+
+      if (this.rows[i] != null) {
+          for (var j = 0; j < this.rows[i].length; j++) {
+              if (this.rows[i][j].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+                var found = true;
+              }
+          }
+      }
+
+      if (found) {
+        result.push(this.rows[i]);
+      }
+
+    }
+
+    /*
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
         result.push(this.items[i]);
         //console.log(this.items[i]);
       }
     }
-
+    */
     return Promise.resolve(result);
   }
 

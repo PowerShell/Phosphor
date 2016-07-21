@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
 
   selectedNoun: any;
 
+  startup: boolean = true;
+
   constructor(
     private router: Router,
     private http: Http,
@@ -53,6 +55,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getVerbs(noun) {
+
+    this.startup = false;
 
     this.selectedNoun = noun.name;
 

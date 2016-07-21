@@ -61,7 +61,7 @@ export class CollectionComponent implements OnInit {
               this.rows = [];
 
               this.items = res.json();
-              this.collectionService.setCollection(this.items);
+
               if (this.items.length > 1) {
                   var currHeader = this.items[1];
               }
@@ -71,7 +71,7 @@ export class CollectionComponent implements OnInit {
 
               for (var i = this.headers.length - 1; i < this.items.length; i++) {
                 //console.log(this.items[i].split(" "));
-                var currRow = this.items[i].match(/\S+/g);                
+                var currRow = this.items[i].match(/\S+/g);
 
                 var builder;
 
@@ -95,6 +95,8 @@ export class CollectionComponent implements OnInit {
 
               this.rows = rows;
 
+              this.collectionService.setCollection(this.items, this.rows);
+
               document.getElementById("listItems").style.display = "block";
 
             },
@@ -110,7 +112,7 @@ export class CollectionComponent implements OnInit {
   search() {
     //This is a bit hacky as we need casting.
     var criteria = (<HTMLInputElement>document.getElementById("collection-search")).value;
-    this.collectionService.search(criteria).then(items => this.items = items);
+    this.collectionService.search(criteria).then(rows => this.rows = rows);
   }
 
   itemClick(idx) {

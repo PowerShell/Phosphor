@@ -27,18 +27,36 @@ var CollectionService = (function () {
         this.itemSelected$.emit(item);
     };
     //Called from noun service to set the items
-    CollectionService.prototype.setCollection = function (items) {
+    CollectionService.prototype.setCollection = function (items, rows) {
         this.items = items;
-        console.log(items);
+        this.rows = rows;
+        //console.log(items);
+        console.log(rows);
     };
     //This is called every keystroke to search using JavaScript's String indexOf method.
     CollectionService.prototype.search = function (criteria) {
         var result = [];
-        for (var i = 0; i < this.items.length; i++) {
-            if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-                result.push(this.items[i]);
+        for (var i = 0; i < this.rows.length; i++) {
+            var found = false;
+            if (this.rows[i] != null) {
+                for (var j = 0; j < this.rows[i].length; j++) {
+                    if (this.rows[i][j].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+                        var found = true;
+                    }
+                }
+            }
+            if (found) {
+                result.push(this.rows[i]);
             }
         }
+        /*
+        for (var i = 0; i < this.items.length; i++) {
+          if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+            result.push(this.items[i]);
+            //console.log(this.items[i]);
+          }
+        }
+        */
         return Promise.resolve(result);
     };
     CollectionService.prototype.setItemClick = function (idx) {

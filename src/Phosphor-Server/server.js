@@ -127,7 +127,7 @@ app.get('/servicefl', (req, res) => {
 
   setTimeout(function() {
     res.send(result);
-  }, 2000);
+  }, 3000);
 });
 
 app.get('/nounitems', (req, res) => {
@@ -243,7 +243,7 @@ app.get('/command-details', (req, res) => {
       console.log("result: " + result);
       res.send(result);
     }
-  ), 2000);
+  ), 3000);
 
 });
 
@@ -270,15 +270,13 @@ app.get('/run', (req, res) => {
   PS = new shell(command + " " + params);
 
   PS.on('output', function(data) {
-    console.log(data);
     result.push(data);
   });
 
   setTimeout((function() {
-    console.log('result: ' + result);
       res.send(result);
     }
-  ), 3000);
+  ), 4000);
 
 });
 
