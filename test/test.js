@@ -44,6 +44,43 @@ describe('routes', function() {
      request(url)
      .get('/nounitems?noun=service')
      .expect('Content-Type', /json/)
+     .expect(function(res) {
+       var data = res.body;
+
+       for (var i = 0; i < data.length; i++) {
+         if (data[i].includes("Status") && data[i].includes("Name") && data[i].includes("DisplayName")) {
+           console.log("passed");
+           return "correct";
+         }
+       }
+
+       throw new Error("Error: services not called");
+     })
+     .end(function(err, res) {
+       if (err) {
+         throw err;
+       }
+       console.log(err);
+       done();
+     })
+   });
+
+   it('should return verbs for service', function(done) {
+
+     request(url)
+     .get('/verbs?noun=Service')
+     .expect(function(res) {
+       var verbs = ['Get', 'New', 'Restart', 'Resume', 'Set', 'Start', 'Stop', 'Suspend'];
+       var result = res.body;
+
+       console.log("result:" + result);
+
+       for (var i = 0; i < result.length; i++) {
+         if (result[i] != null && verbs.indexOf(result[i]) === -1) {
+           throw new Error("Not all verbs for service found");
+         }
+       }
+     })
      .end(function(err, res) {
        if (err) {
          throw err;
@@ -52,5 +89,8 @@ describe('routes', function() {
        console.log(err);
        done();
      })
-   })
+   });
+
+   
+
 });
