@@ -101,6 +101,10 @@ var renderIndex = (req, res) => {
 
 app.get('/', renderIndex);
 
+app.get("/test", (req, res) => {
+  res.json({greeting: "hello"});
+});
+
 app.get('/servicefl', (req, res) => {
 
   var result = [];
