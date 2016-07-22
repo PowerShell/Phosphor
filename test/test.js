@@ -33,8 +33,7 @@ describe('routes', function() {
         if (err) {
           throw err;
         }
-        // this is should.js syntax, very clear
-        console.log(err);
+
         done();
     });
    });
@@ -60,9 +59,9 @@ describe('routes', function() {
        if (err) {
          throw err;
        }
-       console.log(err);
+
        done();
-     })
+     });
    });
 
    it('should return verbs for service', function(done) {
@@ -86,11 +85,63 @@ describe('routes', function() {
          throw err;
        }
 
-       console.log(err);
        done();
-     })
+     });
    });
 
-   
+   it('should return verbs for package', function(done) {
+
+     request(url)
+     .get('/verbs?noun=Package')
+     .expect(function(res) {
+       var verbs = ['Get', 'Find', 'Install', 'Save', 'Uninstall'];
+       var result = res.body;
+
+       console.log("result:" + result);
+
+       for (var i = 0; i < result.length; i++) {
+         if (result[i] != null && verbs.indexOf(result[i]) === -1) {
+           throw new Error("Not all verbs for package found");
+         }
+       }
+     })
+     .end(function(err, res) {
+       if (err) {
+         throw err;
+       }
+
+       done();
+     });
+   });
+
+   it('should do something', function(done) {
+
+     request(url)
+     .get('')
+     .expect(function(res) {
+
+     })
+     .end(function(err, res) {
+
+     });
+
+     done();
+
+   });
+
+   it('boilerplate', function(done) {
+
+     request(url)
+     .get('')
+     .expect(function(res) {
+
+     })
+     .end(function(err, res) {
+
+     });
+
+     done();
+
+   });
 
 });
