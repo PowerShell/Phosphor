@@ -26,55 +26,58 @@ var modules = [];
 
 PS.on('output', function(data){
     //console.log(data);
-    var splitted = data.split("-");
 
-    var firstSplit = (splitted[0] + "").split(/[\s,]+/).join().split(",");
+    if (data.indexOf("-") !== -1) {
+      var splitted = data.split("-");
 
-    if (firstSplit[0] === "Cmdlet") {
-      var verb = firstSplit[firstSplit.length - 1];
+      var firstSplit = (splitted[0] + "").split(/[\s,]+/).join().split(",");
 
-      var secondSplit = (splitted[1] + "").split(/[\s,]+/).join().split(",");
-      var noun =  secondSplit[0];
-      var module = secondSplit[secondSplit.length - 2];
+      if (firstSplit[0] === "Cmdlet" || firstSplit[0] ==="Function") {
+        var verb = firstSplit[firstSplit.length - 1];
 
-/*
-      console.log("Verb: " + verb);
-      console.log("Noun: " + noun);
-      console.log("Module: " + module);
-*/
+        var secondSplit = (splitted[1] + "").split(/[\s,]+/).join().split(",");
+        var noun =  secondSplit[0];
+        var module = secondSplit[secondSplit.length - 2];
 
-      if (!nouns[noun]) {
-        nouns[noun] = noun;
-        nouns.push(noun + "-" + module);
-      }
+  /*
+        console.log("Verb: " + verb);
+        console.log("Noun: " + noun);
+        console.log("Module: " + module);
+  */
 
-
-      if (!modules["" + module]) {
-        modules["" + module] = [];
-        modules["" + module].push(noun);
-      }
-      else {
-          modules["" + module].push(noun);
-      }
-
-      var unique = true;
-
-      for (var i = 0; i < modules.length; i++) {
-        if (modules[i] === module) {
-          unique = false;
+        if (!nouns[noun]) {
+          nouns[noun] = noun;
+          nouns.push(noun + "-" + module);
         }
-      }
 
-      if (unique) {
-        modules.push(module);
-      }
 
-      if (!verbs["" + noun]) {
-        verbs["" + noun] = [];
-      }
+        if (!modules["" + module]) {
+          modules["" + module] = [];
+          modules["" + module].push(noun);
+        }
+        else {
+            modules["" + module].push(noun);
+        }
 
-      verbs["" + noun].push(verb);
-      //console.log("Noun: " + noun + " | Verb: " + verbs[noun]);
+        var unique = true;
+
+        for (var i = 0; i < modules.length; i++) {
+          if (modules[i] === module) {
+            unique = false;
+          }
+        }
+
+        if (unique) {
+          modules.push(module);
+        }
+
+        if (!verbs["" + noun]) {
+          verbs["" + noun] = [];
+        }
+
+        verbs["" + noun].push(verb);
+        //console.log("Noun: " + noun + " | Verb: " + verbs[noun]);
+      }
     }
 
     //console.log(data);
