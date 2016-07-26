@@ -1,15 +1,25 @@
 .noun-blade {
   height: 100%;
   padding: 0;
-  border: 2px solid #D9D9D9;
+  background-color: #9AADBD;
+  border: 2px solid #9AADBD;
   text-align: center;
 }
 
 .noun {
   margin: 4px;
   width: 80%;
+
+  /*
   background-color: #464646;
   color: white;
+  */
+
+  background-color: white;
+  color: #4685CC;
+
+
+  overflow-x: hidden;
   font-size: 1.15em;
 }
 

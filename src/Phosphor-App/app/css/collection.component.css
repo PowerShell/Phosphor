@@ -1,7 +1,12 @@
+.select {
+  color: white;
+}
+
 .collection-blade {
   height: 100%;
   padding: 0;
-  border: 2px solid #D9D9D9;
+  background-color: #4D6684;
+  border: 2px solid #4D6684;
   text-align: center;
 }
 
