@@ -44,14 +44,16 @@ var CollectionComponent = (function () {
             _this.headers = [];
             _this.rows = [];
             _this.items = res.json();
+            var currHeader;
             if (_this.items.length > 1) {
-                var currHeader = _this.items[1];
+                currHeader = _this.items[1];
             }
             _this.headers = currHeader.match(/\S+/g);
             var rows = [];
+            var currRow;
             for (var i = _this.headers.length - 1; i < _this.items.length; i++) {
                 //console.log(this.items[i].split(" "));
-                var currRow = _this.items[i].match(/\S+/g);
+                currRow = _this.items[i].match(/\S+/g);
                 var builder;
                 if (currRow != null && currRow.length > _this.headers.length) {
                     builder = currRow[_this.headers.length - 1];
@@ -63,7 +65,12 @@ var CollectionComponent = (function () {
                     }
                     currRow = currRow.slice(0, _this.headers.length);
                 }
+                while (currRow != null && currRow.length < _this.headers.length) {
+                    currRow.push(" ");
+                }
                 rows.push(currRow);
+                console.log(currRow);
+                console.log(_this.headers.length);
             }
             _this.rows = rows;
             _this.collectionService.setCollection(_this.items, _this.rows);

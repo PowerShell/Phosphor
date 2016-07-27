@@ -62,16 +62,20 @@ export class CollectionComponent implements OnInit {
 
               this.items = res.json();
 
+              var currHeader;
+
               if (this.items.length > 1) {
-                  var currHeader = this.items[1];
+                  currHeader = this.items[1];
               }
               this.headers = currHeader.match(/\S+/g);
 
               var rows = [];
 
+              var currRow;
+
               for (var i = this.headers.length - 1; i < this.items.length; i++) {
                 //console.log(this.items[i].split(" "));
-                var currRow = this.items[i].match(/\S+/g);
+                currRow = this.items[i].match(/\S+/g);
 
                 var builder;
 
@@ -89,8 +93,11 @@ export class CollectionComponent implements OnInit {
                   currRow = currRow.slice(0, this.headers.length);
                 }
 
-                rows.push(currRow);
+                while (currRow != null && currRow.length < this.headers.length) {
+                  currRow.push(" ");
+                }
 
+                rows.push(currRow);
               }
 
               this.rows = rows;
