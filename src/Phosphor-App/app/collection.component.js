@@ -27,8 +27,9 @@ var CollectionComponent = (function () {
     CollectionComponent.prototype.ngOnInit = function () {
         var _this = this;
         var id = +this.routeParams.get('id');
-        //May need to fix this. However, simply wrapping items in a promise causes errors.
-        this.requestNounItems("service");
+        //As a way to keep the list empty and the spinner from spinning
+        this.items = [];
+        this.items.push(" ");
         this.collectionService.getCollectionActions().then(function (actions) { return _this.actions = actions; });
         this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.onNounSelectionChange(noun); });
     };

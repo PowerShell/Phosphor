@@ -37,8 +37,9 @@ export class CollectionComponent implements OnInit {
   ngOnInit() {
     let id = +this.routeParams.get('id');
 
-    //May need to fix this. However, simply wrapping items in a promise causes errors.
-    this.requestNounItems("service");
+    //As a way to keep the list empty and the spinner from spinning
+    this.items = [];
+    this.items.push(" ");
 
     this.collectionService.getCollectionActions().then(actions => this.actions = actions);
 

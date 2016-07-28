@@ -75,7 +75,11 @@ PS.on('output', function(data){
           verbs["" + noun] = [];
         }
 
-        verbs["" + noun].push(verb);
+        //Don't want to include Get as a verb
+        if (verb !== "Get") {
+            verbs["" + noun].push(verb);
+        }
+
         //console.log("Noun: " + noun + " | Verb: " + verbs[noun]);
       }
     }
@@ -226,25 +230,6 @@ app.get('/command-details', (req, res) => {
       result.push(arr);
 
     }
-
-    /* Case where there is only one way to write the syntax
-    for (var i = 1; i < split.length - 1; i++) {
-      var cleansed = "";
-
-      var current = split[i];
-
-      for (var j = 0; j < current.length; j++) {
-        if (valid[current.charAt(j)]) {
-          cleansed += current.charAt(j);
-        }
-      }
-
-      console.log(cleansed);
-      result.push(cleansed);
-
-    }
-    */
-
 
   });
 
