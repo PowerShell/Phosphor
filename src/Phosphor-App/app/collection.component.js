@@ -65,12 +65,11 @@ var CollectionComponent = (function () {
                     }
                     currRow = currRow.slice(0, _this.headers.length);
                 }
+                //Fill in empty cells
                 while (currRow != null && currRow.length < _this.headers.length) {
                     currRow.push(" ");
                 }
                 rows.push(currRow);
-                console.log(currRow);
-                console.log(_this.headers.length);
             }
             _this.rows = rows;
             _this.collectionService.setCollection(_this.items, _this.rows);

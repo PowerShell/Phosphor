@@ -29,7 +29,7 @@
             </div>
 
             <span *ngFor="let verb of verbs">
-                  <span class="hvr-fade verb" (click)="getCommand(verb)"> {{verb}} </span>
+                  <span class="hvr-fade verb" id="verb-{{verb}}" (click)="getCommand(verb)"> {{verb}} </span>
             </span>
           </div>
         </div>

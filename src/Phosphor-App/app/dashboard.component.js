@@ -67,6 +67,13 @@ var DashboardComponent = (function () {
         var _this = this;
         document.getElementById("output").style.display = "none";
         document.getElementById("inputs").style.display = "none";
+        if (this.verbHighlighted != null) {
+            document.getElementById("verb-" + this.verbHighlighted).style.backgroundColor = "transparent";
+            document.getElementById("verb-" + this.verbHighlighted).style.color = "#2098D1";
+        }
+        document.getElementById("verb-" + verb).style.backgroundColor = "#2098D1";
+        document.getElementById("verb-" + verb).style.color = "white";
+        this.verbHighlighted = verb;
         var command = verb + "-" + this.selectedNoun;
         this.updateConsole(command);
         document.getElementById("information").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'

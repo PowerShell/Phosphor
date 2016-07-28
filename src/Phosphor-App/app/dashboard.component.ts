@@ -36,6 +36,8 @@ export class DashboardComponent implements OnInit {
 
   startup: boolean = true;
 
+  verbHighlighted: any;
+
   constructor(
     private router: Router,
     private http: Http,
@@ -98,6 +100,15 @@ export class DashboardComponent implements OnInit {
   getCommand(verb) {
     document.getElementById("output").style.display = "none";
     document.getElementById("inputs").style.display = "none";
+
+    if (this.verbHighlighted != null) {
+        document.getElementById("verb-" + this.verbHighlighted).style.backgroundColor = "transparent";
+        document.getElementById("verb-" + this.verbHighlighted).style.color = "#2098D1";
+    }
+    document.getElementById("verb-" + verb).style.backgroundColor = "#2098D1";
+    document.getElementById("verb-" + verb).style.color = "white";
+
+    this.verbHighlighted = verb;
 
     var command = verb + "-" + this.selectedNoun;
 

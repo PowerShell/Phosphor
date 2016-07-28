@@ -93,6 +93,7 @@ export class CollectionComponent implements OnInit {
                   currRow = currRow.slice(0, this.headers.length);
                 }
 
+                //Fill in empty cells
                 while (currRow != null && currRow.length < this.headers.length) {
                   currRow.push(" ");
                 }
