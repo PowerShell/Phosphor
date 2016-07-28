@@ -13,10 +13,8 @@
         </collection-blade>
       </div>
 
-      <div class="col-md-5" style="margin: 0; padding: 0; height: 100%;">
+      <div *ngIf="!startup" class="col-md-5" style="margin: 0; padding: 0; height: 100%;">
         <div style="text-align: left; color: #4685CC; background-color: white; height: 5%; border: 2px solid #D9D9D9; overflow-x: auto;">
-
-          <h4 style="padding-top: 1%; padding-left: 2%;" *ngIf="startup"> Verbs will show up here after selecting a noun. </h4>
 
           <div style="padding-top: 1.5%; padding-left: 1%;">
 
