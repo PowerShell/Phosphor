@@ -67,9 +67,10 @@ var DashboardComponent = (function () {
         var _this = this;
         document.getElementById("output").style.display = "none";
         document.getElementById("inputs").style.display = "none";
-        if (this.verbHighlighted != null) {
-            document.getElementById("verb-" + this.verbHighlighted).style.backgroundColor = "transparent";
-            document.getElementById("verb-" + this.verbHighlighted).style.color = "#2098D1";
+        var verbDom = document.getElementById("verb-" + this.verbHighlighted);
+        if (this.verbHighlighted != null && verbDom !== null) {
+            verbDom.style.backgroundColor = "transparent";
+            verbDom.style.color = "#2098D1";
         }
         document.getElementById("verb-" + verb).style.backgroundColor = "#2098D1";
         document.getElementById("verb-" + verb).style.color = "white";

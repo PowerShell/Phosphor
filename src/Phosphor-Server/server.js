@@ -108,8 +108,40 @@ var renderIndex = (req, res) => {
 
 app.get('/', renderIndex);
 
-app.get("/test", (req, res) => {
+app.get('/test', (req, res) => {
   res.json({greeting: "hello"});
+});
+
+app.get('/fl', (req, res) => {
+  var query = req.query;
+  var noun = query.noun;
+
+  var result = [];
+
+  var ptr = -1;
+
+  var curr = "";
+
+  PS = new shell("Get-" + noun + " | fl");
+
+  PS.on('output', function(data) {
+    if (data.length > 3) {
+      if (data.substring(0,4) === "Name") {
+        ptr++;
+
+        if (ptr != 0) {
+          result.push(curr);
+          curr = "";
+        }
+      }
+      curr+= data + ";";
+    }
+  });
+
+  setTimeout(function() {
+    res.send(result);
+  }, 3000);
+
 });
 
 app.get('/servicefl', (req, res) => {
