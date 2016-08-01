@@ -44,12 +44,12 @@ export class NounComponent implements OnInit {
   search() {
     //This is a bit hacky as we need casting.
     var criteria = (<HTMLInputElement>document.getElementById("noun-search")).value;
-    this.nounService.search(criteria, this.selectedModule.nouns).then(nouns => this.nouns = nouns);
+    this.nounService.search(criteria).then(modules => this.modules = modules);
+
   }
 
   setSelected(selectedNoun) {
     this.nounService.setSelected(selectedNoun);
-    this.selectedNoun = selectedNoun;
   }
 
   selectModule(selectedModule) {
@@ -58,6 +58,28 @@ export class NounComponent implements OnInit {
 
       //DOM manipulation
       document.getElementById("module-dropdown").innerHTML = selectedModule.name + ' <span class="caret" > </span>';
+  }
+
+  toggleModule(moduleName) {
+    console.log(moduleName);
+    var moduleNouns = document.getElementById(moduleName + "-nouns");
+    var moduleClick = document.getElementById(moduleName + "-click");
+
+    if (moduleClick.className.includes("glyphicon-triangle-right")) {
+      moduleClick.className = "glyphicon glyphicon-triangle-bottom";
+    }
+    else {
+      moduleClick.className = "glyphicon glyphicon-triangle-right";
+    }
+
+    if (moduleNouns.style.display === "none") {
+      moduleNouns.style.display = "block";
+    }
+    else {
+      moduleNouns.style.display = "none";
+    }
+
+
   }
 
 }

@@ -24,6 +24,7 @@ var NounComponent = (function () {
         var _this = this;
         this.nounService.getModules().then(function (modules) {
             _this.modules = modules;
+            _this.fullModules = modules;
             _this.selectedModule = _this.modules[0];
         });
     };
@@ -37,17 +38,51 @@ var NounComponent = (function () {
         var _this = this;
         //This is a bit hacky as we need casting.
         var criteria = document.getElementById("noun-search").value;
-        this.nounService.search(criteria, this.selectedModule.nouns).then(function (nouns) { return _this.nouns = nouns; });
+        this.nounService.search(criteria).then(function (modules) { return _this.modules = modules; });
+        /*
+            var result = [];
+        
+            for (var i = 0; i < this.fullModules.length; i++) {
+              var nouns = this.fullModules[i].nouns;
+        
+              for (var j = 0; j < nouns.length; j++) {
+                if (nouns[j].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+                    console.log(nouns[j].name.toLowerCase());
+                    result.push(this.fullModules[i]);
+                    break;
+                }
+              }
+        
+            }
+        
+            this.modules = result;
+            */
     };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
-        this.selectedNoun = selectedNoun;
     };
     NounComponent.prototype.selectModule = function (selectedModule) {
         this.nouns = selectedModule.nouns;
         this.selectedModule = selectedModule;
         //DOM manipulation
         document.getElementById("module-dropdown").innerHTML = selectedModule.name + ' <span class="caret" > </span>';
+    };
+    NounComponent.prototype.toggleModule = function (moduleName) {
+        console.log(moduleName);
+        var moduleNouns = document.getElementById(moduleName + "-nouns");
+        var moduleClick = document.getElementById(moduleName + "-click");
+        if (moduleClick.className.includes("glyphicon-triangle-right")) {
+            moduleClick.className = "glyphicon glyphicon-triangle-bottom";
+        }
+        else {
+            moduleClick.className = "glyphicon glyphicon-triangle-right";
+        }
+        if (moduleNouns.style.display === "none") {
+            moduleNouns.style.display = "block";
+        }
+        else {
+            moduleNouns.style.display = "none";
+        }
     };
     NounComponent = __decorate([
         core_1.Component({

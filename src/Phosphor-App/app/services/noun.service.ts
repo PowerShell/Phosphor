@@ -15,7 +15,7 @@ export class NounService {
   selected: Noun;
   nouns: any;
   modules: any;
-  
+
   public nounSelected$: EventEmitter<Noun>;
 
   constructor(
@@ -96,13 +96,21 @@ export class NounService {
   }
 
   //This is called every keystroke to search using JavaScript's String indexOf method.
-  search(criteria, nouns) {
+  search(criteria) {
       var result = [];
 
-      for (var i = 0; i < nouns.length; i++) {
-          if (nouns[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-              result.push(nouns[i]);
+      for (var i in this.modules) {
+        var nouns = this.modules[i].nouns;
+
+        console.log(this.modules[i].name);
+
+        for (var j = 0; j < nouns.length; j++) {
+          if (nouns[j].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+              result.push(this.modules[i]);
+              break;
           }
+        }
+
       }
 
       return Promise.resolve(result);

@@ -66,11 +66,16 @@ var NounService = (function () {
         return Promise.resolve(allModules);
     };
     //This is called every keystroke to search using JavaScript's String indexOf method.
-    NounService.prototype.search = function (criteria, nouns) {
+    NounService.prototype.search = function (criteria) {
         var result = [];
-        for (var i = 0; i < nouns.length; i++) {
-            if (nouns[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-                result.push(nouns[i]);
+        for (var i in this.modules) {
+            var nouns = this.modules[i].nouns;
+            console.log(this.modules[i].name);
+            for (var j = 0; j < nouns.length; j++) {
+                if (nouns[j].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+                    result.push(this.modules[i]);
+                    break;
+                }
             }
         }
         return Promise.resolve(result);

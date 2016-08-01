@@ -29,11 +29,29 @@
 
   <!-- Scroll View for list of nouns created -->
   <div class="scrollView" *ngIf="nouns">
+
+    <div *ngFor="let module of modules" class="module">
+      <span style="cursor: pointer;" (click)="toggleModule(module.name)">
+        <span id="{{module.name}}-click" class="glyphicon glyphicon-triangle-right"> </span> {{module.name}}
+      </span>
+
+      <div id="{{module.name}}-nouns" style="display: none; text-align: center;">
+        <div *ngFor="let noun of module.nouns">
+          <button class="hvr-grow noun" (click)="setSelected(noun);">
+            {{noun.name}}
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+<!--
     <div *ngFor="let noun of nouns">
       <button class="hvr-grow noun" (click)="setSelected(noun);">
         {{noun.name}}
       </button>
     </div>
+  -->
   </div>
 
 
