@@ -1,6 +1,7 @@
 <div class="noun-blade">
 
   <!-- BootStrap dropdown and action bar -->
+  <!--
   <div class="input-group" style="width: 100%;">
     <span style="float: left; width: 100%; text-align: left;">
       <div class="input-group-btn">
@@ -8,24 +9,16 @@
         <ul class="dropdown-menu" style="overflow: auto; height: 1000%; width: 100%;">
           <li *ngFor="let module of modules" (click)="selectModule(module)" ><span> {{module.name}} </span></li>
         </ul>
-      </div><!-- /btn-group -->
+      </div>
     </span>
+  </div>
+-->
 
-    <!--
-    <div style="text-align: center;">
-      <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
+  <div id="search-div">
+    <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
 
-      <ul style="border: solid thin black; height: 200px; overflow-y: auto; position: absolute; margin-top: 36px; min-width: 70%; max-width: 70%;">
-        <li class="listnoun" style="z-index: 1000" *ngFor="let noun of nouns" (click)="setSelected(noun);">
-          {{noun.name}}
-        </li>
-      </ul>
-    </div>
-    -->
+  </div>
 
-  </div><!-- /input-group -->
-
-  <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
 
   <!-- Scroll View for list of nouns created -->
   <div class="scrollView" *ngIf="nouns">

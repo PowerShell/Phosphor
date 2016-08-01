@@ -46,7 +46,7 @@
   overflow-x: hidden;
   height: 75%;
   width: 100%;
-  margin-top: 12%;
+  margin-top: 5%;
   font-size: 1.3em;
   text-align: left;
 }
@@ -80,7 +80,11 @@
   border-radius: 5px;
   width: 80%;
   margin-left: 10%;
-  margin-top: 10%;
+}
+
+#search-div {
+  padding-top: 10%;
+  padding-bottom: 0;
 }
 
 .module {

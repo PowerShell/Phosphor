@@ -24,7 +24,6 @@ var NounComponent = (function () {
         var _this = this;
         this.nounService.getModules().then(function (modules) {
             _this.modules = modules;
-            _this.fullModules = modules;
             _this.selectedModule = _this.modules[0];
         });
     };
@@ -39,24 +38,6 @@ var NounComponent = (function () {
         //This is a bit hacky as we need casting.
         var criteria = document.getElementById("noun-search").value;
         this.nounService.search(criteria).then(function (modules) { return _this.modules = modules; });
-        /*
-            var result = [];
-        
-            for (var i = 0; i < this.fullModules.length; i++) {
-              var nouns = this.fullModules[i].nouns;
-        
-              for (var j = 0; j < nouns.length; j++) {
-                if (nouns[j].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-                    console.log(nouns[j].name.toLowerCase());
-                    result.push(this.fullModules[i]);
-                    break;
-                }
-              }
-        
-            }
-        
-            this.modules = result;
-            */
     };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
