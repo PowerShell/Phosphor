@@ -44,12 +44,31 @@
 .scrollView {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 75%;
+  height: 80%;
   width: 100%;
   margin-top: 5%;
-  font-size: 1.3em;
+  font-size: 1.25em;
   text-align: left;
   color: #464646;
+  padding-left: 4%;
+}
+
+
+@media (min-height: 650px) {
+
+  .scrollView {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 90%;
+    width: 100%;
+    margin-top: 5%;
+    font-size: 1.25em;
+    text-align: left;
+    color: #464646;
+    padding-left: 4%;
+  }
+
+
 }
 
 #module-dropdown {
