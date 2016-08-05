@@ -34,6 +34,7 @@ export class CollectionComponent implements OnInit {
   rows: any;
 
   currNoun: any;
+  highlightedNoun: string;
 
   //Initialization
   ngOnInit() {
@@ -128,7 +129,14 @@ export class CollectionComponent implements OnInit {
   }
 
   itemClick(idx) {
-    this.collectionService.setItemClick(idx);
+    this.collectionService.setItemClick(idx);    
+
+    if (this.highlightedNoun) {
+      document.getElementById(this.highlightedNoun).style.backgroundColor = "white";
+    }
+
+    this.highlightedNoun = "row-" + idx;
+    document.getElementById(this.highlightedNoun).style.backgroundColor = "#CAE0F5";
   }
 
   //Cleanup

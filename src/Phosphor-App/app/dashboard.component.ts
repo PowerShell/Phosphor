@@ -57,11 +57,13 @@ export class DashboardComponent implements OnInit {
     document.getElementById('ps-console').addEventListener("click", this.onClick, false);
     document.getElementById('ps-console').addEventListener("keypress", this.onKeypress, false);
 
+    this.toggleConsole();
+
   }
 
   onClick() {
     console.log("Clicked");
-    document.getElementById('ps-console').contentEditable = true;
+    document.getElementById('ps-console').contentEditable = "true";
     document.getElementById('ps-console').focus();
   }
 

@@ -90,6 +90,11 @@ var CollectionComponent = (function () {
     };
     CollectionComponent.prototype.itemClick = function (idx) {
         this.collectionService.setItemClick(idx);
+        if (this.highlightedNoun) {
+            document.getElementById(this.highlightedNoun).style.backgroundColor = "white";
+        }
+        this.highlightedNoun = "row-" + idx;
+        document.getElementById(this.highlightedNoun).style.backgroundColor = "#CAE0F5";
     };
     //Cleanup
     CollectionComponent.prototype.ngOnDestroy = function () {
