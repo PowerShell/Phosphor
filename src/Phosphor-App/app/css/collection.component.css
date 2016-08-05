@@ -1,5 +1,7 @@
 .select {
   color: white;
+  margin: 0;
+  padding-top: 20px;
 }
 
 .collection-blade {
@@ -60,7 +62,6 @@
 
 #collection-search {
   text-align: center;
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 6%;
+  width: 100%;
+  margin-top: 4%;
 }

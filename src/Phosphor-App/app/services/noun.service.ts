@@ -105,7 +105,7 @@ export class NounService {
         console.log(this.modules[i].name);
 
         for (var j = 0; j < nouns.length; j++) {
-          if (nouns[j].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
+          if (this.modules[i].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1 || nouns[j].name.toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
               result.push(this.modules[i]);
               break;
           }

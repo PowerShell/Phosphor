@@ -44,7 +44,7 @@
 .scrollView {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 80%;
+  height: 70%;
   width: 100%;
   margin-top: 5%;
   font-size: 1.25em;
@@ -59,7 +59,7 @@
   .scrollView {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 90%;
+    height: 80%;
     width: 100%;
     margin-top: 5%;
     font-size: 1.25em;

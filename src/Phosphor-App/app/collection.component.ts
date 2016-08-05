@@ -33,6 +33,8 @@ export class CollectionComponent implements OnInit {
   actions: string[];
   rows: any;
 
+  currNoun: any;
+
   //Initialization
   ngOnInit() {
     let id = +this.routeParams.get('id');
@@ -50,6 +52,7 @@ export class CollectionComponent implements OnInit {
     this.items = null;
     document.getElementById("listItems").style.display = "none";
     this.requestNounItems(noun.name);
+    this.currNoun = noun.name;
   }
 
 

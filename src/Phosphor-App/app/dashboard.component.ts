@@ -54,6 +54,28 @@ export class DashboardComponent implements OnInit {
       this.updateConsole(command);
     });
 
+    document.getElementById('ps-console').addEventListener("click", this.onClick, false);
+    document.getElementById('ps-console').addEventListener("keypress", this.onKeypress, false);
+
+  }
+
+  onClick() {
+    console.log("Clicked");
+    document.getElementById('ps-console').contentEditable = true;
+    document.getElementById('ps-console').focus();
+  }
+
+  onKeypress(event) {
+    console.log("Keypress");
+    var keyCode = event.keyCode;
+
+    //Keycode for enter
+    if (keyCode === 13) {
+      var old = document.getElementById('ps-console').innerHTML;
+      var psconsole = document.getElementById('ps-console');
+      document.getElementById('ps-console').innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 30px; width: 30px;"/> <br>';
+      //document.getElementById('ps-console').focus();
+    }
   }
 
   getVerbs(noun) {
@@ -77,6 +99,8 @@ export class DashboardComponent implements OnInit {
       var psconsole = document.getElementById("ps-console").style.height = "2.5%";
       var psicons = document.getElementsByClassName("ps-icon");
 
+      document.getElementById("ps-arrow").className = "glyphicon glyphicon-triangle-top";
+
       for (var i = 0; i < psicons.length; i++) {
         (<HTMLElement>psicons[i]).style.height = "100%";
       }
@@ -88,6 +112,8 @@ export class DashboardComponent implements OnInit {
       var dash = document.getElementById("dash").style.height = "85%";
       var psconsole = document.getElementById("ps-console").style.height = "15%";
       var psicons = document.getElementsByClassName("ps-icon");
+
+      document.getElementById("ps-arrow").className = "glyphicon glyphicon-triangle-bottom";
 
       for (var i = 0; i < psicons.length; i++) {
         (<HTMLElement>psicons[i]).style.height = "30px";

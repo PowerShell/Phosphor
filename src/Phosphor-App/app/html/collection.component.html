@@ -11,13 +11,12 @@
 
 
   <!-- List of items after selecting a noun -->
-  <h4 class="select"> Select from the list: </h4>
+  <h2 class="select"> {{currNoun}} <span style="visibility: hidden; margin: 0; padding: 0;"> &nbsp; </span> </h2>
 
   <div style="text-align: center;">
     <!-- SEARCH by name -->
     <input id="collection-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
   </div>
-
 
   <!--
   <div *ngIf="items" class="scrollView">

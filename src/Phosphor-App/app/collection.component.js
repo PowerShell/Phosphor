@@ -37,6 +37,7 @@ var CollectionComponent = (function () {
         this.items = null;
         document.getElementById("listItems").style.display = "none";
         this.requestNounItems(noun.name);
+        this.currNoun = noun.name;
     };
     CollectionComponent.prototype.requestNounItems = function (noun) {
         var _this = this;

@@ -33,6 +33,23 @@ var DashboardComponent = (function () {
         this.psSubscription = this.verbService.previewCommand$.subscribe(function (command) {
             _this.updateConsole(command);
         });
+        document.getElementById('ps-console').addEventListener("click", this.onClick, false);
+        document.getElementById('ps-console').addEventListener("keypress", this.onKeypress, false);
+    };
+    DashboardComponent.prototype.onClick = function () {
+        console.log("Clicked");
+        document.getElementById('ps-console').contentEditable = true;
+        document.getElementById('ps-console').focus();
+    };
+    DashboardComponent.prototype.onKeypress = function (event) {
+        console.log("Keypress");
+        var keyCode = event.keyCode;
+        //Keycode for enter
+        if (keyCode === 13) {
+            var old = document.getElementById('ps-console').innerHTML;
+            var psconsole = document.getElementById('ps-console');
+            document.getElementById('ps-console').innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 30px; width: 30px;"/> <br>';
+        }
     };
     DashboardComponent.prototype.getVerbs = function (noun) {
         var _this = this;
@@ -47,6 +64,7 @@ var DashboardComponent = (function () {
             var dash = document.getElementById("dash").style.height = "97.5%";
             var psconsole = document.getElementById("ps-console").style.height = "2.5%";
             var psicons = document.getElementsByClassName("ps-icon");
+            document.getElementById("ps-arrow").className = "glyphicon glyphicon-triangle-top";
             for (var i = 0; i < psicons.length; i++) {
                 psicons[i].style.height = "100%";
             }
@@ -57,6 +75,7 @@ var DashboardComponent = (function () {
             var dash = document.getElementById("dash").style.height = "85%";
             var psconsole = document.getElementById("ps-console").style.height = "15%";
             var psicons = document.getElementsByClassName("ps-icon");
+            document.getElementById("ps-arrow").className = "glyphicon glyphicon-triangle-bottom";
             for (var i = 0; i < psicons.length; i++) {
                 psicons[i].style.height = "30px";
             }
