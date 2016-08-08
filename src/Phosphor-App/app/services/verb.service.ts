@@ -43,7 +43,7 @@ export class VerbService {
   updateConsole(command) {
     var old = document.getElementById("ps-command").innerHTML;
 
-    document.getElementById("ps-command").innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 100%; width: 30px;"/>' + "<span>" + command + "</span>";
+    document.getElementById("ps-command").innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 30px; width: 30px;"/>' + "<span>" + command + "</span>";
 
     //A way to quickly scroll to the bottom
     document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;

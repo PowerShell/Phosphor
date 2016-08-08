@@ -183,10 +183,10 @@ app.get('/nounitems', (req, res) => {
   var result = [];
 
   function psgo() {
-    PS = new shell("Get-" + noun);
+    PS = new shell("Get-" + noun + "| Format-Table");
 
     PS.on('output', function(data){
-      if (!data.includes("--")) {
+      if (!data.includes("--") && !data.includes("AH0")) {
         console.log(data);
         result.push(data);
       }
