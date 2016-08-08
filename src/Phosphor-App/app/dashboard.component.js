@@ -31,7 +31,7 @@ var DashboardComponent = (function () {
         this.verbs = null;
         this.subscription = this.nounService.nounSelected$.subscribe(function (noun) { return _this.getVerbs(noun); });
         this.psSubscription = this.verbService.previewCommand$.subscribe(function (command) {
-            _this.updateConsole(command);
+            _this.verbService.updateConsole(command);
         });
         document.getElementById('ps-console').addEventListener("click", this.onClick, false);
         document.getElementById('ps-console').addEventListener("keypress", this.onKeypress, false);
@@ -96,7 +96,7 @@ var DashboardComponent = (function () {
         document.getElementById("verb-" + verb).style.color = "white";
         this.verbHighlighted = verb;
         var command = verb + "-" + this.selectedNoun;
-        this.updateConsole(command);
+        //this.verbService.updateConsole(command);
         document.getElementById("information").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
             + '<span></span>'
             + '<span></span>'

@@ -32,6 +32,12 @@ var VerbService = (function () {
     VerbService.prototype.setPreview = function (command) {
         this.previewCommand$.emit(command);
     };
+    VerbService.prototype.updateConsole = function (command) {
+        var old = document.getElementById("ps-command").innerHTML;
+        document.getElementById("ps-command").innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 100%; width: 30px;"/>' + "<span>" + command + "</span>";
+        //A way to quickly scroll to the bottom
+        document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
+    };
     VerbService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])

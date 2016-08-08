@@ -129,10 +129,10 @@ export class CollectionComponent implements OnInit {
   }
 
   itemClick(idx) {
-    this.collectionService.setItemClick(idx);    
+    this.collectionService.setItemClick(idx);
 
     if (this.highlightedNoun) {
-      document.getElementById(this.highlightedNoun).style.backgroundColor = "white";
+      document.getElementById(this.highlightedNoun).style.backgroundColor = "transparent";
     }
 
     this.highlightedNoun = "row-" + idx;

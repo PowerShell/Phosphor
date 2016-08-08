@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
     this.subscription = this.nounService.nounSelected$.subscribe(noun => this.getVerbs(noun));
 
     this.psSubscription = this.verbService.previewCommand$.subscribe(command =>  {
-      this.updateConsole(command);
+      this.verbService.updateConsole(command);
     });
 
     document.getElementById('ps-console').addEventListener("click", this.onClick, false);
@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit {
 
     var command = verb + "-" + this.selectedNoun;
 
-    this.updateConsole(command);
+    //this.verbService.updateConsole(command);
 
     document.getElementById("information").innerHTML = '<div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">'
         + '<span></span>'

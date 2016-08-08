@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var noun_service_1 = require('./services/noun.service');
+var verb_service_1 = require('./services/verb.service');
 var NounComponent = (function () {
-    function NounComponent(router, nounService) {
+    function NounComponent(router, nounService, verbService) {
         this.router = router;
         this.nounService = nounService;
+        this.verbService = verbService;
     }
     NounComponent.prototype.getNouns = function () {
         var _this = this;
@@ -41,6 +43,7 @@ var NounComponent = (function () {
     };
     NounComponent.prototype.setSelected = function (selectedNoun) {
         this.nounService.setSelected(selectedNoun);
+        this.verbService.updateConsole("Get-" + selectedNoun.name);
     };
     NounComponent.prototype.selectModule = function (selectedModule) {
         this.nouns = selectedModule.nouns;
@@ -71,7 +74,7 @@ var NounComponent = (function () {
             templateUrl: 'app/html/noun.component.html',
             styleUrls: ['app/css/noun.component.css']
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, noun_service_1.NounService, verb_service_1.VerbService])
     ], NounComponent);
     return NounComponent;
 }());

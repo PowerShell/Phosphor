@@ -11,9 +11,9 @@
 
 
   <!-- List of items after selecting a noun -->
-  <h2 class="select"> {{currNoun}} <span style="visibility: hidden; margin: 0; padding: 0;"> &nbsp; </span> </h2>
+  <h2 class="select"> {{currNoun}} </h2>
 
-  <div style="text-align: center;">
+  <div *ngIf="currNoun" style="text-align: center;">
     <!-- SEARCH by name -->
     <input id="collection-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
   </div>

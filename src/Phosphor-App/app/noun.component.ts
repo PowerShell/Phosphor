@@ -3,6 +3,7 @@ import { Router } from '@angular/router-deprecated';
 
 import { Noun } from './util/noun';
 import { NounService } from './services/noun.service';
+import { VerbService } from './services/verb.service';
 import { DetailComponent } from './detail.component';
 
 @Component({
@@ -14,7 +15,8 @@ export class NounComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private nounService: NounService) { }
+    private nounService: NounService,
+    private verbService: VerbService) { }
 
   nouns: Noun[];
   modules: any;
@@ -50,6 +52,7 @@ export class NounComponent implements OnInit {
 
   setSelected(selectedNoun) {
     this.nounService.setSelected(selectedNoun);
+    this.verbService.updateConsole("Get-" + selectedNoun.name);
   }
 
   selectModule(selectedModule) {

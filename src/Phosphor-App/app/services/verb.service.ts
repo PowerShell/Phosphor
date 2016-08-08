@@ -40,6 +40,15 @@ export class VerbService {
     this.previewCommand$.emit(command);
   }
 
+  updateConsole(command) {
+    var old = document.getElementById("ps-command").innerHTML;
+
+    document.getElementById("ps-command").innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 100%; width: 30px;"/>' + "<span>" + command + "</span>";
+
+    //A way to quickly scroll to the bottom
+    document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
+  }
+
 
   //General Algorithm for mapping verbs to images and similar verbs together
 
