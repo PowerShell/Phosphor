@@ -54,7 +54,7 @@
 }
 
 
-@media (min-height: 650px) {
+@media (min-height: 820px) {
 
   .scrollView {
     overflow-y: auto;

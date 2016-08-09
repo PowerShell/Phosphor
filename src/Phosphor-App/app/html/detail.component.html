@@ -1,6 +1,6 @@
 <div class="detail-blade">
 
-    <div class="" style="height: 84%; width: 100%; text-align: left; margin-top: 2%">
+    <div class="" style="height: 70%; width: 100%; text-align: left; margin-top: 2%">
 
       <!-- List of details. -->
       <div id="details" class="content" style="color: black; overflow: auto; height: 100%;">
@@ -18,7 +18,7 @@
           <br />
 
           <div *ngFor="let switch of switches" style="font-size: 1.3em;">
-            <span style="color: #4685CC; border: 1px solid #4685CC; padding: 2px; border-radius: 3px;">
+            <span style="color: #4685CC; padding: 2px;">
               <input type="checkbox" name="Switch" (click)="addSwitchParam(switch)"> {{switch}}
             </span>
 
