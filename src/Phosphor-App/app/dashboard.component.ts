@@ -38,6 +38,8 @@ export class DashboardComponent implements OnInit {
 
   verbHighlighted: any;
 
+  currCommand: string;
+
   constructor(
     private router: Router,
     private http: Http,
@@ -71,6 +73,8 @@ export class DashboardComponent implements OnInit {
     console.log("Keypress");
     var keyCode = event.keyCode;
 
+    console.log(event);
+
     //Keycode for enter
     if (keyCode === 13) {
       var old = document.getElementById('ps-command').innerHTML;
@@ -84,6 +88,9 @@ export class DashboardComponent implements OnInit {
       var val = command.innerHTML;
       command.innerHTML = '';
       command.innerHTML = val;
+    }
+    else {
+      this.currCommand += event;
     }
   }
 

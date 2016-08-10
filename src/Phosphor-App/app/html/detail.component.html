@@ -2,6 +2,7 @@
 
     <div class="" style="height: 70%; width: 100%; text-align: left; margin-top: 2%">
 
+
       <!-- List of details. -->
       <div id="details" class="content" style="color: black; overflow: auto; height: 100%;">
         <div id="information">
@@ -9,6 +10,16 @@
         </div> <!-- END OF LIST -->
 
         <div id="inputs">
+
+          <div *ngIf="allInputs.length > 1" class="dropdown">
+              <a id="paramDropdown" data-toggle="dropdown" href="#">Other Paramsets</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                  <li *ngFor="let input of paramSetNames; let i = index" (click)="setParamIdx(i)" style="text-align: center;">
+                    <a href="#"> {{input}} </a>
+                  </li>
+              </ul>
+          </div>
+
           <div class="detailInput" *ngFor="let input of inputs">
             <h4 style="padding-top: 5px;"> {{input}} </h4>
             <input type="text" class="form-control" placeholder="">

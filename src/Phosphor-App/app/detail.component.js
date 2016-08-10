@@ -52,6 +52,7 @@ var DetailComponent = (function () {
         this.itemClickSubscription = this.collectionService.itemClicked$.subscribe(function (idx) {
             return _this.setItemClicked(idx);
         });
+        this.paramSetNames = [];
     };
     DetailComponent.prototype.getActions = function (item) {
         console.log(item);
@@ -77,10 +78,16 @@ var DetailComponent = (function () {
         this.allInputs = [];
         this.allSwitches = [];
         this.details = [];
+        this.paramSetNames = [];
         console.log("Verb details: " + resItems);
         console.log(resItems.json());
+        if (document.getElementById("paramDropdown")) {
+            document.getElementById("paramDropdown").innerHTML = "Other Paramsets";
+        }
+        var first = false;
         for (var detailIdx = 0; detailIdx < resItems.json().length; detailIdx++) {
             var items = resItems.json()[detailIdx];
+            first = false;
             htmlBuilder = "";
             this.allSwitches.push([]);
             this.allInputs.push([]);
@@ -91,6 +98,10 @@ var DetailComponent = (function () {
                         +"</h4> <br> <br> ";
                         htmlBuilder += '<input type="text" class="form-control detailInput" placeholder="">';
                         this.allInputs[detailIdx].push(items[i].substring(1));
+                        if (!first) {
+                            first = true;
+                            this.paramSetNames.push(items[i].substring(1));
+                        }
                     }
                     else {
                         htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(' + items[i].substring(1) + ')">' + items[i].substring(1) + '</button> <br>';
@@ -121,6 +132,12 @@ var DetailComponent = (function () {
         this.inputs = this.allInputs[this.currDetail];
         this.switches = this.allSwitches[this.currDetail];
         //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
+    };
+    DetailComponent.prototype.setParamIdx = function (idx) {
+        this.currDetail = idx;
+        this.inputs = this.allInputs[this.currDetail];
+        this.switches = this.allSwitches[this.currDetail];
+        document.getElementById("paramDropdown").innerHTML = this.paramSetNames[idx];
     };
     /***** END OF PANE SWITCHING LOGIC *****/
     //HELPER FOR KEEPING TRACK OF SWITCHES

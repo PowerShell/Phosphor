@@ -45,6 +45,7 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.onKeypress = function (event) {
         console.log("Keypress");
         var keyCode = event.keyCode;
+        console.log(event);
         //Keycode for enter
         if (keyCode === 13) {
             var old = document.getElementById('ps-command').innerHTML;
@@ -55,6 +56,9 @@ var DashboardComponent = (function () {
             var val = command.innerHTML;
             command.innerHTML = '';
             command.innerHTML = val;
+        }
+        else {
+            this.currCommand += event;
         }
     };
     DashboardComponent.prototype.getVerbs = function (noun) {
