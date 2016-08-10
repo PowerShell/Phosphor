@@ -63,6 +63,7 @@ export class NounComponent implements OnInit {
       document.getElementById("module-dropdown").innerHTML = selectedModule.name + ' <span class="caret" > </span>';
   }
 
+  //Tree view selection
   toggleModule(moduleName) {
     console.log(moduleName);
     var moduleNouns = document.getElementById(moduleName + "-nouns");

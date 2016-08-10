@@ -38,6 +38,7 @@ var CollectionService = (function () {
         var result = [];
         for (var i = 0; i < this.rows.length; i++) {
             var found = false;
+            //Iterating through the rows because of how columns are formatted
             if (this.rows[i] != null) {
                 for (var j = 0; j < this.rows[i].length; j++) {
                     if (this.rows[i][j].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
@@ -49,14 +50,6 @@ var CollectionService = (function () {
                 result.push(this.rows[i]);
             }
         }
-        /*
-        for (var i = 0; i < this.items.length; i++) {
-          if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-            result.push(this.items[i]);
-            //console.log(this.items[i]);
-          }
-        }
-        */
         return Promise.resolve(result);
     };
     CollectionService.prototype.setItemClick = function (idx) {

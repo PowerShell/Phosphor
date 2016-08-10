@@ -96,6 +96,11 @@
 
 }
 
+.paneHeader {
+  margin: 0;
+  padding-top: 20px;
+}
+
 #noun-search {
   border-radius: 5px;
   width: 80%;

@@ -61,12 +61,15 @@ export class DashboardComponent implements OnInit {
 
     this.toggleConsole();
 
+    this.currCommand = '';
+
   }
 
   onClick() {
     console.log("Clicked");
     document.getElementById('ps-command').contentEditable = "true";
     document.getElementById('ps-command').focus();
+    this.currCommand = '';
   }
 
   onKeypress(event) {
@@ -81,17 +84,38 @@ export class DashboardComponent implements OnInit {
       var psconsole = document.getElementById('ps-command');
       document.getElementById('ps-command').innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 35px; width: 35px;"/> <br>';
 
-      var command = document.getElementById('ps-command');
+      console.log("Curr Command: " + this.currCommand);
 
-      console.log(command);
+      //TODO: Move this to a service
+      this.http.get('/run?' + "command=" + this.currCommand)
+         .subscribe(
+              res => {
+                console.log(res.json());
+                //document.getElementById("output").innerHTML = res.json();
 
-      var val = command.innerHTML;
-      command.innerHTML = '';
-      command.innerHTML = val;
+                var newHtml = "";
+                var results = res.json();
+                for (var i = 0; i < results.length; i++) {
+                  newHtml += '<div style="font-size: 1.3em;">' + results[i] + '</div>';
+                }
+
+                document.getElementById("output").innerHTML = newHtml;
+
+                this.nounService.setSelected(this.nounService.selected);
+
+              },
+              error => { console.log(error); }
+      );
+
+      this.currCommand = '';
     }
     else {
-      this.currCommand += event;
+      if (event.key) {
+          this.currCommand += event.key;
+      }
     }
+
+    console.log(this.currCommand);
   }
 
   getVerbs(noun) {
@@ -102,6 +126,7 @@ export class DashboardComponent implements OnInit {
 
     this.verbs = null;
 
+    //TODO: Move this to a service
     this.http.get('/verbs?' + "noun=" + noun.name)
        .subscribe(
             res => {  console.log(res.json());  this.verbs = res.json(); },
@@ -162,6 +187,7 @@ export class DashboardComponent implements OnInit {
 
     this.verbService.currentCommand = command;
 
+    //TODO: Move this to a service
     this.http.get('/command-details?' + "command=" + command)
        .subscribe(
             res => {
@@ -172,8 +198,7 @@ export class DashboardComponent implements OnInit {
             },
             error => { console.log(error); }
     );
-
-    //Get-Command New-Service -Syntax
+    
   }
 
   updateConsole(command) {

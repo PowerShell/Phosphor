@@ -36,13 +36,16 @@ var DashboardComponent = (function () {
         document.getElementById('ps-command').addEventListener("click", this.onClick, false);
         document.getElementById('ps-command').addEventListener("keypress", this.onKeypress, false);
         this.toggleConsole();
+        this.currCommand = '';
     };
     DashboardComponent.prototype.onClick = function () {
         console.log("Clicked");
         document.getElementById('ps-command').contentEditable = "true";
         document.getElementById('ps-command').focus();
+        this.currCommand = '';
     };
     DashboardComponent.prototype.onKeypress = function (event) {
+        var _this = this;
         console.log("Keypress");
         var keyCode = event.keyCode;
         console.log(event);
@@ -51,15 +54,27 @@ var DashboardComponent = (function () {
             var old = document.getElementById('ps-command').innerHTML;
             var psconsole = document.getElementById('ps-command');
             document.getElementById('ps-command').innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 35px; width: 35px;"/> <br>';
-            var command = document.getElementById('ps-command');
-            console.log(command);
-            var val = command.innerHTML;
-            command.innerHTML = '';
-            command.innerHTML = val;
+            console.log("Curr Command: " + this.currCommand);
+            this.http.get('/run?' + "command=" + this.currCommand)
+                .subscribe(function (res) {
+                console.log(res.json());
+                //document.getElementById("output").innerHTML = res.json();
+                var newHtml = "";
+                var results = res.json();
+                for (var i = 0; i < results.length; i++) {
+                    newHtml += '<div style="font-size: 1.3em;">' + results[i] + '</div>';
+                }
+                document.getElementById("output").innerHTML = newHtml;
+                _this.nounService.setSelected(_this.nounService.selected);
+            }, function (error) { console.log(error); });
+            this.currCommand = '';
         }
         else {
-            this.currCommand += event;
+            if (event.key) {
+                this.currCommand += event.key;
+            }
         }
+        console.log(this.currCommand);
     };
     DashboardComponent.prototype.getVerbs = function (noun) {
         var _this = this;

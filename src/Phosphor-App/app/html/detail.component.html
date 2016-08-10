@@ -1,25 +1,26 @@
 <div class="detail-blade">
 
     <div class="" style="height: 70%; width: 100%; text-align: left; margin-top: 2%">
-
-
-      <!-- List of details. -->
+      
       <div id="details" class="content" style="color: black; overflow: auto; height: 100%;">
-        <div id="information">
 
-        </div> <!-- END OF LIST -->
+        <!-- META DATA -->
+        <div id="information">
+        </div>
 
         <div id="inputs">
 
+          <!-- PARAMSET DROPDOWN -->
           <div *ngIf="allInputs.length > 1" class="dropdown">
               <a id="paramDropdown" data-toggle="dropdown" href="#">Other Paramsets</a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
                   <li *ngFor="let input of paramSetNames; let i = index" (click)="setParamIdx(i)" style="text-align: center;">
-                    <a href="#"> {{input}} </a>
+                    <a class="hvr-fade" style="background-color: white;" href="#"> {{input}} </a>
                   </li>
               </ul>
           </div>
 
+          <!-- TEXT INPUT -->
           <div class="detailInput" *ngFor="let input of inputs">
             <h4 style="padding-top: 5px;"> {{input}} </h4>
             <input type="text" class="form-control" placeholder="">
@@ -28,37 +29,26 @@
 
           <br />
 
+          <!-- SWITCH INPUT -->
           <div *ngFor="let switch of switches" style="font-size: 1.3em;">
-            <span style="color: #4685CC; padding: 2px;">
+            <span class="switchInput">
               <input type="checkbox" name="Switch" (click)="addSwitchParam(switch)"> {{switch}}
             </span>
 
             <br />
-            <br />
-            <!-- <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(switch)"> {{switch}} </button> -->
-
           </div>
+
         </div>
 
-        <!--
-          <div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
-        -->
+      </div>
 
-      </div> <!-- END LIST OF DETAILS -->
-
+      <!-- OUTPUT -->
       <div id="output" style="padding: 3%; overflow: auto; height: 90%; display: none;">
       </div>
 
-    </div> <!-- END DETAIL ROW -->
+    </div>
 
-
-
+    <!-- PS ACTION BUTTONS -->
     <div *ngIf="detailArr.length >= 1" style="margin-top: 3%; color: #4685CC">
         <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="leftDetailChange()"> < </span>
         <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="run()"> Run </span>

@@ -58,6 +58,7 @@ export class CollectionComponent implements OnInit {
 
 
   requestNounItems(noun: string) {
+    //TODO: Move this to a service
     this.http.get('/nounitems?' + "noun=" + noun)
        .subscribe(
             res => { /* console.log(res.json()); */

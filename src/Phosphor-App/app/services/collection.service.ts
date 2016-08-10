@@ -47,6 +47,7 @@ export class CollectionService {
 
       var found = false;
 
+      //Iterating through the rows because of how columns are formatted
       if (this.rows[i] != null) {
           for (var j = 0; j < this.rows[i].length; j++) {
               if (this.rows[i][j].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
@@ -61,14 +62,6 @@ export class CollectionService {
 
     }
 
-    /*
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].toLowerCase().indexOf(criteria.toLowerCase()) != -1) {
-        result.push(this.items[i]);
-        //console.log(this.items[i]);
-      }
-    }
-    */
     return Promise.resolve(result);
   }
 
@@ -76,13 +69,5 @@ export class CollectionService {
     console.log("Set Item Clicked");
     this.itemClicked$.emit(idx);
   }
-
-  //General Algorithm for mapping verbs to images and similar verbs together
-
-  //verbs[any verb]
-  //if we have a dictionary of similar word relations that would be nice to build from
-  //From that dictionary, we can then map images to the verbs.
-
-
 
 }

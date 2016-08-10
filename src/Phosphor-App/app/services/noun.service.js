@@ -82,17 +82,6 @@ var NounService = (function () {
     };
     //Gets the items for the selected noun.
     NounService.prototype.getNounItems = function (name) {
-        //TODO Make an HTTP request to grab data from the server on the noun
-        /*
-            var test = this.http.get("/shell").map(function(res) {
-              console.log(res);
-            }).catch(function(err, caught) {
-              console.log(err);
-              return caught;
-            });
-        
-            console.log("test: " + test.json());
-            */
         var nounItems;
         this.http.get('/nounitems?' + "noun=" + name)
             .subscribe(function (res) { console.log(res.json()); nounItems = res.json(); }, function (error) { console.log(error); nounItems = null; });

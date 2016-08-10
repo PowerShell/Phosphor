@@ -119,19 +119,6 @@ export class NounService {
   //Gets the items for the selected noun.
   getNounItems(name) {
 
-    //TODO Make an HTTP request to grab data from the server on the noun
-
-/*
-    var test = this.http.get("/shell").map(function(res) {
-      console.log(res);
-    }).catch(function(err, caught) {
-      console.log(err);
-      return caught;
-    });
-
-    console.log("test: " + test.json());
-    */
-
     var nounItems;
 
     this.http.get('/nounitems?' + "noun=" + name)

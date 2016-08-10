@@ -195,6 +195,10 @@ export class DetailComponent implements OnInit {
     this.inputs = this.allInputs[this.currDetail];
     this.switches = this.allSwitches[this.currDetail];
 
+    if (document.getElementById("paramDropdown")) {
+        document.getElementById("paramDropdown").innerHTML = this.paramSetNames[this.currDetail];
+    }
+
     //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
   }
 
@@ -202,6 +206,10 @@ export class DetailComponent implements OnInit {
     this.currDetail = (this.currDetail + 1) % this.detailArr.length;
     this.inputs = this.allInputs[this.currDetail];
     this.switches = this.allSwitches[this.currDetail];
+
+    if (document.getElementById("paramDropdown")) {
+        document.getElementById("paramDropdown").innerHTML = this.paramSetNames[this.currDetail];
+    }
 
     //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
   }

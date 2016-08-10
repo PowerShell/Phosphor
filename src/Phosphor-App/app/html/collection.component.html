@@ -14,50 +14,43 @@
   <h2 class="select"> {{currNoun}} </h2>
 
   <div *ngIf="currNoun" style="text-align: center;">
-    <!-- SEARCH by name -->
+    <!-- Search by any column criteria -->
     <input id="collection-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
   </div>
 
-  <!--
-  <div *ngIf="items" class="scrollView">
-    <div *ngFor="let item of items">
-      <button class="hvr-grow item" (click)="setSelected(item)">
-        {{item}}
-      </button>
-    </div>
+  <!-- LOADING IMAGE -->
+  <div *ngIf="!items" style="margin-top: 40%; margin-left: 12%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
   </div>
--->
 
 
-    <div *ngIf="!items" style="margin-top: 40%; margin-left: 12%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+  <!-- BOOTSTRAP GRID OF COLLECTION ITEMS -->
+  <div id="listItems" class="scrollView">
+    <table class="table table-bordered">
+      <!-- TABLE HEADERS -->
+      <thead>
+        <tr id="headers" style="background-color: white;">
+          <th *ngFor="let header of headers">
+            {{header}}
+          </th>
+        </tr>
+      </thead>
 
+      <!-- TABLE DETAILS -->
+      <tbody>
+        <tr id="row-{{i}}" class="item" *ngFor="let row of rows; let i = index" (click)="itemClick(i)">
+          <td *ngFor="let col of row">
+            {{col}}
+          </td>
+        </tr>
+      </tbody>
 
-    <div id="listItems" class="scrollView">
-
-      <table class="table table-bordered">
-        <thead>
-          <tr id="headers" style="background-color: white;">
-            <th *ngFor="let header of headers">
-              {{header}}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="row-{{i}}" class="item" *ngFor="let row of rows; let i = index" (click)="itemClick(i)">
-            <td *ngFor="let col of row">
-              {{col}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
+    </table>
+  </div>
 
 
 

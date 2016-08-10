@@ -41,6 +41,7 @@ var CollectionComponent = (function () {
     };
     CollectionComponent.prototype.requestNounItems = function (noun) {
         var _this = this;
+        //TODO: Move this to a service
         this.http.get('/nounitems?' + "noun=" + noun)
             .subscribe(function (res) {
             _this.headers = [];

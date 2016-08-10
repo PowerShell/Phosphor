@@ -31,3 +31,8 @@
   cursor: pointer;
   display: inline;
 }
+
+.switchInput {
+  color: #4685CC;
+  padding: 2px;
+}
