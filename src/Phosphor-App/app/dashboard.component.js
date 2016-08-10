@@ -33,23 +33,28 @@ var DashboardComponent = (function () {
         this.psSubscription = this.verbService.previewCommand$.subscribe(function (command) {
             _this.verbService.updateConsole(command);
         });
-        document.getElementById('ps-console').addEventListener("click", this.onClick, false);
-        document.getElementById('ps-console').addEventListener("keypress", this.onKeypress, false);
+        document.getElementById('ps-command').addEventListener("click", this.onClick, false);
+        document.getElementById('ps-command').addEventListener("keypress", this.onKeypress, false);
         this.toggleConsole();
     };
     DashboardComponent.prototype.onClick = function () {
         console.log("Clicked");
-        document.getElementById('ps-console').contentEditable = "true";
-        document.getElementById('ps-console').focus();
+        document.getElementById('ps-command').contentEditable = "true";
+        document.getElementById('ps-command').focus();
     };
     DashboardComponent.prototype.onKeypress = function (event) {
         console.log("Keypress");
         var keyCode = event.keyCode;
         //Keycode for enter
         if (keyCode === 13) {
-            var old = document.getElementById('ps-console').innerHTML;
-            var psconsole = document.getElementById('ps-console');
-            document.getElementById('ps-console').innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 30px; width: 30px;"/> <br>';
+            var old = document.getElementById('ps-command').innerHTML;
+            var psconsole = document.getElementById('ps-command');
+            document.getElementById('ps-command').innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 35px; width: 35px;"/> <br>';
+            var command = document.getElementById('ps-command');
+            console.log(command);
+            var val = command.innerHTML;
+            command.innerHTML = '';
+            command.innerHTML = val;
         }
     };
     DashboardComponent.prototype.getVerbs = function (noun) {
@@ -62,24 +67,20 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.toggleConsole = function () {
         if (this.expanded) {
-            var dash = document.getElementById("dash").style.height = "97.5%";
-            var psconsole = document.getElementById("ps-console").style.height = "2.5%";
-            var psicons = document.getElementsByClassName("ps-icon");
+            var dash = document.getElementById("dash").style.height = "96%";
+            var psconsole = document.getElementById("ps-console").style.height = "4%";
             document.getElementById("ps-arrow").className = "glyphicon glyphicon-triangle-top";
-            for (var i = 0; i < psicons.length; i++) {
-                psicons[i].style.height = "100%";
-            }
+            document.getElementById("ps-arrow").style.top = "97%";
+            document.getElementById("ps-arrow").style.right = "20px";
             //A way to quickly scroll to the bottom
             document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
         }
         else {
             var dash = document.getElementById("dash").style.height = "85%";
             var psconsole = document.getElementById("ps-console").style.height = "15%";
-            var psicons = document.getElementsByClassName("ps-icon");
             document.getElementById("ps-arrow").className = "glyphicon glyphicon-triangle-bottom";
-            for (var i = 0; i < psicons.length; i++) {
-                psicons[i].style.height = "30px";
-            }
+            document.getElementById("ps-arrow").style.top = "85%";
+            document.getElementById("ps-arrow").style.right = "1px";
         }
         this.expanded = !this.expanded;
     };
@@ -116,7 +117,7 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.updateConsole = function (command) {
         var old = document.getElementById("ps-command").innerHTML;
-        document.getElementById("ps-command").innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 30px; width: 30px;"/>' + "<span>" + command + "</span>";
+        document.getElementById("ps-command").innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png"/>' + "<span>" + command + "</span>";
         //A way to quickly scroll to the bottom
         document.getElementById("ps-console").scrollTop = document.getElementById("ps-console").scrollHeight;
     };

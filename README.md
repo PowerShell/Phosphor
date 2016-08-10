@@ -23,6 +23,12 @@ modules.
 These goals may be changed or clarified over time.  Please feel free to file issues if you have
 further ideas or requirements for this project.
 
+## How to run
+- Type "npm install" within the /src folder, /src/Phosphor-App, and /src/Phosphor-Server.
+- Within /src/Phosphor-Server, also type in "npm install node-powershell@1.1.0".
+- To run the server, navigate to /src/Phosphor-Server and input "node server.js"
+- You should then be able to connect to localhost:3000 and see the app.
+
 ## Maintainers
 
 - [David Wilson](https://github.com/daviwil) - [@daviwil](http://twitter.com/daviwil)

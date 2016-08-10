@@ -62,7 +62,7 @@ h4 {
 #dash {
   text-align: center;
   padding: 0;
-  height: 97.5%;
+  height: 96%;
 }
 
 .dashboard {
@@ -73,9 +73,18 @@ h4 {
 
 #ps-console {
   cursor: pointer;
-  height: 2.5%;
+  height: 3.5%;
   background-color: #315D88;
   text-align: left;
+  color: white;
+  overflow: auto;
+  font-size: 1.25em;
+}
+
+.ps-icon {
+  height: 38px;
+  width: 38px;
+  margin-bottom: 3px;
 }
 
 .expanded {
