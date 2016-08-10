@@ -1,0 +1,64 @@
+<div class="noun-blade">
+
+  <!-- BootStrap dropdown and action bar -->
+  <!--
+  <div class="input-group" style="width: 100%;">
+    <span style="float: left; width: 100%; text-align: left;">
+      <div class="input-group-btn">
+        <button id="module-dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
+        <ul class="dropdown-menu" style="overflow: auto; height: 1000%; width: 100%;">
+          <li *ngFor="let module of modules" (click)="selectModule(module)" ><span> {{module.name}} </span></li>
+        </ul>
+      </div>
+    </span>
+  </div>
+-->
+
+  <div>
+      <h2 style="margin: 0; padding-top: 20px;">Modules</h2>
+  </div>
+
+  <div id="search-div">
+    <input id="noun-search" type="text" class="form-control" aria-label="..." placeholder="Search for..." (keyup)="search()">
+
+  </div>
+
+
+  <!-- Scroll View for list of nouns created -->
+  <div class="scrollView" *ngIf="nouns">
+
+    <div *ngFor="let module of modules" class="module">
+      <span style="cursor: pointer;" (click)="toggleModule(module.name)">
+        <span id="{{module.name}}-click" class="glyphicon glyphicon-triangle-right"> </span> {{module.name}}
+      </span>
+
+      <div id="{{module.name}}-nouns" style="display: none; text-align: center;">
+        <div *ngFor="let noun of module.nouns">
+          <button class="hvr-grow noun" (click)="setSelected(noun);">
+            {{noun.name}}
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+<!--
+    <div *ngFor="let noun of nouns">
+      <button class="hvr-grow noun" (click)="setSelected(noun);">
+        {{noun.name}}
+      </button>
+    </div>
+  -->
+  </div>
+
+
+    <div *ngIf="!nouns" style="margin-top: 50%; margin-left: 15%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+</div>

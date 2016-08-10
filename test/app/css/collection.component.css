@@ -1,0 +1,50 @@
+.collection-blade {
+  height: 100%;
+  padding: 0;
+  border: 2px solid #D9D9D9;
+  text-align: center;
+}
+
+.item {
+  margin: 4px;
+  background-color: white;
+  cursor: pointer
+}
+
+.item:hover {
+  -webkit-transition: background-color 100ms ease-out 0.05s;
+  -moz-transition: background-color 100ms ease-out 0.05s;
+  -o-transition: background-color 100ms ease-out 0.05s;
+  transition: background-color 100ms ease-out 0.05s;
+
+  background-color: #CAE0F5;
+
+}
+
+.title {
+  color: white;
+  background-color: #E81123;
+  margin-top: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.scrollView {
+  overflow: auto;
+  height: 75%;
+  width: 100%;
+  margin-top: 4%;
+}
+
+.action {
+  /* border: solid; */
+  margin-top: 2%;
+  cursor: pointer;
+}
+
+#collection-search {
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 6%;
+}

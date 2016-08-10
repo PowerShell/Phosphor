@@ -1,0 +1,69 @@
+<div class="detail-blade">
+
+    <div class="" style="height: 84%; width: 100%; text-align: left; margin-top: 2%">
+
+      <!-- List of details. -->
+      <div id="details" class="content" style="color: black; overflow: auto; height: 100%;">
+        <div id="information">
+          <div *ngFor="let detail of details">
+            <h4 style="padding-top: 1%;">
+              {{detail}}
+            </h4>
+
+            <h6 style="margin-left: 3%; padding-top: 1%; padding-bottom: 1%;">
+              &lt; metadata &gt;
+            </h6>
+          </div>
+        </div> <!-- END OF LIST -->
+
+        <div id="inputs">                  
+          <div class="detailInput" *ngFor="let input of inputs">
+            <h4 style="padding-top: 5px;"> {{input}} </h4>
+            <input type="text" class="form-control" placeholder="">
+
+          </div>
+
+          <br />
+
+          <div *ngFor="let switch of switches" style="font-size: 1.3em;">
+            <span style="color: #4685CC; border: 1px solid #4685CC; padding: 2px; border-radius: 3px;">
+              <input type="checkbox" name="Switch" (click)="addSwitchParam(switch)"> {{switch}}
+            </span>
+
+            <br />
+            <br />
+            <!-- <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam(switch)"> {{switch}} </button> -->
+
+          </div>
+        </div>
+
+        <!--
+          <div *ngIf="!details" style="margin-top: 30%; margin-left: 7%;" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+        -->
+
+      </div> <!-- END LIST OF DETAILS -->
+
+      <div id="output" style="padding: 3%; overflow: auto; height: 90%; display: none;">
+      </div>
+
+    </div> <!-- END DETAIL ROW -->
+
+
+
+    <div *ngIf="detailArr.length >= 1" style="margin-top: 3%; color: #4685CC">
+        <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="leftDetailChange()"> < </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="run()"> Run </span>
+        <span *ngIf="outputShown == true" class="hvr-fade detailButton" (click)="exitOutput()"> Exit Output </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="previewCommand()"> PS Preview </span>
+        <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="copyToClipboard()"> Copy to Clipboard </span>
+        <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="rightDetailChange()"> > </span>
+    </div>
+
+
+</div>

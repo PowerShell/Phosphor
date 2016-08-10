@@ -1,0 +1,65 @@
+<div class="dashboard">
+
+  <!-- Used BootStrap's columns to create a 3 column layout -->
+    <div id="dash" class="container-fluid">
+
+      <div class="col-md-2" style="margin: 0; padding: 0; height: 100%;">
+        <noun-blade>
+        </noun-blade>
+      </div>
+
+      <div class="col-md-5" style="margin: 0; padding: 0; height: 100%;">
+        <collection-blade>
+        </collection-blade>
+      </div>
+
+      <div *ngIf="!startup" class="col-md-5" style="margin: 0; padding: 0; height: 100%; background-color: #F0F1EE;">
+
+
+        <h2 style="margin: 0; padding-top: 20px; background-color: #F0F1EE;">Details</h2>
+
+        <div style="text-align: center; color: #4685CC; background-color: white; height: 44px; border: 2px solid #D9D9D9; overflow-x: auto; margin-top: 3.5%;">
+
+          <div style="padding-top: 11px; ">
+
+            <div *ngIf="!verbs" style="margin-top: 0%; margin-left: 0%" class="c-progress f-indeterminate-regional" role="progressbar" aria-valuetext="Loading..." tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <span *ngFor="let verb of verbs">
+                  <span class="hvr-fade verb" id="verb-{{verb}}" (click)="getCommand(verb)"> {{verb}} </span>
+            </span>
+          </div>
+        </div>
+
+
+
+
+        <detail-blade>
+        </detail-blade>
+
+
+      </div>
+
+      <!--
+        <div class="col-md-3" id="output" style="padding: 3%; overflow: auto; height: 90%;">
+
+        </div>
+      -->
+
+
+    </div>
+
+    <div id="ps-console" (click)="toggleConsole()">
+      <img class="ps-icon" src="./app/img/psicon.png"/>
+      <span id="ps-command">Select a module to begin previewing PowerShell commands. Click here to minimize.</span>
+      <span id="ps-arrow" class="glyphicon glyphicon-triangle-top" style="right: 1; top: 85%; position: absolute;"></span>
+    </div>
+
+
+
+</div>
