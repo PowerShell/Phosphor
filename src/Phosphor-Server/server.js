@@ -98,8 +98,6 @@ PS.on('end', function(code) {
     //Do Something
 });
 
-//app.use('/app', express.static(path.resolve(__dirname, 'app')));
-//app.use('/libs', express.static(path.resolve(__dirname, 'libs')));
 
 var renderIndex = (req, res) => {
     //res.sendFile(path.resolve(__dirname, 'index.html'));
@@ -112,6 +110,7 @@ app.get('/test', (req, res) => {
   res.json({greeting: "hello"});
 });
 
+//Gets the FL for any Get-Noun
 app.get('/fl', (req, res) => {
   var query = req.query;
   var noun = query.noun;
@@ -144,6 +143,7 @@ app.get('/fl', (req, res) => {
 
 });
 
+//This was created before /fl.
 app.get('/servicefl', (req, res) => {
 
   var result = [];
@@ -230,6 +230,7 @@ app.get('/command-details', (req, res) => {
   PS.on('output', function(data) {
     console.log(data);
 
+    //The command is within the output
     var split = data.split(command);
 
     console.log("Split: " + split);
@@ -273,7 +274,7 @@ app.get('/command-details', (req, res) => {
 
 });
 
-
+//TODO Implement this but for ASP.NET core
 app.get('/command-parameters', (req, res) => {
   var query = req.query;
   var command = req.command;
@@ -313,6 +314,7 @@ var server = app.listen(port, function() {
     console.log('This express app is listening on port:' + port);
 });
 
+//HashMap for alphanumeric validation only (and -)
 var valid = [];
 
 valid['a'] = 1;

@@ -77,6 +77,7 @@ export class DetailComponent implements OnInit {
     this.allSwitches = [];
 
     //Preloading data for services fl demo
+    //TODO: Move this to a service
     this.http.get('/servicefl')
        .subscribe(
             res => {
@@ -290,6 +291,7 @@ export class DetailComponent implements OnInit {
         + '<span></span>'
         + '</div>';
 
+    //TODO: Move this to a service
     this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
        .subscribe(
             res => {

@@ -42,6 +42,7 @@ var DetailComponent = (function () {
         this.allInputs = [];
         this.allSwitches = [];
         //Preloading data for services fl demo
+        //TODO: Move this to a service
         this.http.get('/servicefl')
             .subscribe(function (res) {
             console.log(res.json());
@@ -197,6 +198,7 @@ var DetailComponent = (function () {
             + '<span></span>'
             + '<span></span>'
             + '</div>';
+        //TODO: Move this to a service
         this.http.get('/run?' + "command=" + this.verbService.currentCommand + "&" + "params=" + params)
             .subscribe(function (res) {
             console.log(res.json());
