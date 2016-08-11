@@ -6,8 +6,8 @@ import {Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
 import { Noun } from './util/noun';
-import { NounService } from './services/noun.service';
 
+import { NounService } from './services/noun.service';
 import { CollectionService } from './services/collection.service';
 
 @Component({

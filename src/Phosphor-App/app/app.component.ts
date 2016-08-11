@@ -1,7 +1,6 @@
 import { Component }       from '@angular/core';
 
 import { DashboardComponent } from './dashboard.component';
-
 import { NounComponent } from './noun.component';
 import { CollectionComponent } from './collection.component';
 

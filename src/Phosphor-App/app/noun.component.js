@@ -51,6 +51,7 @@ var NounComponent = (function () {
         //DOM manipulation
         document.getElementById("module-dropdown").innerHTML = selectedModule.name + ' <span class="caret" > </span>';
     };
+    //Tree view selection
     NounComponent.prototype.toggleModule = function (moduleName) {
         console.log(moduleName);
         var moduleNouns = document.getElementById(moduleName + "-nouns");

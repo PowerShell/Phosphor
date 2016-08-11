@@ -1,7 +1,7 @@
 <div class="detail-blade">
 
     <div class="" style="height: 70%; width: 100%; text-align: left; margin-top: 2%">
-      
+
       <div id="details" class="content" style="color: black; overflow: auto; height: 100%;">
 
         <!-- META DATA -->
@@ -15,7 +15,7 @@
               <a id="paramDropdown" data-toggle="dropdown" href="#">Other Paramsets</a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
                   <li *ngFor="let input of paramSetNames; let i = index" (click)="setParamIdx(i)" style="text-align: center;">
-                    <a class="hvr-fade" style="background-color: white;" href="#"> {{input}} </a>
+                    <span style="background-image: none; background-color: transparent;"> <a class="hvr-fade" href="#"> {{input}} </a> </span>
                   </li>
               </ul>
           </div>
@@ -50,12 +50,12 @@
 
     <!-- PS ACTION BUTTONS -->
     <div *ngIf="detailArr.length >= 1" style="margin-top: 3%; color: #4685CC">
-        <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="leftDetailChange()"> < </span>
+        <!-- <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="leftDetailChange()"> < </span> -->
         <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="run()"> Run </span>
         <span *ngIf="outputShown == true" class="hvr-fade detailButton" (click)="exitOutput()"> Exit Output </span>
         <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="previewCommand()"> PS Preview </span>
         <span *ngIf="outputShown == false" class="hvr-fade detailButton" (click)="copyToClipboard()"> Copy to Clipboard </span>
-        <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="rightDetailChange()"> > </span>
+        <!-- <span *ngIf="outputShown == false && detailArr.length >= 2" class="hvr-fade detailButton" (click)="rightDetailChange()"> > </span> -->
     </div>
 
 

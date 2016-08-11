@@ -6,11 +6,10 @@ import { Http, Response } from '@angular/http';
 import {Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
-import { NounComponent } from './noun.component';
 import { NounService } from './services/noun.service';
-
 import { VerbService } from './services/verb.service';
 
+import { NounComponent } from './noun.component';
 import { CollectionComponent } from './collection.component';
 import { DetailComponent } from './detail.component';
 
@@ -198,7 +197,7 @@ export class DashboardComponent implements OnInit {
             },
             error => { console.log(error); }
     );
-    
+
   }
 
   updateConsole(command) {

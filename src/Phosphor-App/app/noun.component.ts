@@ -2,8 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 
 import { Noun } from './util/noun';
+
 import { NounService } from './services/noun.service';
 import { VerbService } from './services/verb.service';
+
 import { DetailComponent } from './detail.component';
 
 @Component({

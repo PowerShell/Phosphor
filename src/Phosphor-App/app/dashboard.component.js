@@ -12,9 +12,9 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var http_1 = require('@angular/http');
 require('rxjs/Rx');
-var noun_component_1 = require('./noun.component');
 var noun_service_1 = require('./services/noun.service');
 var verb_service_1 = require('./services/verb.service');
+var noun_component_1 = require('./noun.component');
 var collection_component_1 = require('./collection.component');
 var detail_component_1 = require('./detail.component');
 var DashboardComponent = (function () {
@@ -55,6 +55,7 @@ var DashboardComponent = (function () {
             var psconsole = document.getElementById('ps-command');
             document.getElementById('ps-command').innerHTML = old + '<br> <img class="ps-icon" src="./app/img/psicon.png" style="height: 35px; width: 35px;"/> <br>';
             console.log("Curr Command: " + this.currCommand);
+            //TODO: Move this to a service
             this.http.get('/run?' + "command=" + this.currCommand)
                 .subscribe(function (res) {
                 console.log(res.json());
@@ -81,6 +82,7 @@ var DashboardComponent = (function () {
         this.startup = false;
         this.selectedNoun = noun.name;
         this.verbs = null;
+        //TODO: Move this to a service
         this.http.get('/verbs?' + "noun=" + noun.name)
             .subscribe(function (res) { console.log(res.json()); _this.verbs = res.json(); }, function (error) { console.log(error); _this.verbs = null; });
     };
@@ -125,6 +127,7 @@ var DashboardComponent = (function () {
             + '<span></span>'
             + '</div>';
         this.verbService.currentCommand = command;
+        //TODO: Move this to a service
         this.http.get('/command-details?' + "command=" + command)
             .subscribe(function (res) {
             console.log(res.json());
@@ -132,7 +135,6 @@ var DashboardComponent = (function () {
             document.getElementById("inputs").style.display = "block";
             document.getElementById("details").style.display = "block";
         }, function (error) { console.log(error); });
-        //Get-Command New-Service -Syntax
     };
     DashboardComponent.prototype.updateConsole = function (command) {
         var old = document.getElementById("ps-command").innerHTML;
