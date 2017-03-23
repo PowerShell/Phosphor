@@ -1,11 +1,20 @@
-# Phosphor
+# Project Phosphor
 
-Phosphor is both a .NET library and PowerShell module for generating user interfaces from PowerShell
+Phosphor is PowerShell module designed for generating user interfaces from PowerShell
 modules.
 
-> NOTE: This project is currently in very early development and may not be functional yet.
+## Disclaimer
+
+This project is to be considered a **proof-of-concept** and **not a supported Microsoft product**.
 
 ## Goals
+
+This project has a few short-term goals:
+
+- Provide a proof-of-concept cross-platform version of `Out-GridView` and `Show-Command`
+- Provide a proof-of-concept administration UI generated solely from PowerShell modules
+
+We also have aspirational, long-term goals for a more fully-established project along these lines:
 
 - Implement a core algorithm that can scan PowerShell modules and extract the necessary
   details for building a functional user interface
@@ -23,16 +32,12 @@ modules.
 These goals may be changed or clarified over time.  Please feel free to file issues if you have
 further ideas or requirements for this project.
 
-## How to run
-- Type "npm install" within the /src folder, /src/Phosphor-App, and /src/Phosphor-Server.
-- Within /src/Phosphor-Server, also type in "npm install node-powershell@1.1.0".
-- To run the server, navigate to /src/Phosphor-Server and input "node server.js"
-- You should then be able to connect to localhost:3000 and see the app.
-
 ## Maintainers
 
 - [David Wilson](https://github.com/daviwil) - [@daviwil](http://twitter.com/daviwil)
 
 ## License
 
-This project is currently being evaluated for an appropriate open-source license.
+This project is [licensed under the MIT License](LICENSE.txt).  Please see the
+[third-party notices](Third Party Notices.txt) file for details on the third-party
+binaries that we include with releases of this project.
