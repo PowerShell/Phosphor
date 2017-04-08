@@ -32,6 +32,40 @@ We also have aspirational, long-term goals for a more fully-established project 
 These goals may be changed or clarified over time.  Please feel free to file issues if you have
 further ideas or requirements for this project.
 
+## Building and Using the Code
+
+A build script will be added soon.  Until then, here are instructions for
+building this project.
+
+1. Make sure [.NET SDK 1.0](https://www.microsoft.com/net/download/core) and
+   [Node.js 6.10.2 with NPM](https://nodejs.org/en/) are installed and on your PATH
+
+2. Run the following commands to compile a "publish" build of the module:
+
+   ```
+   dotnet publish -f net451 .\src\Phosphor
+   dotnet publish -f standard16 .\src\Phosphor
+   ```
+
+3. Start up a fresh instance of PowerShell for testing purposes as the module will need
+   to be completely unloaded before you can compile the code again.
+
+4. Import the module:
+
+   ```powershell
+   Import-Module .\src\Phosphor\Phosphor.psd1
+   ```
+
+5. Call the `Show-Module` command to start the module browser:
+
+   ```powershell
+   # Show all modules
+   Show-Module
+
+   # Show specific modules
+   Show-Module -Module PowerShellGet, PackageManagement
+   ```
+
 ## Maintainers
 
 - [David Wilson](https://github.com/daviwil) - [@daviwil](http://twitter.com/daviwil)
