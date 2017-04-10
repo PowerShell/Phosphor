@@ -47,16 +47,24 @@ building this project.
    dotnet publish -f standard16 .\src\Phosphor
    ```
 
-3. Start up a fresh instance of PowerShell for testing purposes as the module will need
+3. Build the UI code by running the following commands:
+
+   ```
+   cd src\Phosphor.Client
+   npm install
+   npm run tsc
+   ```
+
+4. Start up a fresh instance of PowerShell for testing purposes as the module will need
    to be completely unloaded before you can compile the code again.
 
-4. Import the module:
+5. Import the module:
 
    ```powershell
    Import-Module .\src\Phosphor\Phosphor.psd1
    ```
 
-5. Call the `Show-Module` command to start the module browser:
+6. Call the `Show-Module` command to start the module browser:
 
    ```powershell
    # Show all modules
