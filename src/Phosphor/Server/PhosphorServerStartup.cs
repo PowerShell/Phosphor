@@ -4,6 +4,7 @@
 //
 
 using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -41,8 +42,8 @@ namespace Microsoft.PowerShell.Phosphor
             var clientPath =
                 Path.GetFullPath(
                     Path.Combine(
-                        Path.GetDirectoryName(this.GetType().Assembly.Location),
-                        "..\\..\\..\\..\\..\\Phosphor.Client\\"));
+                        Path.GetDirectoryName(this.GetType().GetTypeInfo().Assembly.Location),
+                        "../../../../../Phosphor.Client/"));
 
             app.UseFileServer(new FileServerOptions()
             {
