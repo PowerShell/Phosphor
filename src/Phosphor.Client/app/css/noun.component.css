@@ -1,0 +1,113 @@
+.noun-blade {
+  height: 100%;
+  padding: 0;
+  background-color: #EFEFEF;
+
+  /* background-color: #9AADBD; */
+
+
+  text-align: center;
+}
+
+.noun {
+  margin: 4px;
+  width: 80%;
+
+
+  background-color: #464646;
+  color: white;
+
+
+  /*
+  background-color: white;
+  color: #4685CC;
+  */
+
+
+  overflow-x: hidden;
+  font-size: 0.9em;
+}
+
+.title {
+  color: white;
+  background-color: #0078D7;
+  margin-top: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.search {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.scrollView {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 70%;
+  width: 100%;
+  margin-top: 5%;
+  font-size: 1.25em;
+  text-align: left;
+  color: #464646;
+  padding-left: 4%;
+}
+
+
+@media (min-height: 820px) {
+
+  .scrollView {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 80%;
+    width: 100%;
+    margin-top: 5%;
+    font-size: 1.25em;
+    text-align: left;
+    color: #464646;
+    padding-left: 4%;
+  }
+
+
+}
+
+#module-dropdown {
+  background-image: none;
+  background-color: #0078D7;
+  color: white;
+  margin: 0;
+  width: 100%;
+}
+
+.listnoun {
+  cursor: pointer;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: white;
+}
+
+.listnoun:hover {
+  -webkit-transition: background-color 100ms ease-out 0.05s;
+  -moz-transition: background-color 100ms ease-out 0.05s;
+  -o-transition: background-color 100ms ease-out 0.05s;
+  transition: background-color 100ms ease-out 0.05s;
+
+  background-color: #CAE0F5;
+
+}
+
+#noun-search {
+  border-radius: 5px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+#search-div {
+  padding-top: 10%;
+  padding-bottom: 0;
+}
+
+.module {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
