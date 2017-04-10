@@ -31,8 +31,8 @@ namespace Microsoft.PowerShell.Phosphor
             var clientPath =
                 Path.GetFullPath(
                     Path.Combine(
-                        Path.GetDirectoryName(this.GetType().Assembly.Location),
-                        "..\\..\\..\\..\\..\\Phosphor.Client\\"));
+                        Path.GetDirectoryName(this.GetType().GetTypeInfo().Assembly.Location),
+                        "../../../../../Phosphor.Client/"));
 
 #if NETSTANDARD1_6
             AssemblyLoadContext.Default.Resolving += this.OnAssemblyResolve;
@@ -80,7 +80,7 @@ namespace Microsoft.PowerShell.Phosphor
 #endif
             try
             {
-                if (assemblyNameString.StartsWith("Phosphor.Server"))
+                if (assemblyNameString.StartsWith("Phosphor"))
                 {
                     return this.GetType().GetTypeInfo().Assembly;
                 }
@@ -102,6 +102,5 @@ namespace Microsoft.PowerShell.Phosphor
 
             return null;
         }
-
     }
 }
