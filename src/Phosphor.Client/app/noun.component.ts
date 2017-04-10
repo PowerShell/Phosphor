@@ -24,23 +24,15 @@ export class NounComponent implements OnInit {
   selectedNoun: string;
 
   getNouns() {
-      this.nounService.getNouns().then(nouns => this.nouns = nouns);
-  }
-
-  getModules() {
-      this.nounService.getModules().then(modules => {
-          this.modules = modules;
-          this.selectedModule = this.modules[0];
+      this.nounService.getNouns().then(moduleInfo => {
+        this.nouns = moduleInfo.nouns;
+        this.modules = moduleInfo.modules;
+        this.selectedModule = this.modules[0];
       });
-  }
-
-  getNounsByModule() {
-
   }
 
   ngOnInit() {
       this.getNouns();
-      this.getModules();
   }
 
   search() {
@@ -64,7 +56,6 @@ export class NounComponent implements OnInit {
   }
 
   toggleModule(moduleName) {
-    console.log(moduleName);
     var moduleNouns = document.getElementById(moduleName + "-nouns");
     var moduleClick = document.getElementById(moduleName + "-click");
 
@@ -81,8 +72,5 @@ export class NounComponent implements OnInit {
     else {
       moduleNouns.style.display = "none";
     }
-
-
   }
-
 }

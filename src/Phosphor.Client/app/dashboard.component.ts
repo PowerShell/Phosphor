@@ -10,6 +10,7 @@ import { NounComponent } from './noun.component';
 import { NounService } from './services/noun.service';
 
 import { VerbService } from './services/verb.service';
+import { SessionService } from './services/session.service';
 
 import { CollectionComponent } from './collection.component';
 import { DetailComponent } from './detail.component';
@@ -42,7 +43,8 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private http: Http,
     private nounService: NounService,
-    private verbService: VerbService
+    private verbService: VerbService,
+    private session: SessionService
   ) { }
 
   ngOnInit() {
@@ -93,13 +95,7 @@ export class DashboardComponent implements OnInit {
 
     this.selectedNoun = noun.name;
 
-    this.verbs = null;
-
-    this.http.get('/verbs?' + "noun=" + noun.name)
-       .subscribe(
-            res => {  console.log(res.json());  this.verbs = res.json(); },
-            error => { console.log(error); this.verbs = null; }
-    );
+    this.verbs = this.nounService.getVerbs(noun.name);
   }
 
   toggleConsole() {
@@ -155,11 +151,10 @@ export class DashboardComponent implements OnInit {
 
     this.verbService.currentCommand = command;
 
-    this.http.get('/command-details?' + "command=" + command)
+    this.http.get(this.session.getUrlForSession('modules/commands/' + command))
        .subscribe(
             res => {
-              console.log(res.json());
-              this.verbService.setVerbDetails(res);
+              this.verbService.setVerbDetails(res.json());
               document.getElementById("inputs").style.display = "block";
               document.getElementById("details").style.display = "block";
             },

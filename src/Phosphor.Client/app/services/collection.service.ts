@@ -35,8 +35,6 @@ export class CollectionService {
   setCollection(items, rows) {
     this.items = items;
     this.rows = rows;
-    //console.log(items);
-    console.log(rows);
   }
 
   //This is called every keystroke to search using JavaScript's String indexOf method.
@@ -73,7 +71,6 @@ export class CollectionService {
   }
 
   setItemClick(idx) {
-    console.log("Set Item Clicked");
     this.itemClicked$.emit(idx);
   }
 

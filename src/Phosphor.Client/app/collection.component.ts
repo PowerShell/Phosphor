@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 import { Noun } from './util/noun';
 import { NounService } from './services/noun.service';
 
+import { SessionService } from './services/session.service';
 import { CollectionService } from './services/collection.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class CollectionComponent implements OnInit {
     private nounService: NounService,
     private routeParams: RouteParams,
     private http: Http,
+    private session: SessionService,
     private collectionService: CollectionService) { }
 
   //Data for Collection
@@ -58,55 +60,25 @@ export class CollectionComponent implements OnInit {
 
 
   requestNounItems(noun: string) {
-    this.http.get('/nounitems?' + "noun=" + noun)
+    this.http.get(this.session.getUrlForSession('modules/items/' + noun))
        .subscribe(
             res => { /* console.log(res.json()); */
 
-              this.headers = [];
+              var result = res.json();
+
+              this.headers = result.headers;
+              this.items = result.items;
               this.rows = [];
 
-              this.items = res.json();
+              for (var item of this.items) {
+                var row = [];
 
-              var currHeader;
-
-              if (this.items.length > 1) {
-                  currHeader = this.items[1];
-              }
-              this.headers = currHeader.match(/\S+/g);
-
-              var rows = [];
-
-              var currRow;
-
-              for (var i = this.headers.length - 1; i < this.items.length; i++) {
-                //console.log(this.items[i].split(" "));
-                currRow = this.items[i].match(/\S+/g);
-
-                var builder;
-
-                if (currRow != null && currRow.length > this.headers.length) {
-                  builder = currRow[this.headers.length - 1];
-
-                  for (var j = this.headers.length; j < currRow.length; j++) {
-                    builder += " " + currRow[j];
-                  }
-
-                  if (currRow.length > this.headers.length) {
-                    currRow[this.headers.length - 1] = builder;
-                  }
-
-                  currRow = currRow.slice(0, this.headers.length);
+                for (var header of this.headers) {
+                  row.push(item[header]);
                 }
 
-                //Fill in empty cells
-                while (currRow != null && currRow.length < this.headers.length) {
-                  currRow.push(" ");
-                }
-
-                rows.push(currRow);
+                this.rows.push(row);
               }
-
-              this.rows = rows;
 
               this.collectionService.setCollection(this.items, this.rows);
 

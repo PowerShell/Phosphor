@@ -46,8 +46,6 @@ export class DetailComponent implements OnInit {
 
   outputShown: boolean = false;
 
-  serviceFl: any;
-
   ngOnInit() {
     this.subscription = this.collectionService.itemSelected$.subscribe(
       item => this.getActions(item)
@@ -76,16 +74,16 @@ export class DetailComponent implements OnInit {
     this.allSwitches = [];
 
     //Preloading data for services fl demo
-    this.http.get('/servicefl')
-       .subscribe(
-            res => {
-              console.log(res.json());
-              //console.log(res);
-              //document.getElementById("output").innerHTML = res.json();
-              this.serviceFl = res.json();
-            },
-            error => { console.log(error); }
-    );
+    // this.http.get('/servicefl')
+    //    .subscribe(
+    //         res => {
+    //           console.log(res.json());
+    //           //console.log(res);
+    //           //document.getElementById("output").innerHTML = res.json();
+    //           this.serviceFl = res.json();
+    //         },
+    //         error => { console.log(error); }
+    // );
 
     this.itemClickSubscription = this.collectionService.itemClicked$.subscribe(idx =>
       this.setItemClicked(idx)
@@ -97,26 +95,26 @@ export class DetailComponent implements OnInit {
     console.log(item);
   }
 
-
   setItemClicked(idx) {
-      //Change HTML to serviceFL
 
-      var htmlBuilder = "";
-      var details = this.serviceFl[idx].split(";");
+      console.log("TODO: Render item details");
 
-      console.log(this.serviceFl[idx]);
-      console.log(this.serviceFl[idx].split(";"));
+      // var htmlBuilder = "";
+      // var details = this.serviceFl[idx].split(";");
 
-      for (var i = 0; i < details.length; i++) {
-          console.log("deet: "+  details[i]);
-          htmlBuilder += "<div style='font-size: 1.15em; margin-bottom: 2%;'>" + details[i] + "</div>";
-      }
+      // console.log(this.serviceFl[idx]);
+      // console.log(this.serviceFl[idx].split(";"));
 
-      document.getElementById("information").innerHTML = htmlBuilder;
+      // for (var i = 0; i < details.length; i++) {
+      //     console.log("deet: "+  details[i]);
+      //     htmlBuilder += "<div style='font-size: 1.15em; margin-bottom: 2%;'>" + details[i] + "</div>";
+      // }
+
+      // document.getElementById("information").innerHTML = htmlBuilder;
       document.getElementById("inputs").style.display = "none";
   }
 
-  setVerbDetails(resItems) {
+  setVerbDetails(command) {
     var htmlBuilder = "";
     this.detailArr = [];
     this.inputs = [];
@@ -125,34 +123,30 @@ export class DetailComponent implements OnInit {
     this.allSwitches = [];
     this.details = [];
 
-    console.log("Verb details: " + resItems);
-    console.log(resItems.json());
+    console.log(command);
 
-    for (var detailIdx = 0; detailIdx < resItems.json().length; detailIdx++) {
-      var items = resItems.json()[detailIdx];
-
+    for (var paramSet of command.parameterSets) {
       htmlBuilder = "";
 
-      this.allSwitches.push([]);
-      this.allInputs.push([]);
+      var switches = [];
+      var inputs = [];
 
-      for (var i = 0; i < items.length; i++) {
-        if (items[i].charAt(0) == "-") {
-
-          if (i < items.length - 1 && items[i + 1].charAt(0) != "-") {
-              htmlBuilder += "<h4> " + items[i].substring(1); + "</h4> <br> <br> ";
-              htmlBuilder += '<input type="text" class="form-control detailInput" placeholder="">';
-              this.allInputs[detailIdx].push(items[i].substring(1));
-          }
-          else {
-            htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam('+ items[i].substring(1) + ')">' + items[i].substring(1) +  '</button> <br>';
-            this.allSwitches[detailIdx].push(items[i].substring(1));
-          }
+      for (var parameter of paramSet.parameters) {
+        if (parameter.type === "SwitchParameter") {
+          htmlBuilder += '<br> <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="addSwitchParam('+ parameter.name + ')">' + parameter.name +  '</button> <br>';
+          switches.push(parameter.name);
+        }
+        else {
+          htmlBuilder += "<h4> " + parameter.name + "</h4> <br> <br> ";
+          htmlBuilder += '<input type="text" class="form-control detailInput" placeholder="">';
+          inputs.push(parameter.name);
         }
       }
 
-      this.detailArr.push(htmlBuilder);
+      this.allSwitches.push(switches);
+      this.allInputs.push(inputs);
 
+      this.detailArr.push(htmlBuilder);
     }
 
     this.currDetail = 0;
@@ -160,15 +154,7 @@ export class DetailComponent implements OnInit {
     this.inputs = this.allInputs[0];
     this.switches = this.allSwitches[0];
 
-    //document.getElementById("details").innerHTML = this.detailArr[this.currDetail];
-    console.log(this.detailArr);
-
-    console.log(this.inputs);
-    console.log(this.switches);
-
     document.getElementById("information").innerHTML = "";
-
-
   }
 
   /***** PANE SWITCHING LOGIC *****/

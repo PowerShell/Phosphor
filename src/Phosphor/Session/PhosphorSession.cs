@@ -22,7 +22,7 @@ namespace Microsoft.PowerShell.Phosphor
             ModelBase model)
         {
             this.Id = sessionId;
-            this.Uri = new Uri(serverBaseUri, $"index.html?session={sessionId}");
+            this.Uri = new Uri(serverBaseUri, $"?session={sessionId}");
             this.Model = model;
         }
     }
