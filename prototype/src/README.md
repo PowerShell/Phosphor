@@ -1,3 +1,6 @@
+# NOTE: The contents of this folder are deprecated.  They are maintained
+# for reference.
+
 # How to run
 - Type "npm install" within the /src folder, /src/Phosphor-App, and /src/Phosphor-Server.
 - Within /src/Phosphor-Server, also type in "npm install node-powershell@1.1.0".
