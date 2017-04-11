@@ -50,7 +50,17 @@ namespace Microsoft.PowerShell.Phosphor
                     if (items.Count > 0)
                     {
                         TypeData typeData = model.GetTypeData(items[0].BaseObject.GetType().FullName);
-                        string[] displayPropertyNames = typeData.DefaultDisplayPropertySet.ReferencedProperties.ToArray();
+
+                        PSObject psObject = items[0] as PSObject;
+                        if (psObject == null)
+                        {
+                            psObject = new PSObject(items[0]);
+                        }
+
+                        string[] displayPropertyNames =
+                            typeData != null && typeData.DefaultDisplayPropertySet != null
+                                ? typeData.DefaultDisplayPropertySet.ReferencedProperties.ToArray()
+                                : psObject.Properties.Select(p => p.Name).ToArray();
 
                         // Set the default runspace for grabbing property values
                         Runspace.DefaultRunspace = model.Runspace;
@@ -83,13 +93,12 @@ namespace Microsoft.PowerShell.Phosphor
             foreach (var property in displayPropertyNames)
             {
                 PSPropertyInfo propertyInfo = obj.Properties[property];
-                object value = obj.Properties[property].Value;
+                object value =
+                    propertyInfo != null
+                        ? propertyInfo.Value?.ToString()
+                        : string.Empty;
 
-                displayObj.Add(
-                    property,
-                    value != null
-                        ? value.ToString()
-                        : string.Empty);
+                displayObj.Add(property, value);
             }
 
             return displayObj;
