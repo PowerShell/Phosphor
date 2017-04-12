@@ -7,6 +7,10 @@ modules.
 
 This project is to be considered a **proof-of-concept** and **not a supported Microsoft product**.
 
+Also, certain things will not work correctly yet because this project was developed
+in the lead-up to the PowerShell and DevOps Global Summit.  Things will improve
+rapidly in the very near future.
+
 ## Goals
 
 This project has a few short-term goals:
@@ -40,7 +44,13 @@ building this project.
 1. Make sure [.NET SDK 1.0](https://www.microsoft.com/net/download/core) and
    [Node.js 6.10.2 with NPM](https://nodejs.org/en/) are installed and on your PATH
 
-2. Run the following commands to compile a "publish" build of the module:
+2. Restore the Phosphor module dependencies:
+
+   ```
+   dotnet restore ./src/Phosphor
+   ```
+
+3. Run the following commands to compile a "publish" build of the module:
 
    **On Windows**
 
@@ -55,7 +65,7 @@ building this project.
    dotnet publish -f netstandard1.6 ./src/Phosphor
    ```
 
-3. Build the UI code by running the following commands:
+4. Build the UI code by running the following commands:
 
    ```
    cd src/Phosphor.Client
@@ -63,16 +73,16 @@ building this project.
    npm run tsc
    ```
 
-4. Start up a fresh instance of PowerShell for testing purposes as the module will need
+5. Start up a fresh instance of PowerShell for testing purposes as the module will need
    to be completely unloaded before you can compile the code again.
 
-5. Import the module:
+6. Import the module:
 
    ```powershell
    Import-Module ./src/Phosphor/Phosphor.psd1
    ```
 
-6. Call the `Show-Module` command to start the module browser:
+7. Call the `Show-Module` command to start the module browser:
 
    ```powershell
    # Show all modules
