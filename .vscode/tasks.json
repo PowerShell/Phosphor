@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+
+    "windows": {
+        "command": "powershell.exe",
+        "args": [ "-NoProfile", "-ExecutionPolicy", "Bypass" ]
+    },
+    "linux": {
+        "command": "/usr/bin/powershell",
+        "args": [ "-NoProfile" ]
+    },
+    "osx": {
+        "command": "/usr/local/bin/powershell",
+        "args": [ "-NoProfile" ]
+    },
+
+    "isShellCommand": true,
+    "showOutput": "always",
+
+    "tasks": [
+        {
+            "taskName": "Install",
+            "suppressTaskName": true,
+            "args": [ "Invoke-Build Restore" ]
+        },
+        {
+            "taskName": "Clean",
+            "suppressTaskName": true,
+            "args": [ "Invoke-Build Clean" ]
+        },
+        {
+            "taskName": "Build Module",
+            "suppressTaskName": true,
+            "isBuildCommand": true,
+            "args": [ "Invoke-Build BuildModule" ]
+        },
+        {
+            "taskName": "Build Client",
+            "suppressTaskName": true,
+            "isBuildCommand": true,
+            "args": [ "Invoke-Build BuildClient" ]
+        },
+        {
+            "taskName": "Run Module",
+            "suppressTaskName": true,
+            "isBuildCommand": true,
+            "args": [ "Invoke-Build RunModule" ]
+        }
+    ]
+}

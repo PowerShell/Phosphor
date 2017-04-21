@@ -38,8 +38,34 @@ further ideas or requirements for this project.
 
 ## Building and Using the Code
 
-A build script will be added soon.  Until then, here are instructions for
-building this project.
+### Using the build script
+
+1. Make sure [Node.js 6.10.2 with NPM](https://nodejs.org/en/) is installed and
+   on your PATH
+
+2. Install Invoke-Build using the PowerShell Gallery:
+
+   ```powershell
+   Install-Module InvokeBuild -Scope CurrentUser
+   ```
+
+3. Run the following command to build and run the module
+
+   ```powershell
+   Invoke-Build RunModule   
+   ```
+
+4. You can build the module and UI without running it by
+   running the following command:
+
+   ```powershell
+   Invoke-Build Build
+   ```
+
+### Building the project manually
+
+These steps are not recommended, you should use the build script unless you
+have a good reason to build manually.
 
 1. Make sure [.NET SDK 1.0](https://www.microsoft.com/net/download/core) and
    [Node.js 6.10.2 with NPM](https://nodejs.org/en/) are installed and on your PATH
