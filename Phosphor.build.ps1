@@ -91,7 +91,7 @@ function NeedsRestore($rootPath) {
 }
 
 task Restore -If { "Restore" -in $BuildTask -or (NeedsRestore(".\src")) } -Before Clean, BuildModule, Test {
-    exec { & $script:dotnetExe restore }
+    exec { & $script:dotnetExe restore .\src\Phosphor\Phosphor.csproj }
 }
 
 task Clean {
@@ -108,7 +108,10 @@ task BuildModule {
 }
 
 task BuildClient {
-    exec { & npm --prefix ./src/Phosphor.Client run tsc }
+    Push-Location ./src/Phosphor.Client
+    exec { & npm install }
+    exec { & npm run tsc }
+    Pop-Location
 }
 
 task BuildElectron {
