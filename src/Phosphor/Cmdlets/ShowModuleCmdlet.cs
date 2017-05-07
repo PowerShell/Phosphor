@@ -19,7 +19,8 @@ namespace Microsoft.PowerShell.Phosphor
         public string[] Module { get; set; }
 
         [Parameter]
-        public SwitchParameter OpenInBrowser { get; set; }
+        [Alias("OpenInBrowser")]
+        public SwitchParameter ShowInBrowser { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -34,7 +35,7 @@ namespace Microsoft.PowerShell.Phosphor
                 SessionManager.Current.StartSession(
                     new ModuleViewModel(commandList));
 
-            if (this.OpenInBrowser.IsPresent)
+            if (this.ShowInBrowser.IsPresent)
             {
                 Process browserProcess = new Process();
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
