@@ -143,7 +143,7 @@ task UploadArtifacts -If ($script:IsCIBuild) {
 }
 
 task RunModule Build, {
-   PowerShell -NoProfile -NoExit -Command {
+   powershell -NoProfile -NoExit -Command {
         param($repoPath)
 
         function prompt {
