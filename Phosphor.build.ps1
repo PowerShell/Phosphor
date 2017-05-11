@@ -108,10 +108,9 @@ task BuildModule {
 }
 
 task BuildClient {
-    Push-Location ./src/Phosphor.Client
+    Set-Location ./src/Phosphor.Client
     exec { & npm install }
     exec { & npm run tsc }
-    Pop-Location
 }
 
 task BuildElectron {
