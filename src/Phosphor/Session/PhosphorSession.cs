@@ -41,7 +41,7 @@ namespace Microsoft.PowerShell.Phosphor
                             "../../../../../Phosphor.Client/"));
             }
 
-            return Path.Combine(ClientPath, subPath);
+            return $"\"{Path.Combine(ClientPath, subPath)}\"";
         }
     }
 }
